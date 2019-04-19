@@ -23,13 +23,11 @@ require('./config/passport')(passport);
 app.use(bodyParser.json())
 
 
-// var login = require('./routes/login.js')
-// var signUp = require('./routes/signUp.js')
+var login = require('./routes/login.js')
+var signUp = require('./routes/signUp.js')
 
-// app.use('/login',login)
-// app.use('/signUp',signUp)
-app.get('/',function(req,res){
-    res.send("Hello Hello")
-})
+app.use('/login',login)
+app.use('/signUp',signUp)
+
 
 app.listen(4000,function(){console.log("Server listening on port 4000")})
