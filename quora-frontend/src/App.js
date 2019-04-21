@@ -1,26 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Main from './components/Main/Main';
 import './App.css';
+
+import { Provider } from 'react-redux';
+import reducer from './reducers/indexReducers';
+import { createStore, applyMiddleware, compose } from "redux";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+import { autoRehydrate } from 'redux-persist';
+
+
+import promise from "redux-promise";
+import ReduxThunk from 'redux-thunk';
+
+
+
+const composePlugin = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <BrowserRouter>
+        <div>
+          <Main />
+        </div>
+      </BrowserRouter>
     );
   }
 }
