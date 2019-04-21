@@ -25,9 +25,11 @@ app.use(bodyParser.json())
 
 var login = require('./routes/login.js')
 var signUp = require('./routes/signUp.js')
+var profile = require('./routes/profile.js')
 
 app.use('/login',login)
 app.use('/signUp',signUp)
+app.use('/profile',profile)
 
 
 app.listen(4000,function(){console.log("Server listening on port 4000")})

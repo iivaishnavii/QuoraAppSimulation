@@ -6,7 +6,7 @@ function handle_request(msg, callback){
     console.log('Inside  Kafka Backend Login');
     console.log('Message', msg);
 
-    Model.Users.findOne({
+    Model.User.findOne({
         'Email': msg.Email
     }, (err, user) => {
 
