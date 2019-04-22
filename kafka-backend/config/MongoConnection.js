@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://quorauser:quorauser@.mlab.com:6ddbb/Quora');
+//mongoose.connect('mongodb://quorauser:quorauser@.mlab.com:6ddbb/Quora');
 
 
 
-mongoose.connect('mongodb+srv://user:H40bh8sgEHsj38pt@canvas-drbwb.mongodb.net/test?retryWrites=true',{
+mongoose.connect('mongodb+srv://quorauser:quorauser@cluster0-6ddbb.mongodb.net/test?retryWrites=true',{
     useMongoClient : true
 
 }).then(() => {
