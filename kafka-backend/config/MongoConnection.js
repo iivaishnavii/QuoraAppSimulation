@@ -1,17 +1,15 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
+var Schema = mongoose.Schema; 
 
-//mongoose.connect('mongodb://quorauser:quorauser@.mlab.com:6ddbb/Quora');
+mongoose.connect("mongodb+srv://quora:quora@cluster0-6ddbb.mongodb.net/test?retryWrites=true"
 
 
-
-mongoose.connect('mongodb+srv://quorauser:quorauser@cluster0-6ddbb.mongodb.net/test?retryWrites=true',{
-    useMongoClient : true
-
-}).then(() => {
+).then(() => {
     console.log('Database connection successful')
   })
   .catch(err => {
+    console.log(err);
     console.error('Database connection error')
   })
 
@@ -40,7 +38,7 @@ mongoose.connect('mongodb+srv://quorauser:quorauser@cluster0-6ddbb.mongodb.net/t
 var AnswerSchema = new Schema({
     answer: { type: String, trim: true},
     owner: { type: String, trim: true },
-    images: { type: Binary, trim: true },
+    images: { type: Buffer, trim: true },
     isAnonymous: { type: Boolean, trim: true, default: "" },
     upVotes: { type: Number, trim: true, default: "" },
     downVotes: { type: Number, trim: true, default: "" },
@@ -50,7 +48,7 @@ var AnswerSchema = new Schema({
 
 })
 
-var ConverstionSchema = new Schema({
+var ConversationSchema = new Schema({
     From: { type: String, trim: true},
     To:{ type: String, trim: true },
     Subject: { type: String, trim: true },
@@ -92,3 +90,5 @@ module.exports={
     QuestionsModel,
     TopicsModel
 }
+
+

@@ -1,4 +1,4 @@
-var Model = require('../DatabaseConnection')
+var Model = require('../config/MongoConnection')
 
 
 
