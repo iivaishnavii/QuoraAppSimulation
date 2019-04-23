@@ -8,22 +8,21 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
  import PropTypes from 'react';
 import {Field,reduxForm} from 'redux-form';
-import axios from 'axios';
-// import {rooturl} from '../config/settings';
-import React, { Component } from 'react';
-import quora from '../../images/Logo.png';
-import quora2 from '../../images/Logo2.png';
 
-import { submitLogin } from '../../actions/login'
+  import {rooturl} from '../../config/settings'
+ import React, { Component } from 'react';
+ import axios from 'axios';
+
+ import { submitLogin } from '../../actions/login';
 
 
 
 class login extends Component{
-  
+   
     constructor(props){
-    
+     
         super(props);
-  
+   
         this.state = {
           email : "",
           passwrd : "",
@@ -38,8 +37,8 @@ class login extends Component{
         handleSubmit: PropTypes.func,
         fields: PropTypes.object
       }
- 
- 
+  
+
 
     //Define component to be rendered
     renderField(field) {
@@ -57,7 +56,7 @@ class login extends Component{
               <input className={className} type={inputType} placeholder={inputPlaceholder} {...field.input} />
               <div className={errorMessageStyling}>
                   <div>{touched ? error : ""}</div>
-                 
+                  
               </div>
           </div>
       );
@@ -66,13 +65,13 @@ class login extends Component{
    onSubmit(values) {
        //     axios.defaults.withCredentials = true;
              var data = {
-                 Email : values.email,
-                 Passowrd : values.passwrd
+                 email : values.email,
+                 passwrd : values.passwrd
              };
-    
+     
              this.props.submitLogin(data);
          }
-    
+     
 
 
     render(){
@@ -83,7 +82,7 @@ class login extends Component{
           if(this.props.loginStateStore.result.isAuthenticated === true){
               redrirectVar = <Redirect to="/home" />
           }
-         
+          
       }
 
 
@@ -97,7 +96,6 @@ class login extends Component{
           </div>
       }
   }
-
   let formErrorPanel = null;
   if (this.state.formValidationFailure) {
       formErrorPanel = <div>
@@ -106,36 +104,37 @@ class login extends Component{
           </div>
       </div>
   }
-
   const { handleSubmit } = this.props;
-      
+       
         return(
-          
-            
+           
+             
             <div class="container">
-            
+            {redrirectVar}
+            {errorPanel}
+            {formErrorPanel}
             <form name ="loginForm" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <div class="login-form">
                     <div class="main-div">
                         <div class="panel">
-                            <h2 color='brown'> QUORA LOGIN</h2>
+                            <h2 color="steelblue"> CANVAS LOGIN</h2>
                             <p>Please enter your Email and password</p>
                         </div>
-                       
+                        
                         <Field
                         label="email"
                         name="email"
                         type = "text"
                         component={this.renderField}
-                      
+                       
                       />
- 
+  
                       <Field
                       label="passwrd"
                       name="passwrd"
                       type = "password"
                       component={this.renderField}
-               
+                
                     />
                              <div class="form-group">
                             <br></br>
@@ -143,15 +142,15 @@ class login extends Component{
                             <ul class="nav navbar-nav">
                             <li class="signup"><Link to="/signup">Don't have an account yet? Sign up here</Link></li>
                             </ul>
-                         
+                          
                             </div>
-                       
-                     
+                        
+                      
                     </div>
                 </div>
               </form> 
             </div>
-          
+           
         )
     }     
 }
@@ -175,31 +174,3 @@ export default reduxForm({
   validate,
   form: "loginForm"
 })(connect(mapStateToProps, { submitLogin })(login));
-
-
-
-
-// import React, {Component} from 'react';
-// import {Route} from 'react-router-dom';
-// import {BrowserRouter} from 'react-router-dom';
-// import loginpage from '../Login/login';
-
-
-
-
-
-//Create a Main Component
-// class login extends Component {
-//     render(){
-//         return(
-//             <BrowserRouter>
-//             <div>
-//             <h3> login page </h3>
-                
-//             </div>
-//             </BrowserRouter>
-//         )
-//     }
-// }
-// //Export The Main Component
-// export default login;

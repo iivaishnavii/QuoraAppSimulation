@@ -37,9 +37,9 @@ import thunk from 'redux-thunk';
 
 const allreducers = combineReducers ({
    
-    login : loginReducer
+    login : loginReducer,
     // signup : signupReducer,
-    // form : formReducer,
+    form : formReducer
     // course : courseReducer,
     
     // profile : profileReducer
