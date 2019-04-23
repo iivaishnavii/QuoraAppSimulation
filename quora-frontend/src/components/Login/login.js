@@ -66,8 +66,8 @@ class login extends Component{
    onSubmit(values) {
        //     axios.defaults.withCredentials = true;
              var data = {
-                 email : values.email,
-                 passwrd : values.passwrd
+                 Email : values.email,
+                 Passowrd : values.passwrd
              };
     
              this.props.submitLogin(data);
