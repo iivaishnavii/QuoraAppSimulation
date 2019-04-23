@@ -1,8 +1,5 @@
 var Model = require('../config/MongoConnection')
 
-
-
-
 function handle_request(message,callback){
     console.log("Inside Kafka Update Profile",message);
     Model.User.findOne({
