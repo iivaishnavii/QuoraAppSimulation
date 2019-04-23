@@ -27,15 +27,32 @@ var login = require('./routes/login.js')
 var signUp = require('./routes/signUp.js')
 var profile = require('./routes/profile.js')
 
+
 var following = require('./routes/following.js')
 var userAnswers = require('./routes/userAnswers.js')
 var userQuestions = require('./routes/userQuestions.js')
 var getBookmarks = require('./routes/getBookmarks.js')
 var updateAnswer = require('./routes/updateAnswer.js')
 
+const createConversation = require('./routes/createConversation');
+const getConversation = require('./routes/getConversation');
+const getMessage = require('./routes/getMessage');
+const createMessage = require('./routes/createMessage');
+const followTopic = require('./routes/followTopic');
+const followUser = require('./routes/followUser');
+const getFollowers = require('./routes/getFollowers');
+
+
 app.use('/login',login)
 app.use('/signUp',signUp)
 app.use('/profile',profile)
+app.use(createConversation);
+app.use(getConversation);
+app.use(getMessage);
+app.use(createMessage);
+app.use(followTopic);
+app.use(followUser);
+app.use(getFollowers);
 
 app.use('/getFollowing',following)
 app.use('/userAnswers',userAnswers)

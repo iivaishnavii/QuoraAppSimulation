@@ -7,6 +7,17 @@ var profile = require('./services/profile')
 
 var signup = require('./services/signup.js');
 
+var CreateConversation = require('./services/createConversation');
+var FollowTopic = require('./services/followTopic');
+var FollowUser = require('./services/followUser');
+var SendMessage = require('./services/sendMessage');
+var GetFollowers = require('./services/getFollowers');
+var GetMessage = require('./services/getMessage');
+var GetConversation = require('./services/getConversation');
+
+
+
+
 
 var following = require('./services/following.js');
 var userAnswers = require('./services/userAnswers.js')
@@ -58,3 +69,13 @@ handleTopicRequest("user_answers",userAnswers)
 handleTopicRequest("user_questions",userQuestions)
 handleTopicRequest("user_bookmarks",userBookmarks)
 handleTopicRequest("update_answer",updateAnswer)
+
+handleTopicRequest("createConversation",CreateConversation)
+handleTopicRequest("followTopic",FollowTopic)
+handleTopicRequest("followUser",FollowUser)
+handleTopicRequest("sendMessage",SendMessage)
+handleTopicRequest("getFollowers",GetFollowers)
+handleTopicRequest("getMessage",GetMessage)
+handleTopicRequest("getConversation",GetConversation)
+
+
