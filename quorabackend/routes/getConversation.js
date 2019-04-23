@@ -4,7 +4,7 @@ var kafka = require('../kafka/client')
 var passport = require('passport')
 var requireAuth = passport.authenticate('jwt',{session : false})
 
-router.get('/conversations/:id', requireAuth, function (req, res) {
+router.get('/conversations/:id',  function (req, res) {
 
     console.log('Inside get Conversation !');
     console.log('Request Body: ', req.params);

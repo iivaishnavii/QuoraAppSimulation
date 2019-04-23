@@ -58,21 +58,21 @@ handleTopicRequest("login",login)
 handleTopicRequest("update-profile",profile)
 
 
-handleTopicRequest("signup",signup)
+handleTopicRequest("sign-up",signup)
 
-handleTopicRequest("get_following",following)
-handleTopicRequest("user_answers",userAnswers)
-handleTopicRequest("user_questions",userQuestions)
-handleTopicRequest("user_bookmarks",userBookmarks)
-handleTopicRequest("update_answer",updateAnswer)
+// handleTopicRequest("get_following",following)
+// handleTopicRequest("user_answers",userAnswers)
+// handleTopicRequest("user_questions",userQuestions)
+// handleTopicRequest("user_bookmarks",userBookmarks)
+// handleTopicRequest("update_answer",updateAnswer)
 
-handleTopicRequest("createConversation",CreateConversation)
-handleTopicRequest("followTopic",FollowTopic)
-handleTopicRequest("followUser",FollowUser)
-handleTopicRequest("sendMessage",SendMessage)
-handleTopicRequest("getFollowers",GetFollowers)
-handleTopicRequest("getMessage",GetMessage)
-handleTopicRequest("getConversation",GetConversation)
+ handleTopicRequest("createConversation",CreateConversation)
+// handleTopicRequest("followTopic",FollowTopic)
+// handleTopicRequest("followUser",FollowUser)
+// handleTopicRequest("sendMessage",SendMessage)
+// handleTopicRequest("getFollowers",GetFollowers)
+// handleTopicRequest("getMessage",GetMessage)
+// handleTopicRequest("getConversation",GetConversation)
 
 
 

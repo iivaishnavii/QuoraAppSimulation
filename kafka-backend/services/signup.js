@@ -7,12 +7,10 @@ function handle_request(message, callback){
     console.log('Inside Backend Signup');
     console.log('Message: ', message);
     const hashedPassword = bcrypt.hashSync(message.Password)
-    var SignUp = new Model({
-        UserSchema:{
+    var SignUp = Model.UserModel({
             Name : message.Name,
             Password : hashedPassword,
-            Email : message.Email
-        }
+            Email : message.Email 
     })
     console.log("SignUp"+SignUp)
     var promise = SignUp.save()

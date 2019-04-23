@@ -2,7 +2,7 @@ var Model = require('../config/MongoConnection')
 
 function handle_request(message,callback){
     console.log("Inside kafka user answers",message);
-    Model.User.findOne({
+    Model.UserModel.findOne({
         'Email' : message.body.Email
     },(err,user)=>{
         if(err)
