@@ -8,6 +8,12 @@ var profile = require('./services/profile')
 var signup = require('./services/signup.js');
 
 
+var following = require('./services/following.js');
+var userAnswers = require('./services/userAnswers.js')
+var userQuestions = require('./services/userQuestions.js')
+var userBookmarks = require('./services/userBookmarks.js')
+var updateAnswer = require('./services/updateAnswer.js')
+
 function handleTopicRequest(topic_name,fname){
     //var topic_name = 'root_topic';
     var consumer = connection.getConsumer(topic_name);
@@ -47,3 +53,8 @@ handleTopicRequest("update-profile",profile)
 
 handleTopicRequest("signup",signup)
 
+handleTopicRequest("get_following",following)
+handleTopicRequest("user_answers",userAnswers)
+handleTopicRequest("user_questions",userQuestions)
+handleTopicRequest("user_bookmarks",userBookmarks)
+handleTopicRequest("update_answer",updateAnswer)

@@ -27,9 +27,21 @@ var login = require('./routes/login.js')
 var signUp = require('./routes/signUp.js')
 var profile = require('./routes/profile.js')
 
+var following = require('./routes/following.js')
+var userAnswers = require('./routes/userAnswers.js')
+var userQuestions = require('./routes/userQuestions.js')
+var getBookmarks = require('./routes/getBookmarks.js')
+var updateAnswer = require('./routes/updateAnswer.js')
+
 app.use('/login',login)
 app.use('/signUp',signUp)
 app.use('/profile',profile)
+
+app.use('/getFollowing',following)
+app.use('/userAnswers',userAnswers)
+app.use('/userQuestions',userQuestions)
+app.use('/getBookmarks',getBookmarks)
+app.use('/updateAnswer',updateAnswer)
 
 
 app.listen(4000,function(){console.log("Server listening on port 4000")})
