@@ -5,7 +5,7 @@ var passport = require('passport')
 var requireAuth = passport.authenticate('jwt',{session : false})
 
 
-router.post('/conversations', requireAuth, function (req, res) {
+router.post('/conversations',  function (req, res) {
 
     console.log('Inside Create Conversation POST!');
     console.log('Request Body: ', req.body);

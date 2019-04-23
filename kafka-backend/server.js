@@ -14,16 +14,12 @@ var SendMessage = require('./services/sendMessage');
 var GetFollowers = require('./services/getFollowers');
 var GetMessage = require('./services/getMessage');
 var GetConversation = require('./services/getConversation');
-
-
-
-
-
 var following = require('./services/following.js');
 var userAnswers = require('./services/userAnswers.js')
 var userQuestions = require('./services/userQuestions.js')
 var userBookmarks = require('./services/userBookmarks.js')
 var updateAnswer = require('./services/updateAnswer.js')
+
 
 function handleTopicRequest(topic_name,fname){
     //var topic_name = 'root_topic';
@@ -62,20 +58,21 @@ handleTopicRequest("login",login)
 handleTopicRequest("update_profile",profile)
 
 
-handleTopicRequest("signup",signup)
+handleTopicRequest("sign-up",signup)
 
-handleTopicRequest("get_following",following)
-handleTopicRequest("user_answers",userAnswers)
-handleTopicRequest("user_questions",userQuestions)
-handleTopicRequest("user_bookmarks",userBookmarks)
-handleTopicRequest("update_answer",updateAnswer)
+// handleTopicRequest("get_following",following)
+// handleTopicRequest("user_answers",userAnswers)
+// handleTopicRequest("user_questions",userQuestions)
+// handleTopicRequest("user_bookmarks",userBookmarks)
+// handleTopicRequest("update_answer",updateAnswer)
 
-handleTopicRequest("createConversation",CreateConversation)
-handleTopicRequest("followTopic",FollowTopic)
-handleTopicRequest("followUser",FollowUser)
-handleTopicRequest("sendMessage",SendMessage)
-handleTopicRequest("getFollowers",GetFollowers)
-handleTopicRequest("getMessage",GetMessage)
-handleTopicRequest("getConversation",GetConversation)
+ handleTopicRequest("createConversation",CreateConversation)
+// handleTopicRequest("followTopic",FollowTopic)
+// handleTopicRequest("followUser",FollowUser)
+// handleTopicRequest("sendMessage",SendMessage)
+// handleTopicRequest("getFollowers",GetFollowers)
+// handleTopicRequest("getMessage",GetMessage)
+// handleTopicRequest("getConversation",GetConversation)
+
 
 

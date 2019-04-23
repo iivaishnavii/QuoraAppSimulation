@@ -2,16 +2,18 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 var Schema = mongoose.Schema; 
 
-mongoose.connect("mongodb+srv://quora:quora@cluster0-6ddbb.mongodb.net/test?retryWrites=true"
+mongoose.connect("mongodb+srv://quora:quora@cluster0-6ddbb.mongodb.net/QuoraApp?retryWrites=true"
 
 
 ).then(() => {
+
     console.log('Database connection successful')
   })
   .catch(err => {
     console.log(err);
     console.error('Database connection error')
   })
+
 
   var UserSchema = new Schema({
     Name: { type: String, trim: true},
@@ -31,7 +33,7 @@ mongoose.connect("mongodb+srv://quora:quora@cluster0-6ddbb.mongodb.net/test?retr
     Following : {type:Array},
     ProfileViews : {type:Number},
     QuestionsAnswered:{type :Array,trim:true,default:""},
-    Email: { type: Boolean, trim: true, default: 0 },
+    Email: { type: String, trim: true, default: 0 },
     Password: { type: String, trim: true, default: "" },
 })
 
@@ -77,9 +79,9 @@ var TopicsSchema = new Schema({
 
 
 
-var UserModel =  mongoose.model('User',UserSchema)
+var UserModel =  mongoose.model('Users',UserSchema)
 var AnswerModel =  mongoose.model('Answer',AnswerSchema)
-var ConverstionModel = mongoose.model('Conversation',ConversationSchema)
+var ConverstionModel = mongoose.model('Converstion',ConversationSchema)
 var QuestionsModel = mongoose.model('Question',QuestionsSchema)
 var TopicsModel = mongoose.model('TopicsSchema',TopicsSchema)
 
@@ -90,5 +92,6 @@ module.exports={
     QuestionsModel,
     TopicsModel
 }
+
 
 
