@@ -6,11 +6,11 @@ function handle_request(message, callback){
 
 
 var mesg = new Model.ConverstionModel({
-    From: message.from,
-    To: message.to,
-    Subject: message.sub,
+    From: message.From,
+    To: message.To,
+    Subject: message.Subject,
     messages: [{
-        from: message.from,
+        from: message.From,
         text: message.msg, 
     }]   
 })
