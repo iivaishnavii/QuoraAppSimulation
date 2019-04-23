@@ -5,8 +5,8 @@ var kafka = require('../kafka/client')
 // Set up middleware
 
 router.post('/',function(req,res){
-    console.log("Request"+req.body)
-    kafka.make_request('signup',req.body,function(err,result){
+    console.log("Request inside sign up"+req.body)
+    kafka.make_request('sign-up',req.body,function(err,result){
         console.log("In results"+result)
         if(result)
         {

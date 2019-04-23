@@ -1,80 +1,41 @@
 var Model = require('../config/MongoConnection');
 var bcrypt = require('bcrypt-nodejs');
 var mongooseTypes = require('mongoose').Types;
+var saltRounds = 10
 
 function handle_request(message, callback){
-    console.log('Inside Kafka Backend Signup');
+    console.log('Inside Backend Signup');
     console.log('Message: ', message);
-
-
-    //User creation query
-
-    const profileId = mongooseTypes.ObjectId();
-
-    //Check if user exists
-
-    Model.Users.findOne({
-        'Email': message.Email
-    }, (err, user) => {
-
-        if (err) {
-            console.log("Unable to fetch user details.", err);
-            callback(err, null);            
+    const hashedPassword = bcrypt.hashSync(message.Password)
+    var SignUp = new Model({
+        UserSchema:{
+            Name : message.Name,
+            Password : hashedPassword,
+            Email : message.Email
         }
-        else {
-
-            if (user) {
-                console.log('User Exists!', user);
-            
-                   
-                    callback(null, null);
-                
-                
-                
-            }
-            else {
-
-                //Hashing Password!
-                const hashedPassword = bcrypt.hashSync(message.Password);
-
-                var user = new Model.Users({
-                    Email: message.Email,
-                    Password: hashedPassword,
-                    FirstName: message.FirstName,
-                    LastName: message.LastName,
-                    City: '',
-                    State : '',
-                    ZipCode : '',
-                    Profile : '',
-                    Education : '',
-                    CareerInformation : '',
-                    Description : '',
-                    ProfileCredential : '',
-                    Questions : [],
-                    QuestionsFollowed : [],
-                    AnswersBookmarked : [],
-                    Topics : [],
-                    followers : [],
-                    following : [],
-                    profileviews : 0,
-                    QuestionAnswered : []
-                });
-            }
-
-            user.save().then((doc) => {
-
-                console.log("User saved successfully.", doc);
-                callback(null, doc);
-
-            }, (err) => {
-                console.log("Unable to save user details.", err);
-                callback(err, null);
-            });
-
+    })
+    console.log("SignUp"+SignUp)
+    var promise = SignUp.save()
+    console.log("Promise"+promise)
+    promise.then(res=>{
+        res.value= message
+        res.code = 200
+        console.log("Ressss"+res)
+        callback(null,res)
+    })
+    .catch(err=>{
+        if(err.message.includes("Duplicate Key"))
+        {
+            res.value = "User Exists"
         }
+        else 
+        {
+            res.value = "Error in registering data please try again!";
+            res.code = "400";
+            callback(null, res);
+        }
+    })
 
-    });
-
-}
+ }
 
 exports.handle_request = handle_request;

@@ -6,12 +6,14 @@ mongoose.connect("mongodb+srv://quora:quora@cluster0-6ddbb.mongodb.net/test?retr
 
 
 ).then(() => {
+
     console.log('Database connection successful')
   })
   .catch(err => {
     console.log(err);
     console.error('Database connection error')
   })
+
 
   var UserSchema = new Schema({
     Name: { type: String, trim: true},
@@ -31,7 +33,7 @@ mongoose.connect("mongodb+srv://quora:quora@cluster0-6ddbb.mongodb.net/test?retr
     Following : {type:Array},
     ProfileViews : {type:Number},
     QuestionsAnswered:{type :Array,trim:true,default:""},
-    Email: { type: Boolean, trim: true, default: 0 },
+    Email: { type: String, trim: true, default: 0 },
     Password: { type: String, trim: true, default: "" },
 })
 
@@ -90,5 +92,6 @@ module.exports={
     QuestionsModel,
     TopicsModel
 }
+
 
 
