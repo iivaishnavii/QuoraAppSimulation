@@ -59,7 +59,7 @@ function handleTopicRequest(topic_name,fname){
 //second argument is a function that will handle this topic request
 handleTopicRequest("login",login)
 
-handleTopicRequest("update-profile",profile)
+handleTopicRequest("update_profile",profile)
 
 
 handleTopicRequest("signup",signup)

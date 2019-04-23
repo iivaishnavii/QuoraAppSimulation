@@ -1,44 +1,24 @@
+
 import React, { Component } from 'react';
-import Main from './components/Main/Main';
 import './App.css';
-
-import { Provider } from 'react-redux';
-import reducer from './reducers/indexReducers';
-import { createStore, applyMiddleware, compose } from "redux";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-
-import { autoRehydrate } from 'redux-persist';
-
-
-import promise from "redux-promise";
-import ReduxThunk from 'redux-thunk';
+import Main from './components/Main/Main';
+import {BrowserRouter} from 'react-router-dom';
 
 
 
-const composePlugin = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-
-const persistConfig = {
-  key: 'root',
-  storage,
-}
-
-
-
-
+//App Component
 class App extends Component {
   render() {
     return (
+      //Use Browser Router to route to different pages
       <BrowserRouter>
         <div>
-          <Main />
+          {/* App Component Has a Child Component called Main*/}
+          <Main/>
         </div>
       </BrowserRouter>
     );
   }
 }
-
+//Export the App component so that it can be used in index.js
 export default App;

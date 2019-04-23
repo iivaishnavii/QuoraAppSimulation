@@ -3,25 +3,19 @@
 import cookie from 'react-cookies';
 import {Redirect} from 'react-router';
  import {Link} from 'react-router-dom';
-import {login,updateEmail,updatePasswrd} from '../actions/loginaction';
+
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
  import PropTypes from 'react';
 import {Field,reduxForm} from 'redux-form';
 import axios from 'axios';
-import {rooturl} from '../config/settings';
+// import {rooturl} from '../config/settings';
 import React, { Component } from 'react';
-import axios from 'axios';
-import cookie from 'react-cookies';
-import { Redirect } from 'react-router';
 import quora from '../../images/Logo.png';
 import quora2 from '../../images/Logo2.png';
 
+import { submitLogin } from '../../actions/login'
 
-
-import { connect } from 'react-redux';
-import { submitLogin } from '../actions/login';
-import { Field, reduxForm } from 'redux-form';
 
 
 class login extends Component{
@@ -87,7 +81,7 @@ class login extends Component{
 
       if (this.props.loginStateStore.result) {
           if(this.props.loginStateStore.result.isAuthenticated === true){
-              redrirectVar = <Redirect to="/home/courses" />
+              redrirectVar = <Redirect to="/home" />
           }
          
       }
@@ -119,14 +113,12 @@ class login extends Component{
           
             
             <div class="container">
-            {redrirectVar}
-            {errorPanel}
-            {formErrorPanel}
+            
             <form name ="loginForm" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <div class="login-form">
                     <div class="main-div">
                         <div class="panel">
-                            <h2 color="steelblue"> CANVAS LOGIN</h2>
+                            <h2 color='brown'> QUORA LOGIN</h2>
                             <p>Please enter your Email and password</p>
                         </div>
                        
@@ -185,3 +177,29 @@ export default reduxForm({
 })(connect(mapStateToProps, { submitLogin })(login));
 
 
+
+
+// import React, {Component} from 'react';
+// import {Route} from 'react-router-dom';
+// import {BrowserRouter} from 'react-router-dom';
+// import loginpage from '../Login/login';
+
+
+
+
+
+//Create a Main Component
+// class login extends Component {
+//     render(){
+//         return(
+//             <BrowserRouter>
+//             <div>
+//             <h3> login page </h3>
+                
+//             </div>
+//             </BrowserRouter>
+//         )
+//     }
+// }
+// //Export The Main Component
+// export default login;

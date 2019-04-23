@@ -2,7 +2,7 @@ var Model = require('../config/MongoConnection')
 
 function handle_request(message,callback){
     console.log("Inside Kafka update answer",message);
-    Model.User.findOne({
+    Model.UserModel.findOne({
         'Email' : message.body.Email,
         'QuestionAnswered' :  {
         $elemMatch : {

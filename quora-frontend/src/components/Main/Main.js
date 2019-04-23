@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
 import {BrowserRouter} from 'react-router-dom';
-import LoginPage from '../Login/login';
+import login from '../Login/login';
 
 
 
@@ -14,7 +14,7 @@ class Main extends Component {
             <BrowserRouter>
             <div>
                 {/*Render Different Component based on Route*/}
-                <Route path="/"  exact component={LoginPage}/> 
+                <Route path='/'  component={login}/> 
                 
             </div>
             </BrowserRouter>
