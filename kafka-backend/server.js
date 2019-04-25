@@ -26,6 +26,8 @@ var getAnswers = require('./services/getAnswers')
 var getAllQuestions = require('./services/getAllQuestions')
 var writeAnswer = require('./services/writeAnswer')
 var followQuestion = require('./services/followQuestion')
+var searchQuestion = require('./services/searchQuestion')
+var searchTopic = require('./services/searchTopic')
 
 function handleTopicRequest(topic_name,fname){
     //var topic_name = 'root_topic';
@@ -71,6 +73,10 @@ handleTopicRequest("sign-up",signup)
 handleTopicRequest("get-questions",getAllQuestions)
 handleTopicRequest("write-answer",writeAnswer)
 handleTopicRequest("follow-question",followQuestion)
+handleTopicRequest("search-question",searchQuestion)
+handleTopicRequest("search-topic",searchTopic)
+
+
 
 
 // handleTopicRequest("get_following",following)

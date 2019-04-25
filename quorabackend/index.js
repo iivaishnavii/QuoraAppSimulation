@@ -48,6 +48,7 @@ const createQuestion = require('./routes/createQuestion')
 const getAnswers = require('./routes/getAnswers')
 var writeAnswer = require('./routes/writeAnswer')
 var followQuestion = require('./routes/followQuestion')
+var searchQuestion = require('./routes/searchQuestion')
 
 
 app.use('/login',login)
@@ -74,6 +75,9 @@ app.use('/getAnswers',createQuestion)
 app.use('/getAllAnswers',getAnswers)
 app.use('/writeAnswer',writeAnswer)
 app.use('/followQuestion',followQuestion)
+app.use('/searchQuestion',searchQuestion)
+app.use('/searchTopic',searchQuestion)
+
 
 
 
