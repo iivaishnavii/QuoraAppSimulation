@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
 import {BrowserRouter} from 'react-router-dom';
 import login from '../Login/login';
-import profile from '../Header/Header';
+//import profile from '../Header/Header';
+import profile from '../Profile/profile';
 
 
 
