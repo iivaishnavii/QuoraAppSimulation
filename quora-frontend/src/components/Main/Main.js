@@ -9,6 +9,8 @@ import questionsFollowed from '../Content/QuestionsFollowed'
 import posts from '../Content/Posts'
 import allContent from '../Content/allContent'
 
+//import profile from '../Header/Header';
+import profile from '../Profile/profile';
 
 
 
@@ -20,7 +22,7 @@ class Main extends Component {
             <BrowserRouter>
             <div>
                 {/*Render Different Component based on Route*/}
-               <Route path='/login'  component={login}/> 
+                
                 <Route path='/content'  component={contentHome}/> 
                 <Route path='/content/questions'  component={questionsAsked}/> 
                 <Route path='/content/answers'  component={questionsAnswered}/> 
@@ -31,6 +33,9 @@ class Main extends Component {
                
 
                 
+                <Route path='/' exact component={login}/> 
+                <Route path="/profile" exact component={profile}/>
+                 
             </div>
             </BrowserRouter>
         )

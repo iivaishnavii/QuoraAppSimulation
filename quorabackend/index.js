@@ -25,7 +25,7 @@ app.use(bodyParser.json())
 
 var login = require('./routes/login.js')
 var signUp = require('./routes/signUp.js')
-var profile = require('./routes/profile.js')
+var profile = require('./routes/updateProfile.js')
 
 
 var following = require('./routes/following.js')
@@ -42,11 +42,19 @@ const followTopic = require('./routes/followTopic');
 const followUser = require('./routes/followUser');
 const getFollowers = require('./routes/getFollowers');
 const content = require('./routes/content');
+const deleteUser = require('./routes/deleteUser')
+const getProfile = require('./routes/getProfile')
+const getAllQuestions = require('./routes/getAllQuestions')
+const createQuestion = require('./routes/createQuestion')
+const getAnswers = require('./routes/getAnswers')
+var writeAnswer = require('./routes/writeAnswer')
+var followQuestion = require('./routes/followQuestion')
+var searchQuestion = require('./routes/searchQuestion')
 
 
 app.use('/login',login)
 app.use('/signUp',signUp)
-app.use('/profile',profile)
+app.use('/updateProfile',profile)
 app.use(createConversation);
 app.use(getConversation);
 app.use(getMessage);
@@ -61,6 +69,19 @@ app.use('/userQuestions',userQuestions)
 app.use('/getBookmarks',getBookmarks)
 app.use('/updateAnswer',updateAnswer)
 app.use('/content',content)
+app.use('/delete',deleteUser)
+app.use('/getProfile',getProfile)
+app.use('/getAllQuestions',getAllQuestions)
+app.use('/createQuestion',createQuestion)
+app.use('/getAnswers',createQuestion)
+app.use('/getAllAnswers',getAnswers)
+app.use('/writeAnswer',writeAnswer)
+app.use('/followQuestion',followQuestion)
+app.use('/searchQuestion',searchQuestion)
+app.use('/searchTopic',searchQuestion)
+
+
+
 
 
 app.listen(4000,function(){console.log("Server listening on port 4000")})
