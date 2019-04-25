@@ -7,6 +7,7 @@ import {Redirect} from 'react-router';
 import {rooturl} from '../../config/settings';
 import axios from 'axios';
 import {questions} from '../Content/QuestionsAsked'
+import './content.css';
 
 
 
