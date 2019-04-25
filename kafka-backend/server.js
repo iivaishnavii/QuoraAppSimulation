@@ -19,6 +19,7 @@ var userAnswers = require('./services/userAnswers.js')
 var userQuestions = require('./services/userQuestions.js')
 var userBookmarks = require('./services/userBookmarks.js')
 var updateAnswer = require('./services/updateAnswer.js')
+var content = require('./services/content.js')
 
 
 function handleTopicRequest(topic_name,fname){
@@ -53,12 +54,12 @@ function handleTopicRequest(topic_name,fname){
 // Add your TOPICs here
 //first argument is topic namex
 //second argument is a function that will handle this topic request
-handleTopicRequest("login",login)
+// handleTopicRequest("login",login)
 
-handleTopicRequest("update_profile",profile)
+// handleTopicRequest("update_profile",profile)
 
 
-handleTopicRequest("sign-up",signup)
+// handleTopicRequest("sign-up",signup)
 
 // handleTopicRequest("get_following",following)
 // handleTopicRequest("user_answers",userAnswers)
@@ -66,13 +67,15 @@ handleTopicRequest("sign-up",signup)
 // handleTopicRequest("user_bookmarks",userBookmarks)
 // handleTopicRequest("update_answer",updateAnswer)
 
- handleTopicRequest("createConversation",CreateConversation)
+ //handleTopicRequest("createConversation",CreateConversation)
 // handleTopicRequest("followTopic",FollowTopic)
 // handleTopicRequest("followUser",FollowUser)
 // handleTopicRequest("sendMessage",SendMessage)
 // handleTopicRequest("getFollowers",GetFollowers)
 // handleTopicRequest("getMessage",GetMessage)
 // handleTopicRequest("getConversation",GetConversation)
+
+handleTopicRequest("content",content)
 
 
 

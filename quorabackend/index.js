@@ -41,6 +41,7 @@ const createMessage = require('./routes/sendMessage');
 const followTopic = require('./routes/followTopic');
 const followUser = require('./routes/followUser');
 const getFollowers = require('./routes/getFollowers');
+const content = require('./routes/content');
 
 
 app.use('/login',login)
@@ -59,6 +60,7 @@ app.use('/userAnswers',userAnswers)
 app.use('/userQuestions',userQuestions)
 app.use('/getBookmarks',getBookmarks)
 app.use('/updateAnswer',updateAnswer)
+app.use('/content',content)
 
 
 app.listen(4000,function(){console.log("Server listening on port 4000")})
