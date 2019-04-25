@@ -13,7 +13,28 @@ mongoose.connect("mongodb+srv://quora:quora@cluster0-6ddbb.mongodb.net/QuoraApp?
     console.log(err);
     console.error('Database connection error')
   })
+  var AnswerSchema = new Schema({
+    answer: { type: String, trim: true},
+    owner: { type: String, trim: true },
+    images: { type: Buffer, trim: true },
+    isAnonymous: { type: Boolean, trim: true },
+    upVotes: { type: Number, trim: true, default: "" },
+    downVotes: { type: Number, trim: true, default: "" },
+    comments: { type: Array, trim: true, default: "" },
+    date : { type: String, trim: true, default: "" },
+    question : { type: String, trim: true, default: "" },
 
+})
+
+  var QuestionsSchema = new Schema({
+    Question: { type: String, trim: true},
+    QuestionOwner:{ type: String, trim: true },
+    Topics: { type: Array, trim: true, default: "" },
+    Followers: { type: Array, trim: true, default: "" },
+    Answers: [AnswerSchema],
+    PostedTime : { type: String, trim: true, default: "" }
+    
+})
 
   var UserSchema = new Schema({
     Name: { type: String, trim: true},
@@ -25,7 +46,7 @@ mongoose.connect("mongodb+srv://quora:quora@cluster0-6ddbb.mongodb.net/QuoraApp?
     CareerInformation: { type: String, trim: true, default: "" },
     Description: { type: String, trim: true, default: "" },
     ProfileCredential: { type: String, trim: true, default: "" },
-    Questions: { type: Array, trim: true, default: "" },
+    Questions: [QuestionsSchema],
     QuestionsFollowed: { type: Array, trim: true, default: "" },
     AnswersBookmarked : {type :Array,trim:true,default:""},
     Topics : {type:Array},
@@ -37,18 +58,7 @@ mongoose.connect("mongodb+srv://quora:quora@cluster0-6ddbb.mongodb.net/QuoraApp?
     Password: { type: String, trim: true, default: "" },
 })
 
-var AnswerSchema = new Schema({
-    answer: { type: String, trim: true},
-    owner: { type: String, trim: true },
-    images: { type: Buffer, trim: true },
-    isAnonymous: { type: Boolean, trim: true, default: "" },
-    upVotes: { type: Number, trim: true, default: "" },
-    downVotes: { type: Number, trim: true, default: "" },
-    comments: { type: Array, trim: true, default: "" },
-    date : { type: Date, trim: true, default: "" },
-    question : { type: String, trim: true, default: "" },
 
-})
 
 var ConversationSchema = new Schema({
     From: { type: String, trim: true},
@@ -59,15 +69,7 @@ var ConversationSchema = new Schema({
 })
 
 
-var QuestionsSchema = new Schema({
-    Question: { type: String, trim: true},
-    QuestionOwner:{ type: String, trim: true },
-    Topics: { type: Array, trim: true, default: "" },
-    Followers: { type: Array, trim: true, default: "" },
-    Answers: { type: Array, trim: true, default: "" },
-    PostedTime : { type: Date, trim: true, default: "" }
-    
-})
+
 
 var TopicsSchema = new Schema({
     topicName : { type: String, trim: true}
@@ -78,11 +80,10 @@ var TopicsSchema = new Schema({
 
 
 
-
+var QuestionsModel = mongoose.model('Question',QuestionsSchema)
 var UserModel =  mongoose.model('Users',UserSchema)
 var AnswerModel =  mongoose.model('Answer',AnswerSchema)
 var ConverstionModel = mongoose.model('Converstion',ConversationSchema)
-var QuestionsModel = mongoose.model('Question',QuestionsSchema)
 var TopicsModel = mongoose.model('TopicsSchema',TopicsSchema)
 
 module.exports={

@@ -3,8 +3,8 @@ var Model = require('../config/MongoConnection')
 
 function handle_request(message,callback){
     console.log("Inside Kafka Update Profile",message);
-    Model.User.findOne({
-        'Email' : message.body.Email
+    Model.UserModel.findOne({
+        'Email' : message.params.email
     },(err,user)=>{
         if(err)
         {
@@ -23,7 +23,7 @@ function handle_request(message,callback){
         user.CareerInformation = message.body.CareerInformation
         user.Description = message.body.Description
         user.ProfileCredential = message.body.ProfileCredential
-        user.Email =  message.body.Email
+//user.Email =  message.body.Email
         user.Password = message.body.Password
       
         user.save().then((doc)=>{
