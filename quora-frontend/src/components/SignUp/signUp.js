@@ -3,7 +3,6 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
-//import {signUpUser} from '../../actions/loginAction';
 import { connect } from "react-redux";
 const Checkbox = props => (
  
@@ -11,8 +10,8 @@ const Checkbox = props => (
 )
 
  export default class signUp extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       firstName: "",
       lastName: "",
@@ -147,4 +146,3 @@ const Checkbox = props => (
   }
 }
 
-//export default (connect(null, { signUpUser })(signUp));

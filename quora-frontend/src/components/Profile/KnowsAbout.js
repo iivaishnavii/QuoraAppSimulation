@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
+
 import { ROOT_URL } from '../../config/URLsettings';
 import axios from 'axios';
 
 
-
 //Create a Main Component
-class Credentials extends Component {
+export default class KnowsAbout extends Component {
     constructor(props){
         super(props);
         this.state = {
             Email: 'akhil.ramesh@gmail.com',
-          
+          Name : localStorage.getItem('name'),
           token : localStorage.getItem('token'),
-          Name: '',
+         // Name: '',
           City: '',
           State: '',
           ZipCode: '',
@@ -42,7 +42,10 @@ class Credentials extends Component {
            //update the state with the response data
           
            this.setState({
-        
+             /*Email: 'akhil.ramesh@gmail.com',
+             Name : localStorage.getItem('name'),
+             token : localStorage.getItem('token'), */
+            // Name: '',
              City: data.City,
              State: data.State,
              ZipCode: data.ZipCode,
@@ -63,35 +66,22 @@ class Credentials extends Component {
          });
             
      }
-
+     
     render(){
-        return(
-            <div className="pageContent" >
-            <h4> <i>Credentials & Highlights</i> <i class="far fa-edit"></i>
 
-</h4>
-              <h5> <i class="fas fa-briefcase"></i>
-
-
-                {this.state.Profile}  </h5>
-                <h5> <i class="fas fa-graduation-cap"></i>
-
-
-                {this.state.CareerInformation}  </h5>
-                <h5> <i class="fas fa-university"></i>
-
-
-                {this.state.Education}  </h5>
-                <h5> <i class="fas fa-map-marker-alt"></i>
-                 Add a Location Credential  </h5>
-                
-
-
-                
+        let people = this.state.Topics.map(topic => {
+            return(
+        <p> {topic.topicName}</p>
+        
               
+        
+            )
+        })
+        return(
+            <div className="KnowsAbout" >
+               <div><b>Knows About </b> </div>
+               {people}
            </div>
         )
     }
 }
-//Export The Main Component
-export default Credentials;
