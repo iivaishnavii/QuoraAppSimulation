@@ -41,6 +41,7 @@ const createMessage = require('./routes/sendMessage');
 const followTopic = require('./routes/followTopic');
 const followUser = require('./routes/followUser');
 const getFollowers = require('./routes/getFollowers');
+const content = require('./routes/content');
 const deleteUser = require('./routes/deleteUser')
 const getProfile = require('./routes/getProfile')
 const getAllQuestions = require('./routes/getAllQuestions')
@@ -67,6 +68,7 @@ app.use('/userAnswers',userAnswers)
 app.use('/userQuestions',userQuestions)
 app.use('/getBookmarks',getBookmarks)
 app.use('/updateAnswer',updateAnswer)
+app.use('/content',content)
 app.use('/delete',deleteUser)
 app.use('/getProfile',getProfile)
 app.use('/getAllQuestions',getAllQuestions)
