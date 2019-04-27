@@ -41,6 +41,7 @@ const createMessage = require('./routes/sendMessage');
 const followTopic = require('./routes/followTopic');
 const followUser = require('./routes/followUser');
 const getFollowers = require('./routes/getFollowers');
+const content = require('./routes/content');
 const deleteUser = require('./routes/deleteUser')
 const getProfile = require('./routes/getProfile')
 const getAllQuestions = require('./routes/getAllQuestions')
@@ -48,6 +49,7 @@ const createQuestion = require('./routes/createQuestion')
 const getAnswers = require('./routes/getAnswers')
 var writeAnswer = require('./routes/writeAnswer')
 var followQuestion = require('./routes/followQuestion')
+var searchQuestion = require('./routes/searchQuestion')
 
 
 app.use('/login',login)
@@ -66,6 +68,7 @@ app.use('/userAnswers',userAnswers)
 app.use('/userQuestions',userQuestions)
 app.use('/getBookmarks',getBookmarks)
 app.use('/updateAnswer',updateAnswer)
+app.use('/content',content)
 app.use('/delete',deleteUser)
 app.use('/getProfile',getProfile)
 app.use('/getAllQuestions',getAllQuestions)
@@ -74,6 +77,9 @@ app.use('/getAnswers',createQuestion)
 app.use('/getAllAnswers',getAnswers)
 app.use('/writeAnswer',writeAnswer)
 app.use('/followQuestion',followQuestion)
+app.use('/searchQuestion',searchQuestion)
+app.use('/searchTopic',searchQuestion)
+
 
 
 
