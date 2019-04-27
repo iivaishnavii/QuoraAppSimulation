@@ -9,10 +9,10 @@ export default class KnowsAbout extends Component {
     constructor(props){
         super(props);
         this.state = {
-            Email: 'akhil.ramesh@gmail.com',
-          Name : localStorage.getItem('name'),
+            Email: 'akhil.kiran@gmail.com',
+          //Name : localStorage.getItem('name'),
           token : localStorage.getItem('token'),
-         // Name: '',
+          Name: '',
           City: '',
           State: '',
           ZipCode: '',
@@ -79,7 +79,8 @@ export default class KnowsAbout extends Component {
         })
         return(
             <div className="KnowsAbout" >
-               <div><b>Knows About </b> </div>
+               <div>Knows About </div>
+               <hr class ="hr"></hr>
                {people}
            </div>
         )

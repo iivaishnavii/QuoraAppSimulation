@@ -9,7 +9,7 @@ class Credentials extends Component {
     constructor(props){
         super(props);
         this.state = {
-            Email: 'akhil.ramesh@gmail.com',
+            Email: 'akhil.kiran@gmail.com',
           
           token : localStorage.getItem('token'),
           Name: '',
@@ -65,33 +65,80 @@ class Credentials extends Component {
      }
 
     render(){
-        return(
-            <div className="pageContent" >
-            <h4> <i>Credentials & Highlights</i> <i class="far fa-edit"></i>
-
-</h4>
-              <h5> <i class="fas fa-briefcase"></i>
-
-
-                {this.state.Profile}  </h5>
-                <h5> <i class="fas fa-graduation-cap"></i>
+return (
+      <div>
+      <div class ="sidebar">
+      <div class="col-md-3 width1" >
+      <p class="heading"> Credentials & Highlights </p>
+                  <hr class ="hr"></hr>
+                  <div class="btn-group-vertical">
+                  <h5> <i class="fas fa-briefcase"></i>
 
 
-                {this.state.CareerInformation}  </h5>
-                <h5> <i class="fas fa-university"></i>
+      {this.state.Profile}  </h5>
+      <h5> <i class="fas fa-graduation-cap"></i>
 
 
-                {this.state.Education}  </h5>
-                <h5> <i class="fas fa-map-marker-alt"></i>
-                 Add a Location Credential  </h5>
-                
+      {this.state.CareerInformation}  </h5>
+      <h5> <i class="fas fa-university"></i>
 
 
-                
-              
-           </div>
-        )
+      {this.state.Education}  </h5>
+      <h5> <i class="fas fa-map-marker-alt"></i>
+       Add a Location Credential  </h5>
+      
+
+                  <button id='all' class="button-content " default = "active" onClick ={this.openAll} ><span class ="size-sm" >All Types </span></button>
+                  <button id='questions' class="button-content" onClick ={this.openQuestions}  > <span class ="size-sm" >Questions Asked </span></button>
+                  <button id='followed' class="button-content" onClick ={this.openFollowed}  > <span class ="size-sm" >Questions Followed </span></button>
+                  <button  id='answers' class="button-content" onClick ={this.openAnswers} > <span class ="size-sm" >Answers </span></button>
+                  <button  id='posts' class="button-content"  onClick ={this.openPosts} > <span class ="size-sm" >Posts </span></button>
+                  </div>
+
+                  <br>
+                  </br>
+                  <br>
+                  </br>
+                  </div>
+   
+   </div>
+          )     
+   
+   
+                     
+               
+                </div>
+
+)
+       
     }
 }
 //Export The Main Component
 export default Credentials;
+
+/*return(
+  <div className="pageContent" >
+  <h4> <i>Credentials & Highlights</i> <i class="far fa-edit"></i>
+
+</h4>
+    <h5> <i class="fas fa-briefcase"></i>
+
+
+      {this.state.Profile}  </h5>
+      <h5> <i class="fas fa-graduation-cap"></i>
+
+
+      {this.state.CareerInformation}  </h5>
+      <h5> <i class="fas fa-university"></i>
+
+
+      {this.state.Education}  </h5>
+      <h5> <i class="fas fa-map-marker-alt"></i>
+       Add a Location Credential  </h5>
+      
+
+
+      
+    
+ </div>
+) */

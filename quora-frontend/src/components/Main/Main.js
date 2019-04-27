@@ -17,6 +17,7 @@ import profileAnswers from '../Profile/UserAnswers';
 import profileQuestions from '../Profile/UserQuestions';
 import profileFollowers from '../Profile/UserFollowers';
 import profileFollowing from '../Profile/UsersFollowing';
+import profileNav from '../Profile/profileNav';
 
 
 
@@ -38,11 +39,8 @@ class Main extends Component {
                 <Route path='/content/posts'  component={posts}/> 
                 <Route path= '/content/allContent'  component={allContent}/> 
 
-               
-
-                
-                <Route path='/' exact component={login}/>
-                <Route path="/profile" exact component={profile}/>
+                <Route path='/' exact component={frame}/>
+                <Route path="/profile" exact component={profileNav}/>
                 <Route path="/profileAnswers" exact component={profileAnswers}/>
                 <Route path="/profileQuestions" exact component={profileQuestions}/>
                 <Route path="/profileFollowers" exact component={profileFollowers}/>

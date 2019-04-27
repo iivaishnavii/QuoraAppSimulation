@@ -19,7 +19,7 @@ class Main extends Component {
         super(props);
         let _isMounted = false;
         this.state = {
-          Email: 'akhil.ramesh@gmail.com',
+          Email: 'akhil.kiran@gmail.com',
           Name : localStorage.getItem('name'),
           token : localStorage.getItem('token'),
          // Name: '',
@@ -152,7 +152,23 @@ componentDidMount(){
         return(
             <div>
            <Header/>
-           <div className = 'row' style = {{width : 1000 , height : 200}}>
+           
+           <div className = 'row'>
+           <div className = 'col-sm-2' ><ProfileNav/> </div>
+          
+          
+          
+           </div>
+           
+           </div>
+        )
+    }
+}
+//Export The Main Component
+export default Main;
+
+
+/* <div className = 'row' style = {{width : 1000 , height : 200}}>
            <div className = 'col-sm-3' > 
            <img src={this.state.profilepic}
            
@@ -171,19 +187,7 @@ Save Profile Picture
 
  </form>
            </div>
-           <div  className = 'col-sm-5' >  <UserInfo/> </div> 
+            <div><KnowsAbout/></div>
+         
            <div className = 'col-sm-4' style = {{left : 300}}> <Credentials/> </div> 
-           </div>
-           <div className = 'row'>
-           <div className = 'col-sm-2' ><ProfileNav/> </div>
-           <div className = 'col-sm-6' > <ProfileContent/> </div>
-           <div><KnowsAbout/></div>
-          
-           </div>
-           
-           </div>
-        )
-    }
-}
-//Export The Main Component
-export default Main;
+           </div> */

@@ -7,7 +7,7 @@ export default class ProfileContent extends Component {
     constructor(props){
         super(props);
         this.state = {
-            Email: 'akhil.ramesh@gmail.com',
+            Email: 'akhil.kiran@gmail.com',
           Name : localStorage.getItem('name'),
           token : localStorage.getItem('token'),
          // Name: '',
