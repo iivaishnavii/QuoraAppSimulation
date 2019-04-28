@@ -1,10 +1,10 @@
 var Model = require('../config/MongoConnection')
 
 function handle_request(message,callback){
-    console.log("Inside Kafka follow topic",message);
+    console.log("Inside Kafka follow topic",message.body);
    // follow using topic name
     Model.TopicsModel.findOne({
-        'topicName' : message.body.topicName
+             
     },(err,topic)=>{
         if(err)
         {
@@ -15,7 +15,7 @@ function handle_request(message,callback){
         {
         console.log("The topic is" + topic)
         Model.UserModel.findOne({
-            'Email' : message.body.email
+            'Email' : message.body.Email
         }, (err,user) => {
             if(err) {
                 console.log("User not found");

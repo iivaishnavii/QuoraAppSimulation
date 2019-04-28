@@ -1,12 +1,13 @@
 var express = require('express')
 var app = express()
-
+var path = require('path');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var cors = require('cors');
 //Passport Authentication
 var passport = require('passport');
+var multer = require('multer');
 
 app.use(session({
     secret: 'cmpe-273-quora-app',
@@ -80,6 +81,47 @@ app.use('/followQuestion',followQuestion)
 app.use('/searchQuestion',searchQuestion)
 app.use('/searchTopic',searchQuestion)
 
+const fs = require('fs');
+const storagepic = multer.diskStorage({
+  destination: function (req, file, cb) {
+      const dir = `./uploads/profile`
+      if (!fs.existsSync(dir)){
+          fs.mkdirSync(dir);
+      }
+      cb(null, dir);
+     
+  },
+ 
+  filename: (req, file, cb) => {
+
+      const newFilename = `profile_${req.body.description}.jpg`;
+      cb(null, newFilename);
+  },
+});
+
+const uploadpic = multer({ storage : storagepic });
+
+app.post('/addpic', uploadpic.single('selectedFile') , (req,res) => {
+   
+    res.send();});
+
+
+app.post('/getprofilepic/:file(*)',(req, res) => {
+    console.log("Inside get profile pic");
+    var file = req.params.file;
+    var fileLocation = path.join(__dirname + '/uploads/profile',file);
+    if (fs.existsSync(fileLocation)) {
+        var img = fs.readFileSync(fileLocation);
+        var base64img = new Buffer(img).toString('base64');
+        res.writeHead(200, {'Content-Type': 'image/jpg' });
+        res.end(base64img);
+    }
+    else
+    {
+        res.end("");
+    }
+
+});
 
 
 

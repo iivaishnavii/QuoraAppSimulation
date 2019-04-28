@@ -18,6 +18,7 @@ import profileQuestions from '../Profile/UserQuestions';
 import profileFollowers from '../Profile/UserFollowers';
 import profileFollowing from '../Profile/UsersFollowing';
 import profileNav from '../Profile/profileNav';
+import editCredentials from '../Profile/editCredentials';
 
 
 
@@ -40,13 +41,13 @@ class Main extends Component {
                 <Route path= '/content/allContent'  component={allContent}/> 
 
                 <Route path='/' exact component={frame}/>
-                <Route path="/profile" exact component={profileNav}/>
-                <Route path="/profileAnswers" exact component={profileAnswers}/>
-                <Route path="/profileQuestions" exact component={profileQuestions}/>
-                <Route path="/profileFollowers" exact component={profileFollowers}/>
-                <Route path="/profileFollowing" exact component={profileFollowing}/>
+                <Route path="/profile"  component={profileNav}/>
+                <Route path="/profile/answers" exact component={profileAnswers}/>
+                <Route path="/profile/questions" exact component={profileQuestions}/>
+                <Route path="/profile/Followers" exact component={profileFollowers}/>
+                <Route path="/profile/Following" exact component={profileFollowing}/>
+                <Route path="/editCredentials" exact component={editCredentials}/>
                
-
                  
             </div>
             </BrowserRouter>

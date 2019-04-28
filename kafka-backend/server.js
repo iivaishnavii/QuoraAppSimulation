@@ -90,7 +90,7 @@ handleTopicRequest("search-topic",searchTopic)
 
 
 
-// handleTopicRequest("followTopic",FollowTopic)
+ handleTopicRequest("followTopic",FollowTopic)
 // handleTopicRequest("followUser",FollowUser)
 // handleTopicRequest("sendMessage",SendMessage)
 // handleTopicRequest("getFollowers",GetFollowers)

@@ -72,8 +72,9 @@ var ConversationSchema = new Schema({
 
 
 var TopicsSchema = new Schema({
-    topicName : { type: String, trim: true}
-    
+    topicName : { type: String, trim: true},
+    followers : {type : Number},
+    questions : {type : String}
 })
 
 
