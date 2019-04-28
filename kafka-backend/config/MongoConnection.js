@@ -18,12 +18,11 @@ mongoose.connect("mongodb+srv://quora:quora@cluster0-6ddbb.mongodb.net/QuoraApp?
     owner: { type: String, trim: true },
     images: { type: Buffer, trim: true },
     isAnonymous: { type: Boolean, trim: true },
-    upVotes: { type: Number, trim: true, default: "" },
+    upVotes: { type: Number, trim: true, default: 0 },
     downVotes: { type: Number, trim: true, default: "" },
     comments: { type: Array, trim: true, default: "" },
     date : { type: String, trim: true, default: "" },
     question : { type: String, trim: true, default: "" },
-
 })
 
   var QuestionsSchema = new Schema({
@@ -56,6 +55,7 @@ mongoose.connect("mongodb+srv://quora:quora@cluster0-6ddbb.mongodb.net/QuoraApp?
     QuestionsAnswered:{type :Array,trim:true,default:""},
     Email: { type: String, trim: true, default: 0 },
     Password: { type: String, trim: true, default: "" },
+    ProfilePicture : {type:Buffer}
 })
 
 
