@@ -5,8 +5,8 @@ import style from '../Profile/profile.css';
 import { ROOT_URL } from '../../config/URLsettings';
 import axios from 'axios';
 import Header from '../Header/Header';
-import Button from 'react-bootstrap/Button';
-
+import Modal from '../Modal/Modal';
+import UserQuestions  from './UserQuestions';
 
 export default class ProfileNav extends Component {
     constructor(props){
@@ -66,6 +66,7 @@ export default class ProfileNav extends Component {
              Following : data.Following,
              //ProfileViews : '',
              QuestionsAnswered: data.QuestionsAnswered,
+             show : false
            });
          });
          
@@ -79,6 +80,15 @@ export default class ProfileNav extends Component {
           })
       }
   }
+
+  showModal = () => {
+
+    this.setState({ show: true });
+  };
+
+  hideModal = () => {
+    this.setState({ show: false });
+  };
 
   componentWillMount()
     {
@@ -142,26 +152,36 @@ export default class ProfileNav extends Component {
         this.props.history.push('/editCredentials')
       }
 
+      editCrentials =(e) => {
+        console.log("editing");
+        this.props.history.push('/editCredentials')
+      }
+
+      searchTopics =(e) => {
+        console.log("editing");
+        this.props.history.push('/searchTopicByUser')
+      }
+
+      editProfile =(e) => {
+        console.log("editing");
+        this.props.history.push('/editProfile')
+      }
+
 
     
 
     render() {
 
-       {/* let topics = this.state.Topic.map(topic => {
-            return(      
-          <div>
-          {topic.topicName}
-          </div>      
-        )
-        }) */}
 
         return(
             <div>
-               <Header/>
+              <Header/>
+                <div className = 'row'>
+                <div className = 'col-sm-9' >
                 <div class ="sidebar-profile1">
                 <div className = 'row'>
-           <div className = 'col-sm-8' >
-            <div class = "header" style = {{marginleft : 100,
+               {/* <div className = 'col-sm-8' >  */}
+                <div class = "header" style = {{marginleft : 100,
     width : 744,
     height : 164}} >
             <div className = 'row' style = {{height : 180}}>
@@ -180,8 +200,7 @@ export default class ProfileNav extends Component {
           </button>     
                         
                        
-            
-            
+          
           
                     </div>
                 </form>
@@ -189,7 +208,7 @@ export default class ProfileNav extends Component {
                 
                  </div> 
                  <div className = 'col-sm-8' >
-                  <h3 style = {{marginTop : 30}}> <b>{this.state.Name}  </b>  <button onClick = {this.editCrentials}> <i class="fas fa-pen"></i>  </button> </h3> 
+                  <h3 style = {{marginTop : 30}}> <b>{this.state.Name}  </b>  <button onClick = {this.editProfile}> <i class="fas fa-pen"></i>  </button>    </h3> 
                   
                    <h4 > {this.state.ProfileCredential}   </h4> 
                    <h5 > <b> <i> {this.state.Description} </i> </b>  </h5> 
@@ -202,57 +221,65 @@ export default class ProfileNav extends Component {
     </div>
             
             <hr class ="hr" style = {{width : 744, marginLeft : 120}}></hr>    
-         
+         </div>
+         <div className = "row" style = {{width : 1000}}>
             <div class="col-md-3 width11" >
             <p class="heading"> Feeds </p>
                         <hr class ="hr"></hr>
                         <div class="btn-group-vertical">
-                        <button id='all' class="button-content " default = "active" onClick ={this.openEmpty}><span class ="size-sm" >Profile </span></button>
-                        <button id='questions' class="button-content" onClick ={this.openAnswers}  > <span class ="size-sm" >Answers  {this.state.QuestionsAnswered.length}</span></button>
-                        <button id='followed' class="button-content" onClick ={this.openQuestions}  > <span class ="size-sm" >Questions {this.state.Questions.length} </span></button>
-                        <button  id='posts' class="button-content"  onClick ={this.openPosts} > <span class ="size-sm" >Shares 0</span></button>
-                        <button id='all' class="button-content "  onClick ={this.openEmpty} ><span class ="size-sm" >Spaces 0 </span></button>
-                        <button id='all' class="button-content "  onClick ={this.openEmpty} ><span class ="size-sm" >Posts 0</span></button>
-                        <button id='all' class="button-content "  onClick ={this.openEmpty} ><span class ="size-sm" >Blogs 0 </span></button>
-                        <button id='all' class="button-content "  onClick ={this.openFollowers} ><span class ="size-sm" >Followers {this.state.Followers.length}</span></button>
-                        <button id='all' class="button-content "  onClick ={this.openFollowing} ><span class ="size-sm" >Following {this.state.Following.length}</span></button>
-                        <button id='all' class="button-content "  onClick ={this.openEmpty} ><span class ="size-sm" >Edits </span></button>
-                        <button id='all' class="button-content "  onClick ={this.openEmpty} ><span class ="size-sm" >Activity </span></button>
+                        <button id='all' class="button-content " default = "active" onClick ={this.openEmpty}><span class ="size-sm1" >Profile </span></button>
+                        <button id='questions' class="button-content" onClick ={this.openAnswers}  > <span class ="size-sm1" >Answers  {this.state.QuestionsAnswered.length}</span></button>
+                        <button id='followed' class="button-content" onClick ={this.openQuestions}  > <span class ="size-sm1" >Questions {this.state.Questions.length} </span></button>
+                        <button  id='posts' class="button-content"  onClick ={this.openPosts} > <span class ="size-sm1" >Shares 0</span></button>
+                        <button id='all' class="button-content "  onClick ={this.openEmpty} ><span class ="size-sm1" >Spaces 0 </span></button>
+                        <button id='all' class="button-content "  onClick ={this.openEmpty} ><span class ="size-sm1" >Posts 0</span></button>
+                        <button id='all' class="button-content "  onClick ={this.openEmpty} ><span class ="size-sm1" >Blogs 0 </span></button>
+                        <button id='all' class="button-content "  onClick ={this.openFollowers} ><span class ="size-sm1" >Followers {this.state.Followers.length}</span></button>
+                        <button id='all' class="button-content "  onClick ={this.openFollowing} ><span class ="size-sm1" >Following {this.state.Following.length}</span></button>
+                        <button id='all' class="button-content "  onClick ={this.openEmpty} ><span class ="size-sm1" >Edits </span></button>
+                        <button id='all' class="button-content "  onClick ={this.openEmpty} ><span class ="size-sm1" >Activity </span></button>
                         </div>
                         <br>
                         </br>
                         <br>
                         </br>
                         </div>
-                        </div>  
-                    { /*  <div class ="sidebar-profile11" style = {{float: "right"}}>  */}
-           
-            
+                     <div >
+                     <UserQuestions />
+                     </div>
+
                    
-         <div className = 'col-sm-4' style = {{left : 450}}>
+                 
+                   
+        
+                      </div>
+                      </div>
+                      </div>
+                      <div className = 'col-sm-3' >
             <div class="col-md-3 width12" >
             <p class="heading" style = {{width : 250}}> Credentials & Highlights  &nbsp; <button onClick = {this.editCrentials}> <i class="fas fa-pen"></i>  </button> </p>
                         <hr class ="hr" style = {{width:215}} ></hr>
                       
             <div class="btn-group-vertical1" style = {{height : 200, width : 200}}>
+
             <p> <i class="fas fa-briefcase"></i> &nbsp;
 
 
-            <span> {this.state.Profile} </span>  </p>
+            <span class ="size-sm"> <b> {this.state.Profile} </b> </span>  </p>
       <p> <i class="fas fa-graduation-cap"></i> &nbsp;
 
 
-      <span>{this.state.CareerInformation} </span> </p>
+      <span class ="size-sm"> <b>{this.state.CareerInformation} </b> </span> </p>
       <p> <i class="fas fa-university"></i> &nbsp;
 
 
-      <span>{this.state.Education} </span> </p>
+      <span class ="size-sm"> <b>{this.state.Education}  </b></span> </p>
       <p style = {{width : 210}}> <i class="fas fa-map-marker-alt"></i> &nbsp;
-      <span> Add a Location Credential </span>  </p>
+      <span class ="size-sm">  Add a Location Credential </span>  </p>
       <p> <i class="fas fa-eye"></i>
 
 
-      <span>{this.state.ProfileViews} Profile views </span> </p>
+      <span  class ="size-sm" >{this.state.ProfileViews} Profile views </span> </p>
             
             </div>
                         <br>
@@ -262,14 +289,13 @@ export default class ProfileNav extends Component {
                         </div>
 
                         <div class="col-md-3 width12" >
-            <p class="heading" style = {{width : 250}} > Knows About &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<button onClick = {this.editCrentials}> <i class="fas fa-pen"></i>  </button>  </p>
+            <p class="heading" style = {{width : 250}} > Knows About &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<button onClick = {this.searchTopics}> <i class="fas fa-pen"></i>  </button>  </p>
                         <hr class ="hr" style = {{width:215}}></hr>
                       
-                       {/*{topics} */}
+                     
                      
                         </div>
-                      { /* </div> */ }
-                      </div>
+                     
                       </div>
                       </div>
                       </div>
@@ -282,40 +308,4 @@ export default class ProfileNav extends Component {
 }
 
 
-/*return (
-    <div className = "pageContent" style = {{width : 200}}>
-    
-<nav class="nav flex-column" style = {{marginLeft : 100, width : 82}} >
-<a class="nav-link" id = 'item' href="#">Profile</a>
-<a class="nav-link" id = 'item' href="/profileAnswers">Answers</a>
-<a class="nav-link" id = 'item' href="/profileQuestions">Questions</a>
-<a class="nav-link" id = 'item' href="#">Shares</a>
-<a class="nav-link" id = 'item' href="#">Spaces</a>
-<a class="nav-link" id = 'item'href="#">Posts</a>
-<a class="nav-link" id = 'item' href="#">Blogs</a>
-<a class="nav-link"  id = 'item'href="/profileFollowers">Followers</a>
-<a class="nav-link" id = 'item' href="/profileFollowing">Following</a>
-<a class="nav-link"  id = 'item' href="#">Edits</a>
-<a class="nav-link"  id = 'item' href="#">Activity</a>
 
-</nav>
-</div>   
-
-
-
-
-                     <div class="col-md-3" style={{ left:"300px", top : "70px"}} >
-                     <p class="heading" > Your Content </p>
-                     <hr style ={{ width : "800px"}}></hr>
-                     
-                     </div>
-                     
-
-                      <Button style = {{width : 200}}
-            block
-            type="button"  onClick = {this.savepicture} >
-          Save Profile Picture
-          </Button>     
-                        
-         
-     ); */

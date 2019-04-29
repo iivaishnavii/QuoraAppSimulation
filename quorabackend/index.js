@@ -51,10 +51,12 @@ const getAnswers = require('./routes/getAnswers')
 var writeAnswer = require('./routes/writeAnswer')
 var followQuestion = require('./routes/followQuestion')
 var searchQuestion = require('./routes/searchQuestion')
+var signUp = require('./routes/signUp.js')
 
 
 app.use('/login',login)
 app.use('/signUp',signUp)
+
 app.use('/updateProfile',profile)
 app.use(createConversation);
 app.use(getConversation);
@@ -80,6 +82,7 @@ app.use('/writeAnswer',writeAnswer)
 app.use('/followQuestion',followQuestion)
 app.use('/searchQuestion',searchQuestion)
 app.use('/searchTopic',searchQuestion)
+
 
 const fs = require('fs');
 const storagepic = multer.diskStorage({

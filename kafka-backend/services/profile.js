@@ -24,7 +24,7 @@ function handle_request(message,callback){
         user.Description = message.body.Description
         user.ProfileCredential = message.body.ProfileCredential
 //user.Email =  message.body.Email
-        user.Password = message.body.Password
+      //  user.Password = message.body.Password
        // user.ProfilePicture = message.body.ProfilePicture
         user.save().then((doc)=>{
             console.log("User updated successfully",doc)

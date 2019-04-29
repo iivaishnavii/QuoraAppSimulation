@@ -5,7 +5,7 @@ var login = require('./services/login.js');
 
 var profile = require('./services/profile')
 
-var signup = require('./services/signup.js');
+var signup = require('./services/signup');
 
 var CreateConversation = require('./services/createConversation');
 var FollowTopic = require('./services/followTopic');
@@ -65,18 +65,18 @@ function handleTopicRequest(topic_name,fname){
 //second argument is a function that will handle this topic request
 // handleTopicRequest("login",login)
 
-handleTopicRequest("update-profile",profile)
+/*handleTopicRequest("update-profile",profile)
 handleTopicRequest("delete-user",deleteUser)
 handleTopicRequest("createConversation",CreateConversation)
 handleTopicRequest("get-profile",getProfile)
 handleTopicRequest("get-answers",getAnswers)
-handleTopicRequest("create-question",createQuestion)
-handleTopicRequest("sign-up",signup)
-handleTopicRequest("get-questions",getAllQuestions)
+handleTopicRequest("create-question",createQuestion) */
+handleTopicRequest("signup",signup)
+/*handleTopicRequest("get-questions",getAllQuestions)
 handleTopicRequest("write-answer",writeAnswer)
 handleTopicRequest("follow-question",followQuestion)
 handleTopicRequest("search-question",searchQuestion)
-handleTopicRequest("search-topic",searchTopic)
+handleTopicRequest("search-topic",searchTopic) */
 
 
 
@@ -90,14 +90,14 @@ handleTopicRequest("search-topic",searchTopic)
 
 
 
- handleTopicRequest("followTopic",FollowTopic)
+ //handleTopicRequest("followTopic",FollowTopic)
 // handleTopicRequest("followUser",FollowUser)
 // handleTopicRequest("sendMessage",SendMessage)
 // handleTopicRequest("getFollowers",GetFollowers)
 // handleTopicRequest("getMessage",GetMessage)
 // handleTopicRequest("getConversation",GetConversation)
 
-handleTopicRequest("content",content)
+//handleTopicRequest("content",content)
 
 
 

@@ -7,7 +7,7 @@ import {Redirect} from 'react-router-dom';
 
 import axios from 'axios';
 
- export default class editCredentials extends Component {
+ export default class editProfile extends Component {
   
   
   constructor(props) {
@@ -82,6 +82,12 @@ import axios from 'axios';
     });
   }
 
+  cancelAction = event => {
+    this.props.history.push("/profile");
+  }
+
+
+
   updateProfile = event => {
     console.log("Button");
     event.preventDefault();
@@ -137,9 +143,7 @@ componentWillMount()
 
     }
 
-    cancelAction = event => {
-      this.props.history.push("/profile");
-    }
+
     
   
 
@@ -151,98 +155,21 @@ componentWillMount()
       return redirectVar;        
     }  
     return (
-<div className = "row">
-
-<div className="Profile" style = {{marginTop : 0, width : 500, marginLeft : 400}}>
-<div class="modal-header">
-  <h5 class="modal-title" id="exampleModalLabel"><b> Edit Credentials </b></h5>
- 
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick = {this.cancelAction}>
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-
-
-
-
-<div class="modal-body">
- 
-  <form  align= "center">
-         
-          <Form.Group controlId="Profile" >
-            <Form.Label>Profile</Form.Label>
-            <Form.Control
-              value={this.state.Profile}
-              onChange={this.handleChange}
-              type="text"
-            />
-          </Form.Group>
-          <Form.Group controlId="CareerInformation" >
-            <Form.Label>CareerInformation</Form.Label>
-            <Form.Control
-              value={this.state.CareerInformation}
-              onChange={this.handleChange}
-              type="text"
-            />
-          </Form.Group>
-          <Form.Group controlId="City" >
-            <Form.Label>City</Form.Label>
-            <Form.Control
-              value={this.state.City}
-              onChange={this.handleChange}
-              type="text"
-            />
-          </Form.Group>
-         
-          <Form.Group controlId="State" >
-            <Form.Label>State</Form.Label>
-            <Form.Control
-              value={this.state.State}
-              onChange={this.handleChange}
-              type="text"
-            />
-          </Form.Group>
-          <Form.Group controlId="ZipCode" >
-            <Form.Label>ZipCode</Form.Label>
-            <Form.Control
-              value={this.state.ZipCode}
-              onChange={this.handleChange}
-              type="text"
-            />
-          </Form.Group>
-          
-        </form>
-  
- 
- 
-</div>
- 
-    
-
-    <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick = {this.cancelAction}>Cancel</button>
-  <button type="button" class="btn btn-primary" onClick = {this.updateProfile}>Save Changes</button>
-</div>
-    
-</div>
-
-</div>
-      
-    );
-  }
-}
-
-/*
-
-<div className = "row">
-
-
+      <div className = "row">
 
       <div className="Profile" style = {{marginTop : 0, width : 500, marginLeft : 400}}>
-      <h1 align = "center"> Profile </h1>
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><b> Edit Credentials </b></h5>
+       
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick = {this.cancelAction}>
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
      
-          
+     
+      
   
+      <div class="modal-body">
        
         <form  align= "center">
           
@@ -254,47 +181,7 @@ componentWillMount()
               type="text"
             />
          </Form.Group>
-         <Form.Group controlId="City" >
-            <Form.Label>City</Form.Label>
-            <Form.Control
-              value={this.state.City}
-              onChange={this.handleChange}
-              type="text"
-            />
-          </Form.Group>
          
-          <Form.Group controlId="State" >
-            <Form.Label>State</Form.Label>
-            <Form.Control
-              value={this.state.State}
-              onChange={this.handleChange}
-              type="text"
-            />
-          </Form.Group>
-          <Form.Group controlId="ZipCode" >
-            <Form.Label>ZipCode</Form.Label>
-            <Form.Control
-              value={this.state.ZipCode}
-              onChange={this.handleChange}
-              type="text"
-            />
-          </Form.Group>
-          <Form.Group controlId="Profile" >
-            <Form.Label>Profile</Form.Label>
-            <Form.Control
-              value={this.state.Profile}
-              onChange={this.handleChange}
-              type="text"
-            />
-          </Form.Group>
-          <Form.Group controlId="CareerInformation" >
-            <Form.Label>CareerInformation</Form.Label>
-            <Form.Control
-              value={this.state.CareerInformation}
-              onChange={this.handleChange}
-              type="text"
-            />
-          </Form.Group>
           <Form.Group controlId="Description" >
             <Form.Label>Description</Form.Label>
             <Form.Control
@@ -311,15 +198,24 @@ componentWillMount()
               type="text"
             />
           </Form.Group> 
-          <button style = {{width : 76, marginLeft : 300}} onClick = {this.updateProfile}>
-              Save
-          </button> &nbsp; &nbsp;
-          <button onClick = {this.updateProfile}>
-              Cancel
-          </button>
+        
         </form>
+       
+      </div>
+       
+          
+
+          <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick = {this.cancelAction}>Cancel</button>
+        <button type="button" class="btn btn-primary" onClick = {this.updateProfile}>Save Changes</button>
+      </div>
+          
       </div>
     
       </div>
-*/
+    );
+  }
+}
+
+
 

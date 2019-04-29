@@ -22,7 +22,9 @@ import profileQuestions from '../Profile/UserQuestions';
 import profileFollowers from '../Profile/UserFollowers';
 import profileFollowing from '../Profile/UsersFollowing';
 import profileNav from '../Profile/profileNav';
+import editProfile from '../Profile/editProfile';
 import editCredentials from '../Profile/editCredentials';
+import searchTopic from '../Profile/UserTopicSearch';
 
 
 
@@ -34,6 +36,7 @@ class Main extends Component {
             <div>
                 {/*Render Different Component based on Route*/}
                 <Route path='/' exact component={login}/> 
+                <Route path='/signUp' exact component={signUp}/> 
                 <Route path="/profile" exact component={profile}/>
                 <Route path="/newsfeed" exact component={newsfeed}/>
                 <Route path="/newscards" exact component={News}/>
@@ -56,6 +59,8 @@ class Main extends Component {
                 <Route path="/profile/Followers" exact component={profileFollowers}/>
                 <Route path="/profile/Following" exact component={profileFollowing}/>
                 <Route path="/editCredentials" exact component={editCredentials}/>
+                <Route path="/editProfile" exact component={editProfile}/>
+                <Route path="/searchTopicByUser" exact component={searchTopic}/>
                
                  
             </div>

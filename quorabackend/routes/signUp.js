@@ -5,12 +5,17 @@ var kafka = require('../kafka/client')
 // Set up middleware
 
 router.post('/',function(req,res){
-    console.log("Request inside sign up"+req.body)
-    kafka.make_request('sign-up',req.body,function(err,result){
+    console.log("In backend sign up");
+    console.log("Request"+req.body)
+    kafka.make_request('signup',req.body,{
+    
+
+
+},function(err,result){
         console.log("In results"+result)
         if(result)
         {
-            console.log("User saved successfully")
+            console.log("user saved successfully")
             res.writeHead(200,{
                 'Content-type' : 'text/plain'
             })
