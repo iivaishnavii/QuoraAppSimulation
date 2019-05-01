@@ -3,14 +3,17 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import {rooturl} from '../../config/settings';
-
+import SideQuoraPic from '../../images/SideQuoraPic.png';
+import RightQuoraPic from '../../images/RightQuoraPic.png'
+import { Redirect } from 'react-router';
 class SignUp extends Component{
   state={
     Name:"",
     Email:"",
    // Password:"",
     emptyValues : false,
-    Password:""
+    Password:"",
+    login:false
   }
   handleFirstName=(e)=>{
     this.setState({Name:e.target.value})
@@ -34,7 +37,8 @@ class SignUp extends Component{
     }
     else{
       this.setState({emptyValues :false})
-      var url='http://'+rooturl+':4000/signup'
+      
+      var url='http://'+rooturl+':4000/signUp'
       console.log("here");
       axios.post(url,{
         
@@ -45,15 +49,28 @@ class SignUp extends Component{
 
       }).then(response=>{
         console.log(response.data)
+        if(response.status===200 || response.status===210){
+          this.setState({login:true})
+        }
+        
       })
 
     }
   }
   render(){
+    let redirectvar = null;
+    if(this.state.login === true){
+      redirectvar = <Redirect to='/' />
+    }
     return(
-      <div>       
-            
-      <div className="mt-5">
+      <div>
+        {redirectvar}
+        <div class="row">  
+       {/* <div class="col-md-4">
+        <img className = "SideQuoraPic" style={{ "width" : "413px"  }} src = {SideQuoraPic}/> 
+       </div>   
+             */}
+      <div className="mt-5 col-md-4">
           <form>
 
           <div className="form-group">
@@ -91,9 +108,15 @@ class SignUp extends Component{
 
           </form>
 
-  </div>
+        </div>
+        {/* <div class="col-md-4"> 
+          <img className = "RightQuoraPic" style={{ "width" : "351px" ,"height":"100%"}} align="right" src = {RightQuoraPic}/> 
+       </div>  
+        */}
   </div>  
   
+      </div>
+      
   
 
 
