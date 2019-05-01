@@ -3,37 +3,52 @@ var bcrypt = require('bcrypt-nodejs');
 var mongooseTypes = require('mongoose').Types;
 var saltRounds = 10
 
-function handle_request(message, callback){
-    console.log('Inside Backend Signup');
-    console.log('Message: ', message);
-    const hashedPassword = bcrypt.hashSync(message.Password)
-    var SignUp = Model.UserModel({
-            Name : message.Name,
-            Password : hashedPassword,
-            Email : message.Email 
-    })
-    console.log("SignUp"+SignUp)
-    var promise = SignUp.save()
-    console.log("Promise"+promise)
-    promise.then(res=>{
-        res.value= message
-        res.code = 200
-        console.log("Ressss"+res)
-        callback(null,res)
-    })
-    .catch(err=>{
-        if(err.message.includes("Duplicate Key"))
+function handle_request(message,callback){
+    console.log("In Sign up "+message.Email)
+    
+    //const profileId = mongooseTypes.ObjectId();
+ 
+    Model.UserModel.findOne({
+        'Email' : message.Email
+    },(err,user) => {
+        if(err)
         {
-            res.value = "User Exists"
+            console.log("Unable to fetch use details",err)
+            callback(err,null)
         }
-        else 
+        else
         {
-            res.value = "Error in registering data please try again!";
-            res.code = "400";
-            callback(null, res);
+            if(user)
+            {
+                console.log('User Exists',user)
+                callback(null,null)                
+            }
+            else
+            {
+                const hashedPassword = bcrypt.hashSync(message.Password)
+                var user = new Model.UserModel({
+                    Name : message.Name,
+                    Email : message.Email,
+                    Password : hashedPassword
+                  
+                    
+                })
+            }
+                console.log("User document"+user.Name)
+                
+                user.save().then((doc)=>{
+                    console.log("Success response"+doc)
+                    callback(null,doc);
+                }, (err)=>{
+                    console.log("Unable to save user details",err)
+                    callback(err,null);
+                })
+            }
         }
-    })
+    
+    )
 
- }
+
+}
 
 exports.handle_request = handle_request;

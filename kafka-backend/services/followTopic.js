@@ -4,7 +4,8 @@ function handle_request(message,callback){
     console.log("Inside Kafka follow topic",message.body);
    // follow using topic name
     Model.TopicsModel.findOne({
-             
+        topicName :
+        "Machine Learning"      
     },(err,topic)=>{
         if(err)
         {
@@ -15,7 +16,7 @@ function handle_request(message,callback){
         {
         console.log("The topic is" + topic)
         Model.UserModel.findOne({
-            'Email' : message.body.Email
+           
         }, (err,user) => {
             if(err) {
                 console.log("User not found");

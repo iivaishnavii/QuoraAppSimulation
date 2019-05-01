@@ -2,147 +2,128 @@ import React, { Component } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-
-import { connect } from "react-redux";
-const Checkbox = props => (
- 
-  <input type="checkbox" {...props} />
-)
-
- export default class signUp extends Component {
-  constructor() {
-    super();
-    this.state = {
-      firstName: "",
-      lastName: "",
-      email : "",
-     password : "",
-     authFlag : false
-    };
+import {rooturl} from '../../config/settings';
+import SideQuoraPic from '../../images/SideQuoraPic.png';
+import RightQuoraPic from '../../images/RightQuoraPic.png'
+import { Redirect } from 'react-router';
+class SignUp extends Component{
+  state={
+    Name:"",
+    Email:"",
+   // Password:"",
+    emptyValues : false,
+    Password:"",
+    login:false
   }
-
-  //Profile Image, Name, Email, Phone Number, About Me,City, Country, Company, School, Hometown, Languages, Gender
-
-  validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 0 && this.state.name.length >0;
+  handleFirstName=(e)=>{
+    this.setState({Name:e.target.value})
+         console.log(this.state)
   }
-
-  componentWillMount(){
-    this.setState({
-        authFlag : false
-    })
+  handleEmail=(e)=>{
+    this.setState({Email:e.target.value})
+         console.log(this.state)
   }
-
-  handleChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
+  handleLastName=(e)=>{
+    this.setState({Password:e.target.value})
+         console.log(this.state)
   }
-
   
-  setGender(event) {
-    console.log(event.target.value);
-    var value = event.target.value;
-    this.setState({
-      gender1 : value
-    });
+  register=(e)=>{
+    if(this.state.Name===""||this.state.Email===""||this.state.Password==="")
+    {
+        e.preventDefault()
+        console.log("Cannot be left empty")
+        this.setState({emptyValues :true})
     }
-  
-
-  setUserType(event) {
-    console.log(event.target.value);
-    var value = event.target.value;
-    this.setState({
-      userType : value
-    });
-    }
-  
-  
-
-  signUpStudent = event => {
-    event.preventDefault();
-    var data = {
-        firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      name : this.state.name,
-     about : this.state.about,
-      city : this.state.city,
-      country : this.state.country,
-     company : this.state.company, 
-     school : this.state.school,
-      hometown : this.state.hometown,
-       languages : this.state.languages,
-        gender : this.state.gender,
-        userType : this.state.userType
-    }
-    console.log(data);
-
-    this.props.signUpUser(data, (res) => {
-      this.props.history.push('/');
-    })
-  
-  }
-
-  render(){
-
-    return (
-      <div className = "LoginPage - Component">
+    else{
+      this.setState({emptyValues :false})
       
-      <div className="Login">
-     <div>
-       <h2 align = "center">Sign Up now!!</h2>
-     </div>
-        <form  align= "center">
+      var url='http://'+rooturl+':4000/signUp'
+      console.log("here");
+      axios.post(url,{
         
-        <Form.Group controlId="name" >
-            <Form.Label>Last Name</Form.Label>
-            <Form.Control
-              value={this.state.lastName}
-              onChange={this.handleChange}
-              type="text"
-            />
-          </Form.Group>
-          <Form.Group controlId="name" >
-            <Form.Label>First Name</Form.Label>
-            <Form.Control
-              value={this.state.name}
-              onChange={this.handleChange}
-              type="text"
-            />
-          </Form.Group>
-          <Form.Group controlId="email" >
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              autoFocus
-              type="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="password" >
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              value={this.state.password}
-              onChange={this.handleChange}
-              type="password"
-            />
-          </Form.Group>
+        Email : this.state.Email,
+        Name : this.state.Name,
+        Password : this.state.Password
 
-          <Button
-            block
-            
-           disabled={!this.validateForm()}
-            type="button"  onClick = {this.signUpStudent}
-          >
 
-           Create an account 
-          </Button>
+      }).then(response=>{
+        console.log(response.data)
+        if(response.status===200 || response.status===210){
+          this.setState({login:true})
+        }
+        
+      })
 
-          
-        </form>
-      </div>
-      </div>
-    );
+    }
   }
-}
+  render(){
+    let redirectvar = null;
+    if(this.state.login === true){
+      redirectvar = <Redirect to='/' />
+    }
+    return(
+      <div>
+        {redirectvar}
+        <div class="row">  
+       {/* <div class="col-md-4">
+        <img className = "SideQuoraPic" style={{ "width" : "413px"  }} src = {SideQuoraPic}/> 
+       </div>   
+             */}
+      <div className="mt-5 col-md-4">
+          <form>
 
+          <div className="form-group">
+              <div class="row">
+                      <div class="col-4"></div>
+                      <input type="text" class="form-control col-4" id="Name" onChange={this.handleFirstName}  placeholder="Enter FirstName" />
+                      <div class="col-4"></div>
+              </div>
+          </div>
+          
+          <div className="form-group">
+              <div class="row">
+                  <div class="col-4"></div>
+                  <input type="text" className="form-control col-4" id="Email" onChange={this.handleEmail} placeholder="Enter your email"/>
+                  <div class="col-4"></div>
+              </div>
+              
+          </div>
+          <div class="form-group">
+              <div class="row">
+                  <div class="col-4"></div>
+                  <input type="password" className="form-control col-4" id="Password" onChange={this.handleLastName} placeholder="Enter your password"/>
+                  <div class="col-4"></div>
+              </div>
+          </div>
+          
+          <div class="row" >
+              
+                  <div class="col-4"></div>
+                  <button type="submit" class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0 col-4" onClick={this.register}>Register</button>
+                  <div class="col-4"></div>
+              
+          </div>
+          
+
+          </form>
+
+        </div>
+        {/* <div class="col-md-4"> 
+          <img className = "RightQuoraPic" style={{ "width" : "351px" ,"height":"100%"}} align="right" src = {RightQuoraPic}/> 
+       </div>  
+        */}
+  </div>  
+  
+      </div>
+      
+  
+
+
+  );
+  }
+  
+
+
+}
+export default SignUp;
