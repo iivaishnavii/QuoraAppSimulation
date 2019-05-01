@@ -32,6 +32,7 @@ var searchQuestion = require('./services/searchQuestion')
 var searchTopic = require('./services/searchTopic')
 var createTopic = require('./services/createTopic');
 
+
 function handleTopicRequest(topic_name,fname){
     //var topic_name = 'root_topic';
     var consumer = connection.getConsumer(topic_name);

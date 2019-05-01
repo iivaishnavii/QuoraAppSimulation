@@ -17,17 +17,11 @@ function handle_request(msg, callback){
         else {
 
             if(user){
-                console.log("User details ", user);
-                if (!bcrypt.compareSync(msg.Password, user.Password)) {                
-                    console.log('Invalid Credentials!');
-                    callback(null, null);                
-                }
-                else {
+                console.log("User exists ");
                 
-                    callback(null, user);
-                }
             }
             else{
+                console.log("user doesn't exist")
                 callback(null, null);
             }
             

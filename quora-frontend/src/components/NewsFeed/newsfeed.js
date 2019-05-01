@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../Header/Header'
 import News from '../news/News'
 
+
 class newsfeed extends Component {
     state = {  }
     render() { 

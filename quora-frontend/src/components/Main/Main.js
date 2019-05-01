@@ -35,7 +35,7 @@ class Main extends Component {
             <BrowserRouter>
             <div>
                 {/*Render Different Component based on Route*/}
-                <Route path='/' exact component={login}/> 
+                
                 <Route path='/signUp' exact component={signUp}/> 
                 <Route path="/profile" exact component={profile}/>
                 <Route path="/newsfeed" exact component={newsfeed}/>
