@@ -19,7 +19,11 @@ var userAnswers = require('./services/userAnswers.js')
 var userQuestions = require('./services/userQuestions.js')
 var userBookmarks = require('./services/userBookmarks.js')
 var updateAnswer = require('./services/updateAnswer.js')
+
 var content = require('./services/content.js')
+var searchUserQuestions = require('./services/searchUserQuestions');
+var searchUserAnswers = require('./services/searchUserAnswers');
+var searchUserFollowing = require('./services/searchUserFollowing');
 
 var deleteUser = require('./services/deleteUser.js')
 var getProfile = require('./services/getProfile.js')
@@ -63,7 +67,7 @@ function handleTopicRequest(topic_name,fname){
 // Add your TOPICs here
 //first argument is topic namex
 //second argument is a function that will handle this topic request
-// handleTopicRequest("login",login)
+handleTopicRequest("login",login)
 
 handleTopicRequest("update-profile",profile)
 handleTopicRequest("delete-user",deleteUser)
@@ -81,23 +85,26 @@ handleTopicRequest("search-topic",searchTopic)
 
 
 
-// handleTopicRequest("get_following",following)
-// handleTopicRequest("user_answers",userAnswers)
-// handleTopicRequest("user_questions",userQuestions)
-// handleTopicRequest("user_bookmarks",userBookmarks)
-// handleTopicRequest("update_answer",updateAnswer)
+handleTopicRequest("get_following",following)
+handleTopicRequest("user_answers",userAnswers)
+handleTopicRequest("user_questions",userQuestions)
+handleTopicRequest("user_bookmarks",userBookmarks)
+handleTopicRequest("update_answer",updateAnswer)
 
 
 
 
  handleTopicRequest("followTopic",FollowTopic)
-// handleTopicRequest("followUser",FollowUser)
-// handleTopicRequest("sendMessage",SendMessage)
-// handleTopicRequest("getFollowers",GetFollowers)
-// handleTopicRequest("getMessage",GetMessage)
-// handleTopicRequest("getConversation",GetConversation)
+handleTopicRequest("followUser",FollowUser)
+handleTopicRequest("sendMessage",SendMessage)
+handleTopicRequest("getFollowers",GetFollowers)
+handleTopicRequest("getMessage",GetMessage)
+handleTopicRequest("getConversation",GetConversation)
 
-handleTopicRequest("content",content)
+handleTopicRequest("content",content);
+handleTopicRequest("searchUserQuestions",searchUserQuestions);
+handleTopicRequest("searchUserAnswers",searchUserAnswers);
+handleTopicRequest("searchUserFollowing",searchUserFollowing);
 
 
 
