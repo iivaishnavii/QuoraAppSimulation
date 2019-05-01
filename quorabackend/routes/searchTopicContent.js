@@ -2,23 +2,23 @@ var express = require('express')
 
 var router=express.Router();
 var kafka = require('../kafka/client')
+// Set up middleware
 
 router.post('/',function(req,res){
     console.log(req);
-    console.log('in content req');
-    kafka.make_request('content',req.body, function(err,results){
+    kafka.make_request('searchTopicContent',req.body, function(err,results){
         console.log('in result');
         console.log(results);
         if (err){
             console.log("Inside err");
             res.json({
-                status:"error",
-                msg:"unable to fetch content"
+                status:"eror",
+                msg:"unable to fetch topic content"
             })
         }else{
             console.log("Inside else");
                 res.json({
-                    content:results
+                    topicContent:results
                 });
 
                 res.end();

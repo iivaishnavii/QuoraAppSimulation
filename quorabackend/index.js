@@ -43,6 +43,7 @@ const followTopic = require('./routes/followTopic');
 const followUser = require('./routes/followUser');
 const getFollowers = require('./routes/getFollowers');
 const content = require('./routes/content');
+const searchTopicContent = require('./routes/searchTopicContent')
 const deleteUser = require('./routes/deleteUser')
 const getProfile = require('./routes/getProfile')
 const getAllQuestions = require('./routes/getAllQuestions')
@@ -51,6 +52,7 @@ const getAnswers = require('./routes/getAnswers')
 var writeAnswer = require('./routes/writeAnswer')
 var followQuestion = require('./routes/followQuestion')
 var searchQuestion = require('./routes/searchQuestion')
+const getUserFollowingData = require('./routes/getUserFollowingData')
 
 
 app.use('/login',login)
@@ -70,6 +72,7 @@ app.use('/userQuestions',userQuestions)
 app.use('/getBookmarks',getBookmarks)
 app.use('/updateAnswer',updateAnswer)
 app.use('/content',content)
+app.use('/searchTopicContent',searchTopicContent)
 app.use('/delete',deleteUser)
 app.use('/getProfile',getProfile)
 app.use('/getAllQuestions',getAllQuestions)
@@ -80,6 +83,7 @@ app.use('/writeAnswer',writeAnswer)
 app.use('/followQuestion',followQuestion)
 app.use('/searchQuestion',searchQuestion)
 app.use('/searchTopic',searchQuestion)
+app.use('/getUserFollowingData',getUserFollowingData)
 
 const fs = require('fs');
 const storagepic = multer.diskStorage({
