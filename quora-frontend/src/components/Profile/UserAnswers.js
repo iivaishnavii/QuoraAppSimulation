@@ -8,14 +8,14 @@ class UserAnswers extends Component {
         news : []
     }
     componentDidMount(){
-       
+        // var url = `http://localhost:4000/viewCourses/`+localStorage.getItem('userid')
         var token = localStorage.getItem("token")
-        var data = {
-            Email : "akhil.kiran@gmail.com"
-        }
         var url = `http://localhost:4000/userAnswers`
          console.log(url)  
-         axios.post(url, data, {headers : {"Authorization": `Bearer ${token}`}}).
+         var data = {
+            Email : "akhil.kiran@gmail.com"
+        }
+        axios.post(url, data, {headers : {"Authorization": `Bearer ${token}`}}).
          then(response => {
                  console.log("in then")
                  console.log(response.data)
@@ -28,11 +28,13 @@ class UserAnswers extends Component {
      console.log(item)
  }
     render() { 
+        
         let displayCards = this.state.news.map((question)=>{
-            if(question.Answers.length>0)
+           if(question && question.Answers)
+          {  if(question.Answers.length>0) 
             {
                 return(
-                    <div class="card mt-3"  style={{"width": 600}}>
+                    <div class="card mt-3"  style={{"width" : 600}}>
                     <div class="card-header">
                         Featured
                     </div>
@@ -64,7 +66,7 @@ class UserAnswers extends Component {
                 )
             }
                
-            
+        }   
             
         })
         return ( 

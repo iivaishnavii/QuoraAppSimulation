@@ -10,12 +10,12 @@ class UserQuestions extends Component {
     componentDidMount(){
         // var url = `http://localhost:4000/viewCourses/`+localStorage.getItem('userid')
         var token = localStorage.getItem("token")
-        var url = `http://localhost:4000/getAllQuestions`
+        var url = `http://localhost:4000/userQuestions`
          console.log(url)  
          var data = {
             Email : "akhil.kiran@gmail.com"
         }
-        axios.get(url,{headers : {"Authorization": `Bearer ${token}`}}).
+        axios.post(url, data, {headers : {"Authorization": `Bearer ${token}`}}).
          then(response => {
                  console.log("in then")
                  console.log(response.data)
@@ -29,6 +29,7 @@ class UserQuestions extends Component {
  }
     render() { 
         let displayCards = this.state.news.map((question)=>{
+            if(question && question.Answers) {
             if(question.Answers.length>0)
             {
                 return(
@@ -64,7 +65,7 @@ class UserQuestions extends Component {
                 )
             }
                
-            
+        }
             
         })
         return ( 

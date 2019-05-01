@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 var Schema = mongoose.Schema; 
 
-mongoose.connect("mongodb+srv://quora:quora@cluster0-6ddbb.mongodb.net/QuoraApp?retryWrites=true"
+mongoose.connect("mongodb+srv://quora:quora@cluster0-6ddbb.mongodb.net/QuoraApp?retryWrites=true",  {poolSize : 100}
 
 
 ).then(() => {
@@ -85,7 +85,7 @@ var QuestionsModel = mongoose.model('Question',QuestionsSchema)
 var UserModel =  mongoose.model('Users',UserSchema)
 var AnswerModel =  mongoose.model('Answer',AnswerSchema)
 var ConverstionModel = mongoose.model('Converstion',ConversationSchema)
-var TopicsModel = mongoose.model('TopicsSchema',TopicsSchema)
+var TopicsModel = mongoose.model('Topics',TopicsSchema)
 
 module.exports={
     UserModel,

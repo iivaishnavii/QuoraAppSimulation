@@ -113,7 +113,7 @@ axios.post(ROOT_URL +`/updateProfile/${this.state.Email}`,  data, {
  var  data = response.data;
  console.log(response.data);
   //update the state with the response data
-  this.props.history.push('/profile');
+  this.props.history.push('/profile/answers');
   
 });
    
@@ -138,7 +138,7 @@ componentWillMount()
     }
 
     cancelAction = event => {
-      this.props.history.push("/profile");
+      this.props.history.push("/profile/answers");
     }
     
   

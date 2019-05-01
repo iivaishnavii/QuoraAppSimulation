@@ -6,7 +6,7 @@ import { ROOT_URL } from '../../config/URLsettings';
 import axios from 'axios';
 import Header from '../Header/Header';
 import Modal from '../Modal/Modal';
-import UserQuestions  from './UserQuestions';
+import UserAnswers  from './UserAnswers';
 
 export default class ProfileNav extends Component {
     constructor(props){
@@ -245,13 +245,13 @@ export default class ProfileNav extends Component {
                         </br>
                         </div>
                      <div >
-                    
+                     <UserAnswers />
                      </div>
 
                    
                  
                    
-    
+        
                       </div>
                       </div>
                       </div>

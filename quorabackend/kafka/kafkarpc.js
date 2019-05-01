@@ -3,7 +3,7 @@ var conn = require('./Connection');
 const JSON = require('circular-json');
 
 
-var TIMEOUT=8000; //time to wait for response in ms
+var TIMEOUT=30000; //time to wait for response in ms
 var self;
 
 exports = module.exports =  KafkaRPC;

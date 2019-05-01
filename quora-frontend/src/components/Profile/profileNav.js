@@ -139,7 +139,7 @@ export default class ProfileNav extends Component {
         this.props.history.push('/profile/answers')
       }
       openEmpty =(e) => {
-        this.props.history.push('/profile')
+        this.props.history.push('/profile/answers')
       }
       openFollowers =(e) => {
         this.props.history.push('/profile/Followers')
@@ -213,6 +213,25 @@ export default class ProfileNav extends Component {
                    <h4 > {this.state.ProfileCredential}   </h4> 
                    <h5 > <b> <i> {this.state.Description} </i> </b>  </h5> 
                    <button id='all' class="button-content " ><span class ="size-sm" > {this.state.Followers.length} Followers </span></button>
+                   
+
+
+
+
+
+
+
+                   
+
+
+
+
+
+
+
+
+
+
                  </div> 
                  </div>
              <div>

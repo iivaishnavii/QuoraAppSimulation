@@ -53,9 +53,9 @@ class Main extends Component {
                 <Route path= '/content/allContent'  component={allContent}/> 
 
                 <Route path='/' exact component={frame}/>
-                <Route path="/profile"  component={profileNav}/>
-                <Route path="/profile/answers" exact component={profileAnswers}/>
-                <Route path="/profile/questions" exact component={profileQuestions}/>
+               {/* <Route path="/profile"  component={profileNav}/> */}
+                <Route path="/profile/answers" exact component={profileNav}/>
+                <Route path="/profile/questions" exact component={profileNav}/>
                 <Route path="/profile/Followers" exact component={profileFollowers}/>
                 <Route path="/profile/Following" exact component={profileFollowing}/>
                 <Route path="/editCredentials" exact component={editCredentials}/>

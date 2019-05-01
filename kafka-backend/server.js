@@ -30,6 +30,7 @@ var writeAnswer = require('./services/writeAnswer')
 var followQuestion = require('./services/followQuestion')
 var searchQuestion = require('./services/searchQuestion')
 var searchTopic = require('./services/searchTopic')
+var createTopic = require('./services/createTopic');
 
 function handleTopicRequest(topic_name,fname){
     //var topic_name = 'root_topic';
@@ -65,39 +66,43 @@ function handleTopicRequest(topic_name,fname){
 //second argument is a function that will handle this topic request
 // handleTopicRequest("login",login)
 
-/*handleTopicRequest("update-profile",profile)
+handleTopicRequest("update-profile",profile)
 handleTopicRequest("delete-user",deleteUser)
 handleTopicRequest("createConversation",CreateConversation)
 handleTopicRequest("get-profile",getProfile)
-handleTopicRequest("get-answers",getAnswers)
-handleTopicRequest("create-question",createQuestion) */
+handleTopicRequest("get-answers",getAnswers) 
+handleTopicRequest("create-question",createQuestion) 
 handleTopicRequest("signup",signup)
-/*handleTopicRequest("get-questions",getAllQuestions)
+handleTopicRequest("get-profile",getProfile)
+handleTopicRequest("update-profile",profile)
+handleTopicRequest("get-questions",getAllQuestions)
+handleTopicRequest("create-topic", createTopic);
+handleTopicRequest("get-questions",getAllQuestions)
 handleTopicRequest("write-answer",writeAnswer)
 handleTopicRequest("follow-question",followQuestion)
 handleTopicRequest("search-question",searchQuestion)
-handleTopicRequest("search-topic",searchTopic) */
+handleTopicRequest("search-topic",searchTopic) 
 
 
 
 
-// handleTopicRequest("get_following",following)
-// handleTopicRequest("user_answers",userAnswers)
-// handleTopicRequest("user_questions",userQuestions)
-// handleTopicRequest("user_bookmarks",userBookmarks)
-// handleTopicRequest("update_answer",updateAnswer)
+handleTopicRequest("get_following",following)
+handleTopicRequest("user_answers",userAnswers);
+handleTopicRequest("user_questions",userQuestions)
+handleTopicRequest("user_bookmarks",userBookmarks)
+handleTopicRequest("update_answer",updateAnswer)
 
 
 
 
- //handleTopicRequest("followTopic",FollowTopic)
-// handleTopicRequest("followUser",FollowUser)
-// handleTopicRequest("sendMessage",SendMessage)
-// handleTopicRequest("getFollowers",GetFollowers)
-// handleTopicRequest("getMessage",GetMessage)
-// handleTopicRequest("getConversation",GetConversation)
+ handleTopicRequest("followTopic",FollowTopic)
+ handleTopicRequest("followUser",FollowUser)
+ handleTopicRequest("sendMessage",SendMessage)
+ handleTopicRequest("getFollowers",GetFollowers)
+ handleTopicRequest("getMessage",GetMessage)
+ handleTopicRequest("getConversation",GetConversation)
 
-//handleTopicRequest("content",content)
+ handleTopicRequest("content",content)
 
 
 

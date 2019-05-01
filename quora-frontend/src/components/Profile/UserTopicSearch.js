@@ -69,8 +69,10 @@ import axios from 'axios';
         Following : data.Following,
         //ProfileViews : '',
         QuestionsAnswered: data.QuestionsAnswered,
+        searchterm : ''
       });
     });
+
    
  }
 
@@ -82,7 +84,18 @@ import axios from 'axios';
     });
   }
 
+  serachtermHandler = (e) => {
+    console.log("Searching");
+    this.setState({
+        searchterm: e.target.value
+    })
+    var data = {
+      topicName : this.state.searchterm,
+      }
+
+    console.log(this.state.searchterm);
   
+}
 
 
 componentWillMount()
@@ -100,7 +113,7 @@ componentWillMount()
     }
 
     cancelAction = event => {
-      this.props.history.push("/profile");
+      this.props.history.push("/profile/answers");
     }
     
   
@@ -128,7 +141,12 @@ componentWillMount()
 
 
 <div class="modal-body">
- 
+<div className="row coursesearch">
+            <input type="text" style = {{width : 500}}name="searchterm" className="searchinput" placeholder= "Search for a topic" value = {this.state.searchterm} onChange={this.serachtermHandler}/>
+            <br></br>
+           
+   
+          </div>
   
        
   
