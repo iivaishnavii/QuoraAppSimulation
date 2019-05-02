@@ -5,10 +5,11 @@ import {Link} from 'react-router-dom';
 import '../news/News.css'
 class News extends Component {
     state = {  
-        news : []
+        news : [],
+        showAnswerDialog : false,
+
     }
     componentDidMount(){
-        // var url = `http://localhost:4000/viewCourses/`+localStorage.getItem('userid')
         var token = localStorage.getItem("token")
         var url = `http://localhost:4000/getAllQuestions`
          console.log(url)  
@@ -17,17 +18,20 @@ class News extends Component {
                  console.log("in then")
                  console.log(response.data)
                  this.setState({news : this.state.news.concat(response.data)})
-                 console.log("After setting",this.state.news)
+                 console.log("After setting",this.state.news[1])
          })
         
- }
- handleSelection= (item)=> (event) =>{
-     console.log(item)
- }
+    }
+
+
     render() { 
+ 
+        
+        /*Display Answers dynamically*/
         let displayCards = this.state.news.map((question)=>{
             if(question.Answers.length>0)
-            {
+           {
+               //console.log("Question"+JSON.stringify(question))
                 return(
                     <div class="card mt-3"  style={{"width": "50rem"}}>
                     <div class="card-header">
@@ -49,24 +53,41 @@ class News extends Component {
                         <label class="ml-1">6</label>
                         
                         <button class="ml-3 transButton" style={{"font-size":"15px","float":"right"}}><label class="QuoraLabels"><b>Downvote</b></label> <i class="fa fa-arrow-circle-down"></i></button>
-                        <button class="transButton" style={{"float":"right"}}><i class="fas fa-ellipsis-h ml-3" onClick={this.handleSelection(question.Answers[0]._id)}></i></button>
                     </div>
                     <div class='card-header'>
                         <input type="text" style={{"width":"750px"}} placeholder="Add comment"/>
-
-                    
+ 
                     </div>
                     </div>
                     
                 )
-            }
+           }
+           else
+           {
+               return(
+                <div class="card mt-3"  style={{"width": "50rem"}}>
+                    <div class="card-header">
+                            Questions for you
+                    </div>
+                    <div class="card-body">
+                        <Link  to={{pathname : "/answers",state :{'questionid':question._id}}}> 
+                        <h5 class="card-title question">{question.Question}</h5></Link>
+                    </div>
+                   
+                </div>
+
+               )
+           }
                
             
             
         })
+        
         return ( 
             <div>
                 {displayCards}
+               
+
             </div>
 
 

@@ -6,7 +6,6 @@ function handle_request(message, callback){
     {
         
        // var imageOfUser = user.ProfilePicture
-        
         var answer = Model.AnswerModel({
             answer : message.body.answer,
             owner : message.body.owner,
@@ -15,6 +14,13 @@ function handle_request(message, callback){
             question:message.body.question,
            // images : imageOfUser
         })
+        user.QuestionsAnswered =  user.QuestionsAnswered || []
+        user.QuestionsAnswered.push(answer)
+        console.log("User retrieved is"+user)
+        user.save().
+        then(res=>console.log(res))
+        .catch(err=>console.log(err))
+
         answer.save()
         .then(response =>{
             Model.QuestionsModel.findOne({"Question":message.body.question},(err,question)=>{
@@ -27,6 +33,8 @@ function handle_request(message, callback){
                 .catch(err=>callback(err,null))
             })
         })
+
+
     })
 
 }

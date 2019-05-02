@@ -5,7 +5,7 @@ import style from '../Profile/profile.css';
 import { ROOT_URL } from '../../config/URLsettings';
 import axios from 'axios';
 import Header from '../Header/Header';
-import Modal from '../Modal/Modal';
+import Modal from '../Modal/Model';
 import UserQuestions  from './UserQuestions';
 
 export default class ProfileNav extends Component {

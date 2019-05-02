@@ -12,6 +12,7 @@ import questionsAnswered from '../Content/QuestionsAnswered'
 import questionsFollowed from '../Content/QuestionsFollowed'
 import posts from '../Content/Posts'
 import allContent from '../Content/allContent'
+import Model from '../Modal/Model'
 
 //import profile from '../Header/Header';
 //import profile from '../Profile/profile';
@@ -42,6 +43,7 @@ class Main extends Component {
                 <Route path="/newsfeed" exact component={newsfeed}/>
                 <Route path="/newscards" exact component={News}/>
                 <Route path="/answers" exact component={answer}/>
+                <Route path="/modal" exact component={Model}/>
 
                 
                 

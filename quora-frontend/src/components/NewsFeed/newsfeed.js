@@ -8,7 +8,7 @@ class newsfeed extends Component {
     render() { 
         return (
             <div>
-            <Header/>
+           <Header/>
                 <div class="row">
                     <div class="col-md-2">
                     1 of 3

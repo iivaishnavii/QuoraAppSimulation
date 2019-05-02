@@ -1,13 +1,62 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
 import quora from '../../images/QuoraLogo.png';
+import {Modal,Button} from 'react-bootstrap'
+import Model from '../Modal/Model'
+import axios from 'axios'
+
+//import console = require('console');
 export default class Header extends Component {
     constructor(props){
         super(props);
+
+      this.handleShow = this.handleShow.bind(this);
+      this.handleClose = this.handleClose.bind(this);
+  
+      this.state = {
+        show: false,
+        question : ""
+      };
     }
 
+    handleQuestion=(e)=>{
+      this.setState({question : e.target.value})
+    }
+
+    handleClose() {
+      this.setState({ show: false });
+    }
+  
+    handleShow() {
+      console.log("AAAA")
+      this.setState({ show: true });
+    }
+    
+    addQuestion()
+    {
+      var data=
+        {
+          "Question" : "Sample Question from Front end Static",
+          "QuestionOwner" : "asimq@gmail.com",
+          "Topics" : "Programming",
+          "PostedTime" : "23rdApril, 10:30pm"
+        }
+      
+      axios.post('http://localhost:4000/createQuestion/',data)
+      .then(response=>{
+      //  this.setState({ show: false });
+      console.log("Added")
+      })
+      .catch(err=>{
+         console.log("Failed to add question"+err)
+      })
+    
+
+    }
+  
     render() {
         return (
+<div>
           
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
@@ -53,21 +102,44 @@ export default class Header extends Component {
       </div>
     </li>
     <li class="nav-item">
-    <div className = "col-sm-1" align ="center"> 
-            <button type="button" class="btn btn-danger" align = "right" style={{"fontSize":"small", marginTop: 5.5}}> Add Question or Link</button>
-            
-            
-            </div>
-        </li>  
+      <div className = "col-sm-1" align ="center">   
+        <button type="button" class="btn btn-danger" align = "right" style={{"fontSize":"small", marginTop: 5.5}} onClick={this.handleShow}> Add Question or Link</button>            
+      </div> 
+    </li>  
     
-  </ul>
+    </ul>
+    <Modal show={this.state.show} onHide={this.handleClose}>
+    <Modal.Header closeButton>
+      <Modal.Title style={{"color":"#b92b27","font-weight":500,"font-family":"Helvetica Neue,Helvetica,Arial,sans-serif","font-size": "15px"}}>Add Question</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+    
+      <input type="text" placeholder="Start your question with What , How , Why" onChange={this.handleQuestion}></input>
+
+    
+    
+    </Modal.Body>
+    <Modal.Footer>
+      <Button variant="secondary" onClick={this.handleClose}>
+        Cancel
+      </Button>
+      <Button variant="primary" onClick={this.addQuestion}>
+          Add Question
+      </Button>
+    </Modal.Footer>
+  </Modal>
+ 
   
 </div>
 </nav>
 
+</div>
 
 
             
         );
     }
 }
+
+
+

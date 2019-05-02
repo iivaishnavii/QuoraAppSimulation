@@ -7,11 +7,7 @@ var kafka = require('../kafka/client')
 router.post('/',function(req,res){
     console.log("In backend sign up");
     console.log("Request"+req.body)
-    kafka.make_request('signup',req.body,{
-    
-
-
-},function(err,result){
+    kafka.make_request('signup',req.body,function(err,result){
         console.log("In results"+result)
         if(result)
         {
