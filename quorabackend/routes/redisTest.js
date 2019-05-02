@@ -6,7 +6,7 @@ var requireAuth = passport.authenticate('jwt',{session : false})
 
 
 var express = require('express')
-var axios = require('axios')
+//var axios = require('axios')
 //const fetch = require("node-fetch");
 const redis = require('redis')
 var router=express.Router();

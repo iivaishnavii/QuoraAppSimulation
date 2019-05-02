@@ -56,6 +56,7 @@ var searchQuestion = require('./routes/searchQuestion')
 const getUserFollowingData = require('./routes/getUserFollowingData')
 var signUp = require('./routes/signUp.js')
 var createTopic = require('./routes/createTopic');
+var redisTest = require('./routes/redisTest');
 
 
 app.use('/login',login)
@@ -80,6 +81,9 @@ app.use('/searchTopicContent',searchTopicContent)
 app.use('/delete',deleteUser)
 app.use('/getProfile',getProfile)
 app.use('/getAllQuestions',getAllQuestions)
+
+app.use('/allQuestions' ,redisTest)
+
 app.use('/createQuestion',createQuestion)
 app.use('/getAnswers',getAnswers)
 app.use('/getAllAnswers',getAnswers)

@@ -12,7 +12,7 @@ export default class ProfileNav extends Component {
     constructor(props){
         super(props);
         this.state = {
-            Email: 'akhil.kiran@gmail.com',
+            Email: 'Shivani@gmail.com',
             //Email : localStorage.getItem('email');
             token : localStorage.getItem('token'),
             Name: '',
