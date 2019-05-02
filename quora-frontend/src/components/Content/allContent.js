@@ -22,17 +22,21 @@ class allContent extends Component {
 
 
     componentDidMount () {
-        const data = {
-            email : "user10@gmail.com"
+        const data2 = {
+            email : "jessicasi@gmail.com"
            }
   
-          axios.post('http://'+rooturl+':4000/content',data)
+          axios.post('http://'+rooturl+':4000/content',data2)
            .then(response => {
+            console.log(" inside content req");
             const data = response.data.content;
                     this.setState({
-                        questions : this.state.questions.concat(data.Questions)
+                        questions : this.state.questions.concat(data)
                     
                        });
+
+                       console.log(data);
+
                        this.setState({
                         answers : this.state.answers.concat(data.QuestionsAnswered)
                     
@@ -156,8 +160,7 @@ renderAll () {
     return (
         <div>
         {this.renderQuestions()}
-        {this.renderAnswers()}
-        {this.renderFollowed()}
+      
         </div>
     );
 }
@@ -165,6 +168,7 @@ renderAll () {
     render(){
     
         return(
+            
            <div class="col-md-3" style={{ left:"300px", top : "70px"}} >
             {this.renderAll()}
             </div>

@@ -3,7 +3,15 @@ var Model = require('../config/MongoConnection')
 function handle_request(message,callback){
     console.log("Inside kafka user answers",message);
     Model.UserModel.findOne({
-        'Email' : message.body.Email
+        $or: [ 
+            {'Email' : message.email },
+      
+            {
+            'QuestionsAnswered' : {
+                $elemMatch: {
+                    'Topics' : [message.topic]
+                    }
+            }}]
     },(err,user)=>{
         if(err)
         {
@@ -12,7 +20,7 @@ function handle_request(message,callback){
         }
         else
         {
-       callback(null,user.QuestionAnswered)
+       callback(null,user)
 
         }
     })

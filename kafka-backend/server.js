@@ -5,7 +5,7 @@ var login = require('./services/login.js');
 
 var profile = require('./services/profile')
 
-var signup = require('./services/signup.js');
+var signup = require('./services/signup');
 
 var CreateConversation = require('./services/createConversation');
 var FollowTopic = require('./services/followTopic');
@@ -19,7 +19,11 @@ var userAnswers = require('./services/userAnswers.js')
 var userQuestions = require('./services/userQuestions.js')
 var userBookmarks = require('./services/userBookmarks.js')
 var updateAnswer = require('./services/updateAnswer.js')
+
 var content = require('./services/content.js')
+var searchUserQuestions = require('./services/searchUserQuestions');
+var searchUserAnswers = require('./services/searchUserAnswers');
+var searchUserFollowing = require('./services/searchUserFollowing');
 
 var deleteUser = require('./services/deleteUser.js')
 var getProfile = require('./services/getProfile.js')
@@ -30,6 +34,8 @@ var writeAnswer = require('./services/writeAnswer')
 var followQuestion = require('./services/followQuestion')
 var searchQuestion = require('./services/searchQuestion')
 var searchTopic = require('./services/searchTopic')
+var createTopic = require('./services/createTopic');
+
 
 function handleTopicRequest(topic_name,fname){
     //var topic_name = 'root_topic';
@@ -63,41 +69,48 @@ function handleTopicRequest(topic_name,fname){
 // Add your TOPICs here
 //first argument is topic namex
 //second argument is a function that will handle this topic request
-// handleTopicRequest("login",login)
+handleTopicRequest("login",login)
 
 handleTopicRequest("update-profile",profile)
 handleTopicRequest("delete-user",deleteUser)
 handleTopicRequest("createConversation",CreateConversation)
 handleTopicRequest("get-profile",getProfile)
-handleTopicRequest("get-answers",getAnswers)
-handleTopicRequest("create-question",createQuestion)
-handleTopicRequest("sign-up",signup)
+handleTopicRequest("get-answers",getAnswers) 
+handleTopicRequest("create-question",createQuestion) 
+handleTopicRequest("signup",signup)
+handleTopicRequest("get-profile",getProfile)
+handleTopicRequest("update-profile",profile)
+handleTopicRequest("get-questions",getAllQuestions)
+handleTopicRequest("create-topic", createTopic);
 handleTopicRequest("get-questions",getAllQuestions)
 handleTopicRequest("write-answer",writeAnswer)
 handleTopicRequest("follow-question",followQuestion)
 handleTopicRequest("search-question",searchQuestion)
-handleTopicRequest("search-topic",searchTopic)
+handleTopicRequest("search-topic",searchTopic) 
 
 
 
 
-// handleTopicRequest("get_following",following)
-// handleTopicRequest("user_answers",userAnswers)
-// handleTopicRequest("user_questions",userQuestions)
-// handleTopicRequest("user_bookmarks",userBookmarks)
-// handleTopicRequest("update_answer",updateAnswer)
+handleTopicRequest("get_following",following)
+handleTopicRequest("user_answers",userAnswers);
+handleTopicRequest("user_questions",userQuestions)
+handleTopicRequest("user_bookmarks",userBookmarks)
+handleTopicRequest("update_answer",updateAnswer)
 
 
 
 
-// handleTopicRequest("followTopic",FollowTopic)
-// handleTopicRequest("followUser",FollowUser)
-// handleTopicRequest("sendMessage",SendMessage)
-// handleTopicRequest("getFollowers",GetFollowers)
-// handleTopicRequest("getMessage",GetMessage)
-// handleTopicRequest("getConversation",GetConversation)
+ handleTopicRequest("followTopic",FollowTopic)
+handleTopicRequest("followUser",FollowUser)
+handleTopicRequest("sendMessage",SendMessage)
+handleTopicRequest("getFollowers",GetFollowers)
+handleTopicRequest("getMessage",GetMessage)
+handleTopicRequest("getConversation",GetConversation)
 
-handleTopicRequest("content",content)
+handleTopicRequest("content",content);
+handleTopicRequest("searchUserQuestions",searchUserQuestions);
+handleTopicRequest("searchUserAnswers",searchUserAnswers);
+handleTopicRequest("searchUserFollowing",searchUserFollowing);
 
 
 

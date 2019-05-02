@@ -11,7 +11,7 @@ export default class Header extends Component {
           
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-            <img className = "QuoraLogo" style = {{ width : 150 }}src = {quora}/>
+            <img className = "QuoraLogo" style = {{ width : 120, height: 50, marginLeft: 120 }}src = {quora}/>
 
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
@@ -22,24 +22,23 @@ export default class Header extends Component {
     <li class="nav-item active">
     
    
-      <a class="nav-link" href="#">  <i class="fas fa-home fa-2x"></i> Home <span class="sr-only">(current)</span></a>
+      <a class="nav-link" style={{"fontSize":"small"}} href="#">  <i class="fas fa-home fa-2x"></i> Home <span class="sr-only">(current)</span></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">  <i class="fas fa-edit fa-2x"></i> Answer</a>
+      <a class="nav-link" style={{"fontSize":"small"}} href="#">  <i class="fas fa-edit fa-2x"></i> Answer</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">  <i class="fas fa-users fa-2x"></i> Spaces</a>
+      <a class="nav-link" style={{"fontSize":"small"}} href="#">  <i class="fas fa-users fa-2x"></i> Spaces</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#"> <i class="far fa-bell fa-2x"></i> Notifications</a>
+      <a class="nav-link" style={{"fontSize":"small"}} href="#"> <i class="far fa-bell fa-2x"></i> Notifications</a>
     </li>
     <form class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2"  style = {{width : 326}}type="search" placeholder="Search Quora" aria-label="Search"/>
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search </button>
+    <input class="form-control mr-sm-2"  style = {{width : 326, height : "80%"}}type="search" placeholder="Search Quora" aria-label="Search"/>
+    <button class="btn btn-outline-success my-2 my-sm-0" style={{"fontSize":"small"}} type="submit">Search </button>
   </form>
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Profile
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" style={{"fontSize":"small"}} role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-2x"></i> Profile
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <a class="dropdown-item" href="#">Profile</a>
@@ -55,7 +54,7 @@ export default class Header extends Component {
     </li>
     <li class="nav-item">
     <div className = "col-sm-1" align ="center"> 
-            <button type="button" class="btn btn-danger" align = "right" > Add Question or Link</button>
+            <button type="button" class="btn btn-danger" align = "right" style={{"fontSize":"small", marginTop: 5.5}}> Add Question or Link</button>
             
             
             </div>

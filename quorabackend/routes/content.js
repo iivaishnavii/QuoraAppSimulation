@@ -5,6 +5,7 @@ var kafka = require('../kafka/client')
 
 router.post('/',function(req,res){
     console.log(req);
+    console.log('in content req');
     kafka.make_request('content',req.body, function(err,results){
         console.log('in result');
         console.log(results);

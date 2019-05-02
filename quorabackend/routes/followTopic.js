@@ -5,7 +5,7 @@ var passport = require('passport')
 var requireAuth = passport.authenticate('jwt',{session : false})
 
 
-router.post('/',requireAuth,function(req,res){
+router.post('/followTopic', function(req,res){
     console.log("User following a topic")
     // if(req.session.user)
     // {

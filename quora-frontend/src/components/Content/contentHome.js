@@ -8,6 +8,7 @@ import {rooturl} from '../../config/settings';
 import axios from 'axios';
 import {questions} from '../Content/QuestionsAsked'
 import './content.css';
+import Topic from '../Content/topic.js'
 
 
 
@@ -20,20 +21,21 @@ class ContentHome extends Component {
           //  Questions : [],
             Answers :[],
             Followed : [],
-            type : ""
+            type : 'al',
+            search : ''
             } 
     }
 
     componentDidMount () {
         const data = {
-            email : "user10@gmail.com"
+            email : "jessicasi@gmail.com"
            }
   
           axios.post('http://'+rooturl+':4000/content',data)
            .then(response => {
 
                     this.setState({
-                        contents : this.state.contents.concat(response.data.content)
+                        contents : this.state.contents.concat(response.data)
                     
                        });
              });
@@ -77,7 +79,7 @@ this.props.history.push('/content/allContent');
     console.log(this.state.contents);
     console.log(this.state.contents[0].Questions);
  
-    let questions = this.state.contents[0].Questions.map(content => {
+    let questions = this.state.contents.map(content => {
     
     return(
     <div >
@@ -119,8 +121,37 @@ openPosts =(e) => {
 }
 
 openAll =(e) => {
-    // this.props.history.push('/content')
+  
     this.props.history.push('/content/allContent');
+}
+
+openTopics ()  {
+    console.log('open topics');
+    console.log(this.state.type);
+    
+    if(this.state.type === 'all') {
+    return (
+        <div class="component"> 
+            <Topic  class="component" key = " 1" ></Topic>
+            </div>
+    );
+
+    }
+}
+
+openTopic = (e) => {
+    this.setState({
+        type : 'all'
+    
+       });
+}
+
+updateSearch =(e) => {
+
+    this.setState({
+        search : e.target.value
+    
+       });
 }
 
 
@@ -152,9 +183,10 @@ openAll =(e) => {
             
             <div class ="spacing">
             <p class="pStyle">All Topics</p>
-            <input type ='text' class = 'size-sm inputBox' placeholder=  'Search for a topic'></input>
-            
+            <input type ='text' class = 'size-sm inputBox' placeholder='Search for a topic' onchange={this.updateSearch} ></input>
             </div>
+           
+      
             
             
             <br></br>
@@ -162,11 +194,11 @@ openAll =(e) => {
             <p class="heading"> By Year </p>
             <hr class ="hr"></hr>
             <div class="btn-group-vertical">
-            <button class="button-content"><span class ="size-sm" >All Time </span></button>
-            <button class="button-content"  > <span class ="size-sm" >2019</span></button>
-            <button class="button-content"  > <span class ="size-sm" >2018</span></button>
-            <button class="button-content" > <span class ="size-sm" >2017</span></button>
-            <button class="button-content"  > <span class ="size-sm" >2016</span></button>
+            <button class="button-content" index = 'all' onClick = {this.openTopic}><span class ="size-sm" >All Time </span></button>
+            <button class="button-content"  onClick = {this.openTopics} > <span class ="size-sm" >2019</span></button>
+            <button class="button-content"  onClick = {this.openTopics} > <span class ="size-sm" >2018</span></button>
+            <button class="button-content" onClick = {this.openTopics} > <span class ="size-sm" >2017</span></button>
+            <button class="button-content"  onClick = {this.openTopics}  > <span class ="size-sm" >2016</span></button>
             </div>
             
             
@@ -189,7 +221,7 @@ openAll =(e) => {
             <div class="col-md-3" style={{ left:"300px", top : "70px"}} >
             <p class="heading" > Your Content </p>
             <hr style ={{ width : "800px"}}></hr>
-            
+            {this.openTopics()}
             </div>
             
 
