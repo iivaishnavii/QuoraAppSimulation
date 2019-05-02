@@ -5,14 +5,15 @@ function handle_request(message, callback){
     Model.UserModel.findOne({"Email":message.body.owner},function(err,user)
     {
         
-        var imageOfUser = user.ProfilePicture
+       // var imageOfUser = user.ProfilePicture
+        
         var answer = Model.AnswerModel({
             answer : message.body.answer,
             owner : message.body.owner,
             isAnonymous:message.body.isAnonymous,
             date:message.body.date,
             question:message.body.question,
-            images : imageOfUser
+           // images : imageOfUser
         })
         answer.save()
         .then(response =>{

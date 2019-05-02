@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Header from '../Header/Header'
 import '../Answers/answers.css'
+import { Redirect } from 'react-router'
 
 class answer extends Component {
     constructor(props)
@@ -11,7 +12,11 @@ class answer extends Component {
             questionId : props.location.state.questionid,
             results : [],
             question : "",
-            author :""
+            author :"",
+            showAnswerDialog : false,
+            open: false,
+            answer : "",
+            redirectToMyAnswersPage : false
         }
         console.log("Props"+JSON.stringify(props.location.state.questionid))
     }
@@ -27,13 +32,92 @@ class answer extends Component {
                 this.setState({results : this.state.results.concat(response.data)})
                 console.log("After setting",this.state.results)
                 this.setState({question:this.state.results[0].question})
-                
-                
         })
+        document.addEventListener("mousedown", this.handleClickOutside);
+
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("mousedown", this.handleClickOutside);
+      }
+    
+      handleClickOutside = event => {
+        if (this.container.current && !this.container.current.contains(event.target)) {
+          this.setState({
+            open: false,
+          });
+        }
+      };
+    writeAnswer=(e)=>{
+        this.setState({showAnswerDialog:true})
+        
+    }
+    handleButtonClick = () => {
+        this.setState(state => {
+          return {
+            open: !state.open,
+          };
+        });
+      };
+
+    handleSubmit = (e)=>{
+        console.log("In handel submit")
+        var data={
+            "answer" : this.state.answer,
+            "owner" : "Katy Perry",
+            "isAnonymous":0,
+            "date":"05-05-2019",
+            "question":this.state.question,
+            "isAnonymous":0
+        }
+        axios.post('http://localhost:4000/writeAnswer/',data)
+        .then(response=>{
+            console.log("Wrote an Answer Successfully")
+            this.setState({redirectToMyAnswersPage:true})
+        })
+        .catch(response=>{
+            console.log("Exception")
+        })
+       // this.setState({showAnswerDialog:false})
+        
+    }
+
+    handleClose = (e) =>{
+        this.setState({showAnswerDialog:false})
     }
     
+    setAnswer = (e)=>{
+        this.setState({answer:e.target.value})
+    }
+
+    container = React.createRef();
+      state = {
+        open: false,
+      };
+
+      handeleAnonymity= (e)=>{
+          this.setState({"isAnonymous":1})
+      }
     render() { 
+        let redirectvar = null
+        if(this.state.redirectToMyAnswersPage === true)
+            redirectvar = <Redirect to="/profile/answers" />
         let displayQuestion = <div className="mt-3 questioncss"><b>{this.state.question}</b></div>
+        let displayanswedraft = null;
+        if(this.state.showAnswerDialog === true)
+        {
+            displayanswedraft=
+            <div>
+                <div>
+                    <button className="mt-2 btn-primary">Add Image</button>
+                </div>
+                <div class="mt-2">
+                    <textarea class="form-control" rows="5" id="comment" onChange={this.setAnswer}></textarea>
+                    <button className="btn-primary mt-3" onClick={this.handleSubmit}>Submit</button>
+                    <button className="btn-primary ml-2" onClick={this.handleClose}>Close</button>
+                </div>
+            </div>
+        }
         let displayAnswers = this.state.results.map((answer)=>{
             return(
                 <div>
@@ -52,7 +136,6 @@ class answer extends Component {
                     <div class='card-header'>
                         <input type="text" style={{"width":"800px"}} placeholder="Add comment"/>
 
-                    
                     </div>
                     
                     <hr></hr>
@@ -60,8 +143,24 @@ class answer extends Component {
                 
             )
         })
+
+        let answerbar = <div class="container mt-0" ref={this.container}>
+            <button class="transButton ml-3" onClick={this.writeAnswer}>Answer</button>
+            <button class="transButton ml-3">Follow</button>
+            <button class="transButton ml-3">Request</button>
+            <button class="transButton" style={{"float":"right"}} onClick={this.handleButtonClick} name="ellipsis"><i class="fas fa-ellipsis-h ml-3" ></i></button>
+            {this.state.open && (
+                <div class="dropdown">
+                <ul>
+                    <li onClick={this.handeleAnonymity}>Answer Anonymously</li> 
+                </ul>
+            </div>
+            )}
+        </div>
+        
         return ( 
             <div>
+                {redirectvar}
                 <Header/>
                 
                 <div class="row">
@@ -70,6 +169,8 @@ class answer extends Component {
                     </div>
                     <div class="col-md-7">
                         {displayQuestion}
+                        {answerbar}
+                        {displayanswedraft}
                         <hr></hr>
                         {displayAnswers}
                     </div>

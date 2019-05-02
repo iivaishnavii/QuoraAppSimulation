@@ -2,7 +2,7 @@ var Model = require('../config/MongoConnection')
 
 
 function handle_request(message,callback){
-    console.log("Inside Kafka get all Questions",message);
+    console.log("Inside Kafka get all Questions");
     Model.QuestionsModel.find({  },(err,question)=>{
         if(question)
         {
