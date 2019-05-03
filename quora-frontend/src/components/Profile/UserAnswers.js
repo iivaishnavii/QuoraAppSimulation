@@ -8,12 +8,12 @@ class UserAnswers extends Component {
         news : []
     }
     componentDidMount(){
-        // var url = `http://localhost:4000/viewCourses/`+localStorage.getItem('userid')
+        
         var token = localStorage.getItem("token")
         var url = `http://localhost:4000/userAnswers`
          console.log(url)  
          var data = {
-            Email : "akhil.kiran@gmail.com"
+            Email : "Shivani@gmail.com"
         }
         axios.post(url, data, {headers : {"Authorization": `Bearer ${token}`}}).
          then(response => {

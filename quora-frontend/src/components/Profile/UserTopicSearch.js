@@ -14,7 +14,7 @@ import axios from 'axios';
     super(props);
     
     this.state = {
-        Email: 'akhil.kiran@gmail.com',
+        Email: 'Shivani@gmail.com',
         //Email : localStorage.getItem('email');
         token : localStorage.getItem('token'),
         Name: '',
@@ -34,7 +34,8 @@ import axios from 'axios';
         Following : [],
         ProfileViews : '',
         QuestionsAnswered: [],
-        profilepic: ''
+        profilepic: '',
+        TopicSearchResults : []
     };
 
   }
@@ -69,7 +70,8 @@ import axios from 'axios';
         Following : data.Following,
         //ProfileViews : '',
         QuestionsAnswered: data.QuestionsAnswered,
-        searchterm : ''
+        searchterm : '',
+        
       });
     });
 
@@ -85,17 +87,54 @@ import axios from 'axios';
   }
 
   serachtermHandler = (e) => {
-    console.log("Searching");
+   
     this.setState({
         searchterm: e.target.value
     })
     var data = {
       topicName : this.state.searchterm,
       }
+    if(this.state.searchterm !== ''){
+     console.log(data)
+      axios.get(`${ROOT_URL}/searchTopic/${this.state.searchterm}`)
+      .then(response => {
+      
+        if(response && !(response == null)) {
+          
+          this.setState({
+            TopicSearchResults : response.data
+          })
+        }
+        
+    }); 
 
-    console.log(this.state.searchterm);
-  
+    console.log(this.state.TopicSearchResults);
+  }
 }
+
+
+followTopic = (e) => {
+  console.log("Topic name" +  e.target.value); 
+
+  
+
+var data = {
+  topicName : e.target.value,
+  Email : this.state.Email
+  }
+
+  axios.post(`${ROOT_URL}/followTopic`, data)
+  .then(response => {
+  
+    if(response && !(response == null)) {
+      
+    }
+    
+}); 
+
+
+}
+
 
 
 componentWillMount()
@@ -125,6 +164,19 @@ componentWillMount()
       redirectVar = <Redirect to="/" />
       return redirectVar;        
     }  
+
+    let topics = [];
+    Object.assign(topics, this.state.Topics);
+    let topicDetails = topics.map((topic,index)=>{
+      return <div className="quiztab"  style  = {{width: 180}} key={index}>{topic.topicName}</div>
+    })
+
+   
+    let topicSearcDetails = this.state.TopicSearchResults.map((topic,index)=>{
+      return <div className="quiztab"  style  = {{width: 180}} key={index}>{topic.topicName} <button  value = {topic.topicName}  onClick = {this.followTopic} ><i   class="fas fa-plus-square"></i> </button> </div>
+    })
+    
+
     return (
 <div className = "row">
 
@@ -142,10 +194,10 @@ componentWillMount()
 
 <div class="modal-body">
 <div className="row coursesearch">
-            <input type="text" style = {{width : 500}}name="searchterm" className="searchinput" placeholder= "Search for a topic" value = {this.state.searchterm} onChange={this.serachtermHandler}/>
+            <input type="text" style = {{width : 500, marginBottom : 30}}name="searchterm" className="searchinput" placeholder= "Search for a topic" value = {this.state.searchterm} onChange={this.serachtermHandler}/>
             <br></br>
-           
-   
+          <div>{ topicDetails} </div> 
+   <div>{topicSearcDetails} </div>
           </div>
   
        
@@ -157,7 +209,7 @@ componentWillMount()
     
 
     <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick = {this.cancelAction}>Cancel</button>
+  <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick = {this.cancelAction}>Done</button>
   <button type="button" class="btn btn-primary" onClick = {this.updateProfile}>Save Changes</button>
 </div>
     

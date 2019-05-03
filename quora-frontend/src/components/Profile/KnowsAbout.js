@@ -9,7 +9,7 @@ export default class KnowsAbout extends Component {
     constructor(props){
         super(props);
         this.state = {
-            Email: 'akhil.kiran@gmail.com',
+            Email: 'Shivani@gmail.com',
           //Name : localStorage.getItem('name'),
           token : localStorage.getItem('token'),
           Name: '',

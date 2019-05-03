@@ -7,8 +7,8 @@ var requireAuth = passport.authenticate('jwt',{session : false})
 
 router.get('/:topic',function(req,res){
 
-        console.log("In get all questions request"+req.body)
-        kafka.make_request("search-topic",req,function(err,result){
+        console.log("In search topics request " + req.params)
+        kafka.make_request("search-topic",req.params,function(err,result){
             if(err)
             {
                 console.log("Unable to search questions",err);

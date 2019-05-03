@@ -9,7 +9,7 @@ function handle_request(message,callback){
         if(err)
         {
             console.log("Unable to fetch user details",err)
-            callback(err,null)
+            callback(err,null);
         }
         else
         {
@@ -20,25 +20,27 @@ function handle_request(message,callback){
             if(err) {
                 console.log("User not found");
             } else {
-                user.following = user.following || [];
-                user.following.push(userToFollow);
-                userToFollow.followers = userToFollow.followers || [];
-                userToFollow.followers.push(user);
+                console.log(userToFollow);
+                user.Following = user.Following || [];
+                user.Following.push(userToFollow.Name);
+                userToFollow.Followers = userToFollow.Followers || [];
+                userToFollow.Followers.push(user.Name);
             }
             userToFollow.save().then((doc)=>{
                 console.log("Topic added successfully",doc)
+                user.save().then((d)=>{
+                    console.log("Topic added successfully",d)
+                    callback(null,d)
+                },(err)=>{
+                    console.log("Unable to follow topic",e)
+                    callback(err,null)
+                })
                // callback(null,doc)
             },(err)=>{
                 console.log("Unable to follow topic",err)
                // callback(err,null)
             })
-            user.save().then((doc)=>{
-                console.log("Topic added successfully",doc)
-                callback(null,doc)
-            },(err)=>{
-                console.log("Unable to follow topic",err)
-                callback(err,null)
-            })
+            
             
         })
       

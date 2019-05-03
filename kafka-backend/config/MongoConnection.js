@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 var Schema = mongoose.Schema; 
 
-mongoose.connect("mongodb+srv://quora:quora@cluster0-6ddbb.mongodb.net/QuoraApp?retryWrites=true",  {poolSize : 100}
 
-
-).then(() => {
+mongoose.connect("mongodb+srv://quora:quora@cluster0-6ddbb.mongodb.net/QuoraApp?retryWrites=true", {poolSize: 100} 
+)
+.then(() => {
 
     console.log('Database connection successful')
   })
