@@ -1,7 +1,9 @@
 var Model = require('../config/MongoConnection')
 
 function handle_request(message, callback){
-  Model.TopicsModel.find({"Question":{'$regex':message.params.question,'$options':'i'}},function(err,topic){
+  console.log("Inside search topic")
+  console.log(message.topic);
+  Model.TopicsModel.find({"topicName":{'$regex':message.topic,'$options':'i'}},function(err,topic){
         if(topic)
         {
             callback(null,topic)

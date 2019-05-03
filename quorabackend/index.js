@@ -54,6 +54,7 @@ var followQuestion = require('./routes/followQuestion')
 var searchQuestion = require('./routes/searchQuestion')
 var signUp = require('./routes/signUp.js')
 var createTopic = require('./routes/createTopic');
+var searchTopic = require('./routes/searchTopic');
 
 
 app.use('/login',login)
@@ -65,7 +66,7 @@ app.use(getConversation);
 app.use(getMessage);
 app.use(createMessage);
 app.use(followTopic);
-app.use(followUser);
+app.use('/followUser',followUser);
 app.use(getFollowers);
 
 app.use('/getFollowing',following)
@@ -83,7 +84,7 @@ app.use('/getAllAnswers',getAnswers)
 app.use('/writeAnswer',writeAnswer)
 app.use('/followQuestion',followQuestion)
 app.use('/searchQuestion',searchQuestion)
-app.use('/searchTopic',searchQuestion)
+app.use('/searchTopic', searchTopic)
 app.use('/createTopic', createTopic)
 
 

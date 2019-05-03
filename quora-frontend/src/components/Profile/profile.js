@@ -4,7 +4,7 @@ import Header from '../Header/Header';
 import ProfileNav from '../Profile/profileNav';
 import Credentials from '../Profile/Credentials';
 import rooturl from '../../config/settings';
-import UserInfo from '../Profile/UserInfo';
+//import UserInfo from '../Profile/UserInfo';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import ProfileContent from '../Profile/profileContent';

@@ -14,8 +14,8 @@ import axios from 'axios';
     super(props);
     
     this.state = {
-        Email: 'akhil.kiran@gmail.com',
-        //Email : localStorage.getItem('email');
+        Email: 'Shivani@gmail.com',
+        //Email : this.props.match.params.email;
         token : localStorage.getItem('token'),
         Name: '',
         City: '',

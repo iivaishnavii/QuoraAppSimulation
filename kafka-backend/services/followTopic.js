@@ -5,7 +5,7 @@ function handle_request(message,callback){
    // follow using topic name
     Model.TopicsModel.findOne({
         topicName :
-        "Machine Learning"      
+        message.body.topicName 
     },(err,topic)=>{
         if(err)
         {
@@ -16,7 +16,7 @@ function handle_request(message,callback){
         {
         console.log("The topic is" + topic)
         Model.UserModel.findOne({
-           
+           Email : message.body.Email
         }, (err,user) => {
             if(err) {
                 console.log("User not found");
