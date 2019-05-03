@@ -3,18 +3,24 @@ var Model = require('../config/MongoConnection')
 function handle_request(message,callback){
     console.log("Inside kafka user questions",message);
     Model.UserModel.findOne({
-        'Email' : message.Email
+        $or : [
+            {'Email' : message.email},
+            {
+            'Questions' : {
+                $elemMatch: {
+               // 'Topics' : [{ $regex: '/'+message.topic+'/', $options: 'i' }]
+               'Topics' : [message.topic]
+                }
+            }}]
     },(err,user)=>{
-        if(err)
+        if(user)
         {
-            console.log("Unable to fetch user details",err)
-            callback(err,null)
+        
+            callback(null,user)
         }
         else
-        {
-       callback(null,user.Questions)
-
-        }
+            callback(err,null)  
+        
     })
 }
 

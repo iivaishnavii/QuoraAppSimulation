@@ -25,6 +25,7 @@ import profileFollowing from '../Profile/ProfileFollowing';
 import profileNav from '../Profile/profileNav';
 import editProfile from '../Profile/editProfile';
 import editCredentials from '../Profile/editCredentials';
+import contentTopic from '../Content/topic';
 import searchTopic from '../Profile/UserTopicSearch';
 
 
@@ -51,7 +52,9 @@ class Main extends Component {
                 <Route path='/content/answers'  component={questionsAnswered}/> 
                 <Route path='/content/followedQuestions'  component={questionsFollowed}/> 
                 <Route path='/content/posts'  component={posts}/> 
-                <Route path= '/content/allContent'  component={allContent}/> 
+                <Route path= '/content/allContent'  component={allContent}/>
+           
+                
 
                 <Route path='/' exact component={frame}/>
                {/* <Route path="/profile"  component={profileNav}/> */}

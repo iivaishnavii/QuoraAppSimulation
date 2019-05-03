@@ -165,3 +165,13 @@
     height: 1000px;
   } */
   
+
+  .component {
+    
+    margin: 0;
+    padding: 0;
+    width: 660px;
+   
+ position : fixed;
+  
+  }

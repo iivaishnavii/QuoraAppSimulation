@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 var Schema = mongoose.Schema; 
 
-mongoose.connect("mongodb+srv://quora:quora@cluster0-6ddbb.mongodb.net/QuoraApp?retryWrites=true",  {poolSize : 100}
 
-
-).then(() => {
+mongoose.connect("mongodb+srv://quora:quora@cluster0-6ddbb.mongodb.net/QuoraApp?retryWrites=true", {poolSize: 100} 
+)
+.then(() => {
 
     console.log('Database connection successful')
   })
@@ -77,6 +77,15 @@ var TopicsSchema = new Schema({
     questions : {type : String}
 })
 
+var ActivitySchema = new Schema({
+  action : {type: String,trim : true},
+  owner_name : {type : String},
+  owner_email : {type : String},
+  question : {type : Array},
+  following : {type : Array}
+},
+  {timestamps: true})
+
 
 
 
@@ -85,12 +94,14 @@ var QuestionsModel = mongoose.model('Question',QuestionsSchema)
 var UserModel =  mongoose.model('Users',UserSchema)
 var AnswerModel =  mongoose.model('Answer',AnswerSchema)
 var ConverstionModel = mongoose.model('Converstion',ConversationSchema)
-var TopicsModel = mongoose.model('Topics',TopicsSchema)
+var TopicsModel = mongoose.model('TopicsSchema',TopicsSchema)
+var ActivityModel = mongoose.model('ActivitySchema', ActivitySchema)
 
 module.exports={
     UserModel,
     AnswerModel,
     ConverstionModel,
     QuestionsModel,
-    TopicsModel
+    TopicsModel,
+    ActivityModel
 }

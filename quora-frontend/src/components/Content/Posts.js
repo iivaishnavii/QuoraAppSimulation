@@ -58,8 +58,8 @@ class Posts extends Component {
             
 
 
-{this.renderQuestions()}
-</div>
+    {this.renderQuestions()}
+    </div>
 
 
         )
