@@ -12,6 +12,19 @@ function handle_request(message,callback){
     Question.save()
     .then(res => {
         console.log("Success response"+res)
+
+        var activity = Model.ActivityModel ({
+            action : "question",
+            owner_email : message.body.QuestionOwner,
+            question : {
+                Question : message.body.Question,
+                QuestionOwner : message.body.QuestionOwner,
+                Topics : message.body.Topics
+            }
+        })
+
+        activity.save();
+
         Model.UserModel.findOne({"Email":message.body.QuestionOwner},(err,user)=>{
             console.log("user is"+user)
             if(user)

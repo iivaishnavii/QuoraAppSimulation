@@ -6,7 +6,7 @@ import cookie from 'react-cookies';
 import {Redirect} from 'react-router';
 import {rooturl} from '../../config/settings';
 import axios from 'axios';
-import {questions} from '../Content/QuestionsAsked'
+
 import './content.css';
 import Topic from '../Content/topic.js'
 
@@ -18,6 +18,8 @@ class ContentHome extends Component {
         super(props);
         this.state = {
             contents : [],
+            activity : [],
+            filteredContent : [],
           //  Questions : [],
             Answers :[],
             Followed : [],
@@ -28,17 +30,30 @@ class ContentHome extends Component {
 
     componentDidMount () {
         const data = {
-            email : "jessicasi@gmail.com"
+            email : "deeps@gmail.com"
            }
   
-          axios.post('http://'+rooturl+':4000/content',data)
-           .then(response => {
+        //   axios.post('http://'+rooturl+':4000/content',data)
+        //    .then(response => {
 
+        //             this.setState({
+        //                 contents : this.state.contents.concat(response.data)
+                    
+        //                });
+        //      });
+
+             axios.post('http://'+rooturl+':4000/getActivity',data)
+                .then(response => {
                     this.setState({
-                        contents : this.state.contents.concat(response.data)
+                        activity : this.state.activity.concat(response.data)
                     
                        });
-             });
+                       this.setState({
+                        filteredContent : this.state.filteredContent.concat(response.data)
+                    
+                       });
+                    
+                });
              
              
     }
@@ -104,26 +119,6 @@ this.props.history.push('/content/allContent');
   );
   }
 
-  openQuestions =(e) => {
-    this.props.history.push('/content/questions')
-  }
-
-  openAnswers =(e) => {
-    this.props.history.push('/content/answers')
-}
-
-openFollowed =(e) => {
-    this.props.history.push('/content/followedQuestions')
-}
-
-openPosts =(e) => {
-    this.props.history.push('/content/posts')
-}
-
-openAll =(e) => {
-  
-    this.props.history.push('/content/allContent');
-}
 
 openTopics ()  {
     console.log('open topics');
@@ -155,6 +150,121 @@ updateSearch =(e) => {
 }
 
 
+searchByTopic = (e) => {
+    
+
+}
+
+
+    sortActivity = (e) => {
+        e.preventDefault()
+        console.log("inside sort  activity");
+        console.log(e.target);
+        
+        this.state.filteredContent = this.state.activity;
+        console.log(this.state.filteredContent);
+
+    if(e.target.id == 'new') {
+        this.state.filteredContent.sort( (a,b) => {
+        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime() ;
+    });
+
+    console.log(this.state.filteredContent);
+
+    }   
+    if(e.target.id  == 'old') {
+    this.state.filteredContent.sort( (a,b) => {
+        return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime() ;
+});  
+console.log(this.state.filteredContent);
+
+
+}
+this.setState({ state: this.state });
+}
+
+filterByYear = (e) => {
+    console.log("inside filter by year");
+    console.log(e.target.id);
+    if(e.target.id == 0) 
+    this.state.filteredContent = this.state.activity
+    else 
+    this.state.filteredContent = this.state.activity.filter( element => new Date(element.createdAt).getFullYear() == e.target.id)
+    console.log(this.state.filteredContent);
+    this.setState({ state: this.state });
+    
+}
+
+filter =(e) => {
+
+    console.log(e.target.id )
+    if(e.target.id === 'all') {
+    this.state.filteredContent = this.state.activity
+    }
+    else  {
+    this.state.filteredContent = this.state.activity.filter( element => element.action == e.target.id)
+    }
+    this.setState({ state: this.state });
+}
+
+renderData (){
+
+var options = {year: 'numeric', month: 'long', day: 'numeric' };
+
+
+return (
+    
+    <div  style={{ left:"200px", top : "50px", width : "800px"}} >
+                {
+
+    this.state.filteredContent.map(content => {
+     if(content.action == 'question') {
+        return(
+            <div >
+            <Link class ="questionLink" to ='/content'>  Your Answer to {content.question[0].Question}</Link>
+           
+            <p class ="size-sm">Asked {new Date(content.createdAt).toLocaleDateString("en-US", options) }</p>
+           <hr /> 
+            </div>
+        
+        
+        )
+     }
+     else if (content.action == 'answer') {
+        return(
+            <div >
+            <Link class ="questionLink" to ='/content'>  {content.question[0].Question}</Link>
+           
+            <p class ="size-sm">Added {new Date(content.createdAt).toLocaleDateString("en-US", options) }</p>
+           <hr /> 
+            </div>
+        
+        
+        ) 
+     }
+
+     else if (content.action == 'follow') {
+        return(
+            <div >
+            <Link class ="questionLink" to ='/content'>  {content.question[0].Question}</Link>
+           
+            <p class ="size-sm">Followed {new Date(content.createdAt).toLocaleDateString("en-US", options) }</p>
+           <hr /> 
+            </div>
+        
+        
+        ) 
+     }
+     else {
+
+     }
+      
+    })
+  }
+    </div>
+)
+}
+
 
     render(){
     
@@ -165,11 +275,11 @@ updateSearch =(e) => {
             <p class="heading"> By Content Type </p>
                         <hr class ="hr"></hr>
                         <div class="btn-group-vertical">
-                        <button id='all' class="button-content " default = "active" onClick ={this.openAll} ><span class ="size-sm" >All Types </span></button>
-                        <button id='questions' class="button-content" onClick ={this.openQuestions}  > <span class ="size-sm" >Questions Asked </span></button>
-                        <button id='followed' class="button-content" onClick ={this.openFollowed}  > <span class ="size-sm" >Questions Followed </span></button>
-                        <button  id='answers' class="button-content" onClick ={this.openAnswers} > <span class ="size-sm" >Answers </span></button>
-                        <button  id='posts' class="button-content"  onClick ={this.openPosts} > <span class ="size-sm" >Posts </span></button>
+                        <button id='all' class="button-content " default = "active" onClick ={this.filter} ><span class ="size-sm" >All Types </span></button>
+                        <button id='question' class="button-content" onClick ={this.filter}  > <span class ="size-sm" >Questions Asked </span></button>
+                        <button id='follow' class="button-content" onClick ={this.filter}  > <span class ="size-sm" >Questions Followed </span></button>
+                        <button  id='answer' class="button-content" onClick ={this.filter} > <span class ="size-sm" >Answers </span></button>
+                        <button  id='posts' class="button-content"  onClick ={this.filter} > <span class ="size-sm" >Posts </span></button>
                         </div>
 
                         <br>
@@ -194,11 +304,11 @@ updateSearch =(e) => {
             <p class="heading"> By Year </p>
             <hr class ="hr"></hr>
             <div class="btn-group-vertical">
-            <button class="button-content" index = 'all' onClick = {this.openTopic}><span class ="size-sm" >All Time </span></button>
-            <button class="button-content"  onClick = {this.openTopics} > <span class ="size-sm" >2019</span></button>
-            <button class="button-content"  onClick = {this.openTopics} > <span class ="size-sm" >2018</span></button>
-            <button class="button-content" onClick = {this.openTopics} > <span class ="size-sm" >2017</span></button>
-            <button class="button-content"  onClick = {this.openTopics}  > <span class ="size-sm" >2016</span></button>
+            <button id="0" class="button-content"  onClick = {this.filterByYear}><span class ="size-sm" >All Time </span></button>
+            <button   id="2019" class="button-content" onClick = {this.filterByYear} > <span class ="size-sm" >2019</span></button>
+            <button  id="2018" class="button-content"  onClick = {this.filterByYear} > <span class ="size-sm" >2018</span></button>
+            <button  id="2017" class="button-content"  onClick = {this.filterByYear} > <span class ="size-sm" >2017</span></button>
+            <button   id="2016" class="button-content"   onClick = {this.filterByYear}  > <span class ="size-sm" >2016</span></button>
             </div>
             
             
@@ -208,8 +318,8 @@ updateSearch =(e) => {
             <p class="heading"> Sort Order </p>
             <hr class ="hr"></hr>
             <div class="btn-group-vertical">
-            <button class="button-content"><span class ="size-sm" >Newest First</span></button>
-            <button class="button-content"  > <span class ="size-sm" >Oldest First</span></button>
+            <button  id="new"  class="button-content" onClick={this.sortActivity.bind(this)} ><span class ="size-sm" >Newest First</span></button>
+            <button id="old" class="button-content" onClick={this.sortActivity.bind(this)}  > <span   class ="size-sm" >Oldest First</span></button>
             
             </div>
          
@@ -221,7 +331,7 @@ updateSearch =(e) => {
             <div class="col-md-3" style={{ left:"300px", top : "70px"}} >
             <p class="heading" > Your Content </p>
             <hr style ={{ width : "800px"}}></hr>
-            {this.openTopics()}
+            {this.renderData()}
             </div>
             
 

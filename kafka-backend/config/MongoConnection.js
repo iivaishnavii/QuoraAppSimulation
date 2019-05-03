@@ -13,6 +13,8 @@ mongoose.connect("mongodb+srv://quora:quora@cluster0-6ddbb.mongodb.net/QuoraApp?
     console.log(err);
     console.error('Database connection error')
   })
+
+  
   var AnswerSchema = new Schema({
     answer: { type: String, trim: true},
     owner: { type: String, trim: true },
@@ -55,7 +57,8 @@ mongoose.connect("mongodb+srv://quora:quora@cluster0-6ddbb.mongodb.net/QuoraApp?
     QuestionsAnswered:{type :Array,trim:true,default:""},
     Email: { type: String, trim: true, default: 0 },
     Password: { type: String, trim: true, default: "" },
-    ProfilePicture : {type:Buffer}
+    ProfilePicture : {type:Buffer},
+    notifications : {type : Array}
 })
 
 
@@ -79,7 +82,6 @@ var TopicsSchema = new Schema({
 
 var ActivitySchema = new Schema({
   action : {type: String,trim : true},
-  owner_name : {type : String},
   owner_email : {type : String},
   question : {type : Array},
   following : {type : Array}
@@ -95,7 +97,7 @@ var UserModel =  mongoose.model('Users',UserSchema)
 var AnswerModel =  mongoose.model('Answer',AnswerSchema)
 var ConverstionModel = mongoose.model('Converstion',ConversationSchema)
 var TopicsModel = mongoose.model('TopicsSchema',TopicsSchema)
-var ActivityModel = mongoose.model('ActivitySchema', ActivitySchema)
+var ActivityModel = mongoose.model('activity', ActivitySchema)
 
 module.exports={
     UserModel,

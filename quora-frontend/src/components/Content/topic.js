@@ -23,8 +23,8 @@ class Topic extends Component {
 
     componentDidMount () {
         const data = {
-            email : "jessicasi@gmail.com",
-            topic : "Chief Mnister"
+            email : "deeps@gmail.com",
+            topic : "San Jose"
            }
   
           axios.post('http://'+rooturl+':4000/userQuestions',data)
@@ -44,24 +44,11 @@ class Topic extends Component {
               const result = response.data.result;
               console.log(response);
                       this.setState({
-                        topicRelatedAnswers : this.state.topicRelatedAnswers.concat(result.Questions)
+                        topicRelatedAnswers : this.state.topicRelatedAnswers.concat(result.QuestionsAnswered)
                       
                          });
                });
-
-               axios.post('http://'+rooturl+':4000/getUserFollowingData',data)
-               .then(response => {
-               
-                const result = response.data.result;
-                console.log(response);
-                        this.setState({
-                            topicsFollowed : this.state.topicsFollowed.concat(result.Questions)
-                        
-                           });
-                 });
-
-       
-             
+     
     }
   
     renderQuestions () {
@@ -104,9 +91,9 @@ renderAnswers () {
      
      return(
          <div >
-         <Link class ="questionLink" to ='/content'>  {content.Question}</Link>
+         <Link class ="questionLink" to ='/content'> Your Answer to {content.Question}</Link>
         
-         <p class ="size-sm">Asked {content.PostedTime }</p>
+         <p class ="size-sm">Added {content.PostedTime }</p>
         <hr /> 
          </div>
      
@@ -126,48 +113,14 @@ renderAnswers () {
  }
 }
 
-
-
-renderFollowed () {
-
-    console.log(this.state.topicRelatedAnswers) ;
-     if(this.state.topicRelatedAnswers.length > 0) {
-     
-     let followed = this.state.topicRelatedAnswers.map(content => {
-     
-     return(
-         <div >
-         <Link class ="questionLink" to ='/content'>  {content.Question}</Link>
-        
-         <p class ="size-sm">Asked {content.PostedTime }</p>
-        <hr /> 
-         </div>
-     
-     
-     )
-   
- })
-     return (
-
-          <div  style={{ left:"200px", top : "50px", width : "800px"}} >
-         {followed}
-         </div>
-        
-      
-   );
- }
-}
-
-
-
-    render(){
+render(){
     
        
         return(
             <div>
          
-       
-          {this.renderFollowed()}
+            {this.renderQuestions ()}
+          {this.renderAnswers()}
            </div>
 
         );
