@@ -86,10 +86,7 @@ export default class Header extends Component {
                 <li class="nav-item">
                   <a class="nav-link" style={{"fontSize":"small"}} href="#"> <i class="far fa-bell fa-2x"></i> Notifications</a>
                 </li>    
-                <input class="form-control mr-sm-2"  style = {{width : 326, height : "50%", marginTop: "1%"}}type="search" placeholder="Search Quora" aria-label="Search"/>
-                <button class="btn btn-outline-success" style={{ "fontSize":"small", height : "40%",marginTop:"1%" }} type="submit">Search </button> 
-              
-    
+                
                 <li style={{height:"3%"}}></li>
                 <form class="form-inline my-2 my-lg-0">
                  <Search></Search>

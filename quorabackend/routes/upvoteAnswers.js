@@ -15,7 +15,7 @@ router.post('/',function(req,res){
         {
             console.log("Recevied repsonse"+result)
             res.writeHead(200,{
-                'Content-type' : 'applica`tion/json'
+                'Content-type' : 'application/json'
             })
             res.end(JSON.stringify(result))
         }
@@ -24,7 +24,7 @@ router.post('/',function(req,res){
             res.writeHead(404,{
                 'Content-type':'text/plain'
             })
-            res.end("Could not find quizzes")
+            res.end("Could not upvote answer")
         }
     
     })

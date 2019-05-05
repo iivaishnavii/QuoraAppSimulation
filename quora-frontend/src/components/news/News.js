@@ -7,7 +7,7 @@ class News extends Component {
     state = {  
         news : [],
         showAnswerDialog : false,
-
+        refreshcomponent : true
     }
     componentDidMount(){
         var token = localStorage.getItem("token")
@@ -23,12 +23,32 @@ class News extends Component {
         
     }
 
+    
+    handleUpvote=(questionid,answerid)=>{
+        console.log("clicked"+questionid)
+       // console.log("Answer id"+val)
+        // var data = {
+        //     "answerid":answerid,
+        //     "questionid":questionid
+        // }
+        // axios.post('http://localhost:4000/upvoteAnswer',data)
+        // .then(res=>
+        //     {
+        //         console.log("Success")
+        //         //window.location.reload();
+
+        //     }
+            
+        //   )
+        // .catch(res=>console.log("Fail"))
+    }
+
 
     render() { 
  
         
         /*Display Answers dynamically*/
-        let displayCards = this.state.news.map((question)=>{
+        let displayCards = this.state.news.map((question,i)=>{
             if(question.Answers.length>0)
            {
                //console.log("Question"+JSON.stringify(question))
@@ -47,7 +67,7 @@ class News extends Component {
                         </div>
                         <p class="card-text answer">{question.Answers[0].answer}</p>
                         
-                        <button style={{"font-size":"15px"}} class="transButton"><label class="QuoraLabels"><b>Upvote</b></label><i class="fa fa-arrow-circle-up ml-1"></i></button>
+                        <button style={{"font-size":"15px"}} class="transButton" onClick={this.handleUpvote(question._id,question.Answers[0]._id)} key={question.Answers[0]._id}><label class="QuoraLabels"><b>Upvote</b></label><i class="fa fa-arrow-circle-up ml-1"></i></button>
                         <label class="ml-1">{question.Answers[0].upVotes}</label>
                         <button class="ml-3 transButton" style={{"font-size":"15px"}}><label class="QuoraLabels"><b>Share</b></label><i class="fa fa-share-square ml-1"></i></button>
                         <label class="ml-1">6</label>
