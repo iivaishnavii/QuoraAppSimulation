@@ -5,26 +5,24 @@ var passport = require('passport')
 var requireAuth = passport.authenticate('jwt',{session : false})
 
 
-router.post('/', function(req,res){
-    console.log("User following a user")
-    // if(req.session.user)
-    // {
-       console.log(req.body);
-        kafka.make_request("followUser",req,function(err,result){
+router.post('/',function(req,res){
+
+        console.log("In get all activities request"+req.body)
+        kafka.make_request("get_activity",req,function(err,result){
             if(err)
             {
-                console.log("Unable to follow User",err);
+                console.log("Unable to get activities",err);
                 res.writeHead(400,{
                     'Content-type' : 'text/plain'
                 })
-                res.end('Error in following a User')
+                res.end('Error in getting activities')
             }
             else{
-                console.log("user followed successfully"+result)
+                console.log("activities done by the user are"+result)
                 res.writeHead(200,{
-                    'Content-Type' : 'text/plain'
+                    'Content-Type' : 'application/json'
                 })
-                res.end('User followed');
+                res.end(JSON.stringify(result))
             }
         })
    // }

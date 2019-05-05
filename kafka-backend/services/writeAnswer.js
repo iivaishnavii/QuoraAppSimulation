@@ -23,6 +23,16 @@ function handle_request(message, callback){
 
         answer.save()
         .then(response =>{
+
+            var activity = Model.ActivityModel ({
+    action : "answer",
+    owner_email : message.body.owner,
+    question : {
+        Question : message.body.question
+    }
+});
+
+activity.save();
             Model.QuestionsModel.findOne({"Question":message.body.question},(err,question)=>{
                 console.log("I am Ques"+question)
                 question.Answers.push(answer)

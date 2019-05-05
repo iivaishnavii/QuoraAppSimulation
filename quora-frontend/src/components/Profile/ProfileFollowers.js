@@ -3,10 +3,9 @@ import style from '../Profile/profile.css';
 import { ROOT_URL } from '../../config/URLsettings';
 import axios from 'axios';
 import Header from '../Header/Header';
-import Modal from '../Modal/Model';
 import UserQuestions  from './UserQuestions';
 
-export default class ProfileNav extends Component {
+export default class ProfileFollowers extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -163,9 +162,42 @@ export default class ProfileNav extends Component {
       let topics = [];
       Object.assign(topics, this.state.Topics);
       let topicDetails = topics.map((topic,index)=>{
-        return <div className="quiztab"  style  = {{width: 180}} key={index}>  <i class="fas fa-lightbulb"></i> &nbsp;  {topic.topicName}</div>
+        return <div className="quiztab"  style  = {{width: 180}} key={index}>{topic.topicName}</div>
       })
+
+      /*let followers = [];
+      Object.assign(followers, this.state.Followers);
+      let followerDetails = followers.map((follower,index)=>{
+        return (
+        )
+      }) */
+
+      let followers = this.state.Followers.map(course => {
+        return(
+            
+            
+           
+                   
+<div class="card" style = {{width :270 ,marginLeft: 5, marginRight : 5,height: 202, marginTop : 5, marginBottom : 5}}>
+<div class="card-header"> <i class="far fa-user"></i> {course}</div>
+<div class="card-body"  >
+</div>
+<h6 class="card-subtitle mb-2 text-muted">  </h6>
+<p class="card-text"></p>
+
+
+</div>
+
+
+   
+
+
+)
+    })
+
       
+      
+
 
 
         return(
@@ -240,8 +272,13 @@ export default class ProfileNav extends Component {
                         <br>
                         </br>
                         </div>
-                     <div >
-                     <UserQuestions />
+                     <div  style = {{height : 200}}>
+                     <div>
+                       <p> {this.state.Followers.length} Followers </p> 
+                     
+                       <hr class ="hr" style = {{width : 620}}></hr>
+                     </div>
+                     {followers}
                      </div>
 
                       </div>
@@ -258,10 +295,10 @@ export default class ProfileNav extends Component {
 
 
             <span class ="size-sm"> <b> {this.state.Profile} </b> </span>  </p>
-      <p> <i class="fas fa-graduation-cap"></i> &nbsp;
+      <p> <i class="fas fa-university"></i> &nbsp;
 
 
-      <span class ="size-sm"> <b>{this.state.CareerInformation} </b> </span> </p>
+      <span class ="size-sm"> <b>{this.state.Education} </b> </span> </p>
       <p> <i class="fas fa-university"></i> &nbsp;
 
 

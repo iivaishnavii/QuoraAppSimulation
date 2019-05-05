@@ -21,9 +21,8 @@ var userBookmarks = require('./services/userBookmarks.js')
 var updateAnswer = require('./services/updateAnswer.js')
 
 var content = require('./services/content.js')
-var searchUserQuestions = require('./services/searchUserQuestions');
-var searchUserAnswers = require('./services/searchUserAnswers');
-var searchUserFollowing = require('./services/searchUserFollowing');
+var getActivity = require('./services/getActivity')
+
 
 var deleteUser = require('./services/deleteUser.js')
 var getProfile = require('./services/getProfile.js')
@@ -48,7 +47,7 @@ function handleTopicRequest(topic_name,fname){
         var data = JSON.parse(message.value);
         
         fname.handle_request(data.data, function(err,res){
-            //console.log('after handle'+res);
+
             var payloads = [
                 { topic: data.replyTo,
                     messages:JSON.stringify({
@@ -69,7 +68,7 @@ function handleTopicRequest(topic_name,fname){
 // Add your TOPICs here
 //first argument is topic namex
 //second argument is a function that will handle this topic request
-handleTopicRequest("login",login)
+ handleTopicRequest("login",login)
 
 handleTopicRequest("update-profile",profile)
 handleTopicRequest("delete-user",deleteUser)
@@ -77,14 +76,16 @@ handleTopicRequest("createConversation",CreateConversation)
 handleTopicRequest("get-profile",getProfile)
 handleTopicRequest("get-answers",getAnswers) 
 handleTopicRequest("create-question",createQuestion) 
-handleTopicRequest("signup",signup)
+ handleTopicRequest("signup",signup)
 handleTopicRequest("get-profile",getProfile)
 handleTopicRequest("update-profile",profile)
 handleTopicRequest("get-questions",getAllQuestions)
 handleTopicRequest("create-topic", createTopic);
 handleTopicRequest("get-questions",getAllQuestions)
-handleTopicRequest("write-answer",writeAnswer)
-handleTopicRequest("follow-question",followQuestion)
+ handleTopicRequest("write-answer",writeAnswer)
+ handleTopicRequest("follow-question",followQuestion)
+ handleTopicRequest("content",content);
+handleTopicRequest('get_activity',getActivity)
 handleTopicRequest("search-question",searchQuestion)
 handleTopicRequest("search-topic",searchTopic) 
 
@@ -107,10 +108,7 @@ handleTopicRequest("getFollowers",GetFollowers)
 handleTopicRequest("getMessage",GetMessage)
 handleTopicRequest("getConversation",GetConversation)
 
-handleTopicRequest("content",content);
-handleTopicRequest("searchUserQuestions",searchUserQuestions);
-handleTopicRequest("searchUserAnswers",searchUserAnswers);
-handleTopicRequest("searchUserFollowing",searchUserFollowing);
+
 
 
 

@@ -14,19 +14,24 @@ import posts from '../Content/Posts'
 import allContent from '../Content/allContent'
 import Model from '../Modal/Model'
 
+
+
+
 //import profile from '../Header/Header';
 //import profile from '../Profile/profile';
 import frame from '../Frame/frame';
 import signUp from '../SignUp/signUp';
 import profileAnswers from '../Profile/UserAnswers';
 import profileQuestions from '../Profile/UserQuestions';
-import profileFollowers from '../Profile/UserFollowers';
-import profileFollowing from '../Profile/UsersFollowing';
+//import profileFollowers from '../Profile/UserFollowers';
+import profileFollowers from '../Profile/ProfileFollowers';
+import profileFollowing from '../Profile/ProfileFollowing';
 import profileNav from '../Profile/profileNav';
 import editProfile from '../Profile/editProfile';
 import editCredentials from '../Profile/editCredentials';
 import contentTopic from '../Content/topic';
 import searchTopic from '../Profile/UserTopicSearch';
+// import SimpleDialogDemo from '../sample/sample';
 
 
 
@@ -45,19 +50,16 @@ class Main extends Component {
                 <Route path="/answers" exact component={answer}/>
                 <Route path="/modal" exact component={Model}/>
 
-                
+                <Route path='/' exact component={frame}/>
+                {/* <Route path='/a' exact component={SimpleDialogDemo}/> */}
                 
                 
                 <Route path='/content'  component={contentHome}/> 
-                <Route path='/content/questions'  component={questionsAsked}/> 
-                <Route path='/content/answers'  component={questionsAnswered}/> 
-                <Route path='/content/followedQuestions'  component={questionsFollowed}/> 
-                <Route path='/content/posts'  component={posts}/> 
-                <Route path= '/content/allContent'  component={allContent}/>
+           
            
                 
 
-                <Route path='/' exact component={frame}/>
+                
                {/* <Route path="/profile"  component={profileNav}/> */}
                 <Route path="/profile/answers" exact component={profileNav}/>
                 <Route path="/profile/questions" exact component={profileNav}/>

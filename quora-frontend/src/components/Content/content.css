@@ -67,6 +67,7 @@
     width : 140px;
     height:  25px;
     font-size: 16px;
+    color : lightgrey;
     
     
   }
@@ -147,9 +148,9 @@
   
   }
   
-  
+/*   
    
-  /* .sidebar button.active {
+   .sidebar button.active {
     background-color : white;
     color: white;
   }
@@ -158,13 +159,13 @@
     background-color: #555;
     color: white;
   } */
-  /* 
-  div.content {
+  
+  /* div.content {
     margin-left: 200px;
     padding: 1px 16px;
     height: 1000px;
-  } */
-  
+  } 
+    */
 
   .component {
     

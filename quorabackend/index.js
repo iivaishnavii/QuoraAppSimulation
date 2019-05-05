@@ -56,6 +56,8 @@ var searchQuestion = require('./routes/searchQuestion')
 const getUserFollowingData = require('./routes/getUserFollowingData')
 var signUp = require('./routes/signUp.js')
 var createTopic = require('./routes/createTopic');
+var getActivity = require('./routes/getActivity.js')
+var searchTopic = require('./routes/searchTopic');
 var redisTest = require('./routes/redisTest');
 
 
@@ -68,10 +70,11 @@ app.use(getConversation);
 app.use(getMessage);
 app.use(createMessage);
 app.use(followTopic);
-app.use(followUser);
+app.use('/followUser',followUser);
 app.use(getFollowers);
 
 app.use('/getFollowing',following)
+app.use('/getActivity',getActivity)
 app.use('/userAnswers',userAnswers)
 app.use('/userQuestions',userQuestions)
 app.use('/getBookmarks',getBookmarks)
@@ -90,9 +93,11 @@ app.use('/getAllAnswers',getAnswers)
 app.use('/writeAnswer',writeAnswer)
 app.use('/followQuestion',followQuestion)
 app.use('/searchQuestion',searchQuestion)
-app.use('/searchTopic',searchQuestion)
+app.use('/searchTopic', searchTopic)
+
 app.use('/getUserFollowingData',getUserFollowingData)
 app.use('/createTopic', createTopic)
+
 
 
 const fs = require('fs');
