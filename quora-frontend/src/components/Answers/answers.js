@@ -21,8 +21,9 @@ class answer extends Component {
         }
         console.log("Props"+JSON.stringify(props.location.state.questionid))
     }
-    componentDidMount()
+    componentWillMount()
     {
+        console.log("Inside component did mount"+this.state.questionId)
         console.log("Question ID"+this.state.questionId)
         var url = `http://localhost:4000/getAnswers/`+this.state.questionId
         console.log(url)  
@@ -51,7 +52,9 @@ class answer extends Component {
         document.addEventListener("mousedown", this.handleClickOutside);
 
     }
-
+    handleUpvote(){
+        console.log("upvoted")
+    }
     componentWillUnmount() {
         document.removeEventListener("mousedown", this.handleClickOutside);
       }
@@ -168,7 +171,7 @@ class answer extends Component {
                             <p class="ml-2">{answer.owner}</p>
                         </div>
                         <p>{answer.answer}</p>
-                        <button style={{"font-size":"15px"}} class="transButton"><label class="QuoraLabels"><b>Upvote</b></label><i class="fa fa-arrow-circle-up ml-1"></i></button>
+                        <button style={{"font-size":"15px"}} class="transButton" onClick={this.handleUpvote}><label class="QuoraLabels"><b>Upvote</b></label><i class="fa fa-arrow-circle-up ml-1"></i></button>
                         <label class="ml-1">10.4k</label>
                         <button class="ml-3 transButton" style={{"font-size":"15px"}}><label class="QuoraLabels"><b>Share</b></label><i class="fa fa-share-square ml-1"></i></button>
                         <label class="ml-1">6</label>

@@ -59,11 +59,11 @@ var createTopic = require('./routes/createTopic');
 var getActivity = require('./routes/getActivity.js')
 var searchTopic = require('./routes/searchTopic');
 var redisTest = require('./routes/redisTest');
-
+var upvoteAnswers= require('./routes/upvoteAnswers')
 
 app.use('/login',login)
 app.use('/signUp',signUp)
-
+app.use('/upvoteAnswer',upvoteAnswers)
 app.use('/updateProfile',profile)
 app.use(createConversation);
 app.use(getConversation);

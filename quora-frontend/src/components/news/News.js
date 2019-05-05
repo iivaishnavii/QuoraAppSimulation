@@ -48,7 +48,7 @@ class News extends Component {
                         <p class="card-text answer">{question.Answers[0].answer}</p>
                         
                         <button style={{"font-size":"15px"}} class="transButton"><label class="QuoraLabels"><b>Upvote</b></label><i class="fa fa-arrow-circle-up ml-1"></i></button>
-                        <label class="ml-1">10.4k</label>
+                        <label class="ml-1">{question.Answers[0].upVotes}</label>
                         <button class="ml-3 transButton" style={{"font-size":"15px"}}><label class="QuoraLabels"><b>Share</b></label><i class="fa fa-share-square ml-1"></i></button>
                         <label class="ml-1">6</label>
                         

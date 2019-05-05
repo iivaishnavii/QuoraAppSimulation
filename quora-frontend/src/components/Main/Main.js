@@ -7,16 +7,8 @@ import newsfeed from '../NewsFeed/newsfeed'
 import News from '../news/News'
 import answer from '../Answers/answers'
 import contentHome from '../Content/contentHome'
-import questionsAsked from '../Content/QuestionsAsked'
-import questionsAnswered from '../Content/QuestionsAnswered'
-import questionsFollowed from '../Content/QuestionsFollowed'
-import posts from '../Content/Posts'
-import allContent from '../Content/allContent'
+
 import Model from '../Modal/Model'
-
-
-
-
 //import profile from '../Header/Header';
 //import profile from '../Profile/profile';
 import frame from '../Frame/frame';
@@ -29,7 +21,7 @@ import profileFollowing from '../Profile/ProfileFollowing';
 import profileNav from '../Profile/profileNav';
 import editProfile from '../Profile/editProfile';
 import editCredentials from '../Profile/editCredentials';
-import contentTopic from '../Content/topic';
+
 import searchTopic from '../Profile/UserTopicSearch';
 // import SimpleDialogDemo from '../sample/sample';
 

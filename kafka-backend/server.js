@@ -34,6 +34,7 @@ var followQuestion = require('./services/followQuestion')
 var searchQuestion = require('./services/searchQuestion')
 var searchTopic = require('./services/searchTopic')
 var createTopic = require('./services/createTopic');
+var upvoteAnswer = require('./services/upvoteAnswers')
 
 
 function handleTopicRequest(topic_name,fname){
@@ -68,8 +69,9 @@ function handleTopicRequest(topic_name,fname){
 // Add your TOPICs here
 //first argument is topic namex
 //second argument is a function that will handle this topic request
- handleTopicRequest("login",login)
 
+handleTopicRequest("login",login)
+handleTopicRequest("upvoteAnswer",upvoteAnswer)
 handleTopicRequest("update-profile",profile)
 handleTopicRequest("delete-user",deleteUser)
 handleTopicRequest("createConversation",CreateConversation)
