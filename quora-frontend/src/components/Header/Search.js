@@ -38,8 +38,8 @@ class Search extends Component {
     render() { 
         return ( 
             <div>
-                <div className="container">
-                     <Select options={this.state.searchResults} onChange={opt=>
+                <div className="container" style={{marginTop:"-3%"}}>
+                     <Select style={{marginTop:"0%"}} options={this.state.searchResults} onChange={opt=>
                         {console.log(opt.label,opt.value)
                          this.setState({questionid:opt.value},function () {
                             console.log("State"+this.state.questionid);
@@ -48,7 +48,7 @@ class Search extends Component {
                         }
                     }/>
                    <Link to={{pathname : "/answers",state :{'questionid':this.state.questionid}} }  > 
-                     <button class="btn btn-outline-success my-2 my-sm-0" style={{"fontSize":"small"}} type="submit" onClick={this.handleSearch}>Search </button>      </Link>             
+                     <button class="btn btn-outline-success" style={{"fontSize":"small"}} type="submit" onClick={this.handleSearch}>Search </button>      </Link>             
                 </div>
             </div>
          );

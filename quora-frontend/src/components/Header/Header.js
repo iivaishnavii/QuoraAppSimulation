@@ -66,7 +66,7 @@ export default class Header extends Component {
           
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-            <img className = "QuoraLogo" style = {{ width : 120, height: 50, marginLeft: 100 }}src = {quora}/>
+            <img className = "QuoraLogo" style = {{ width : 120, height: 50, marginTop: "-3%" }}src = {quora}/>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -87,11 +87,12 @@ export default class Header extends Component {
                   <a class="nav-link" style={{"fontSize":"small"}} href="#"> <i class="far fa-bell fa-2x"></i> Notifications</a>
                 </li>    
                 
-                <li style={{height:"3%"}}></li>
-                <form class="form-inline my-2 my-lg-0">
+               
+                {/* <form class="form-inline"> */}
                  <Search></Search>
-                </form>
-                <li class="nav-item dropdown">
+                {/* </form> */}
+                
+                <li>
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" style={{"fontSize":"small", "height":"2%", marginTop: "1%"}} role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-x"></i> Profile
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
