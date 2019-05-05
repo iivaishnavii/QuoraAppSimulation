@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import Select from 'react-select'
 import {Link} from 'react-router-dom';
+import './Search.css'
 
 
 class Search extends Component {
@@ -39,7 +40,7 @@ class Search extends Component {
         return ( 
             <div>
                 <div className="container" style={{marginTop:"-3%"}}>
-                     <Select style={{marginTop:"0%"}} options={this.state.searchResults} onChange={opt=>
+                     <Select autosize={false} style={{marginTop:"0%","width":"12%"}} placeholder="Search Quora" options={this.state.searchResults} onChange={opt=>
                         {console.log(opt.label,opt.value)
                          this.setState({questionid:opt.value},function () {
                             console.log("State"+this.state.questionid);

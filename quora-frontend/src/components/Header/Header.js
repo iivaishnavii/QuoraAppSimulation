@@ -5,9 +5,19 @@ import {Modal,Button} from 'react-bootstrap'
 import Model from '../Modal/Model'
 import axios from 'axios'
 import Search from './Search.js'
+import Select from 'react-select'
 
 //import console = require('console');
+const topics = [
+  { label: "Life", value: 1 },
+  { label: "Machine Learning", value: 2 },
+  { label: "Curry", value: 3 },
+  { label: "Weather", value: 4 },
+  { label: "Science And Tech", value: 5 },
+  { label: "San Jose", value: 6 },
+]
 export default class Header extends Component {
+
     constructor(props){
         super(props);
 
@@ -16,7 +26,9 @@ export default class Header extends Component {
   
       this.state = {
         show: false,
-        question : ""
+        question : "",
+        topic : "",
+       
       };
     }
 
@@ -34,6 +46,9 @@ export default class Header extends Component {
       this.setState({ show: true });
     }
     
+    handleTopic=(e)=>{
+      this.setState({topic:e.target.value})
+    }
     addQuestion=()=>
     {
       //console.log("Question"+this.state.question)
@@ -42,7 +57,7 @@ export default class Header extends Component {
         {
           "Question" : this.state.question,
           "QuestionOwner" : "asimq@gmail.com",
-          "Topics" : "Random",
+          "Topics" : this.state.topic,
           "PostedTime" : "23rdApril, 10:30pm"
         }
         console.log(data)
@@ -75,7 +90,7 @@ export default class Header extends Component {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" style={{"fontSize":"small"}} href="#">  <i class="fas fa-home fa-2x"></i> Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" style={{"fontSize":"small"}} href="http://localhost:3000/newsfeed">  <i class="fas fa-home fa-2x"></i> Home <span class="sr-only">(current)</span></a>
                </li>
                 <li class="nav-item">
                  <a class="nav-link" style={{"fontSize":"small"}} href="#">  <i class="fas fa-edit fa-2x"></i> Answer</a>
@@ -119,6 +134,10 @@ export default class Header extends Component {
                   </Modal.Header>
                   <Modal.Body>
                     <input type="text" placeholder="Start your question with What , How , Why" onChange={this.handleQuestion}></input>
+
+                  </Modal.Body>
+                  <Modal.Body>
+                      <Select options={topics} />
 
                   </Modal.Body>
                   <Modal.Footer>
