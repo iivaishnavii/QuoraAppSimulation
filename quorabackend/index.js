@@ -65,10 +65,10 @@ app.use('/login',login)
 app.use('/signUp',signUp)
 app.use('/upvoteAnswer',upvoteAnswers)
 app.use('/updateProfile',profile)
-app.use(createConversation);
-app.use(getConversation);
-app.use(getMessage);
-app.use(createMessage);
+//app.use(createConversation);
+//app.use(getConversation);
+//app.use(getMessage);
+//app.use(createMessage);
 app.use(followTopic);
 app.use('/followUser',followUser);
 app.use(getFollowers);
@@ -155,6 +155,70 @@ app.get('/allQuestions', (req,res) => {
     
     })
 });
+
+
+app.get("/conversations/:id", (req, res) => {
+    Model.MessageModel.find({$or: [{"id1": req.params.id}, {"id2": req.params.id}]}, (err, result) => {
+        if(err){
+            res.json({message: "error"})
+        }
+        else{
+            res.json({
+                message: "success",
+                data: result
+            })
+        }
+    })
+})
+
+app.post("/conversations", (req, res) => {
+  
+    const message = new Model.MessageModel({
+        id1: req.body.from,
+       
+        id2: req.body.to,
+      
+        msg: {
+            from: req.body.from,
+            text: req.body.msg,
+            time: req.body.time,
+        }
+    })
+
+    message.save((err) => {
+        if(err) { 
+            res.json({ message: "error"})
+        } else res.json({ message: "success"})
+    })
+  
+})
+
+app.get("/conversations/:id/:id1", (req, res) => {
+    console.log(req.params.id)
+    console.log(req.params.id1)
+    Model.MessageModel.findOne({$or: [{$and:[{"id1":req.params.id1},{"id2":req.params.id}]},{$and:[{"id1":req.params.id},{"id2":req.params.id1}]}]}, (err, result) => {
+        if (err) {
+            res.json({ message: "error" })
+        }
+        else {
+            res.json({
+                message: "success",
+                data: result.msg
+            })
+        }
+    })
+})
+
+app.post("/conversations/:id", (req, res) => {
+    const msg = req.body;
+    console.log(req.body);
+    Model.MessageModel.findOneAndUpdate({ $or: [{ $and: [{ "id1": req.body.from }, { "id2": req.params.id }] }, { $and: [{ "id1": req.params.id }, { "id2": req.body.from }] }] }, {$push: {msg}}, (err, result) => {
+        if(err) res.json({ message: "error"})
+        else{
+            res.json({ message: "success"})
+        }
+    })
+})
   
 
 

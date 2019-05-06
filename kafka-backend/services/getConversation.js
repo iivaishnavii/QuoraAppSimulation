@@ -5,7 +5,7 @@ var Model = require('../config/MongoConnection')
 function handle_request(message, callback){
     // get inbox contents for user using email of user
     console.log('Inside Kafka Method get Conversation  Message ', message);
-    Model.ConverstionModel.find({
+    Model.MessageModel.find({
             $or: [{"From": message.id}, {"To": message.id}]
         }, function (err, convo) {
             if (err) {

@@ -21,6 +21,9 @@ import profileFollowing from '../Profile/ProfileFollowing';
 import profileNav from '../Profile/profileNav';
 import editProfile from '../Profile/editProfile';
 import editCredentials from '../Profile/editCredentials';
+import Inbox from '../Inbox/Inbox';
+import NewMessage from '../Inbox/NewMessage';
+import Thread from '../Inbox/Thread';
 
 import searchTopic from '../Profile/UserTopicSearch';
 // import SimpleDialogDemo from '../sample/sample';
@@ -61,6 +64,10 @@ class Main extends Component {
                 <Route path="/editProfile" exact component={editProfile}/>
                 <Route path="/searchTopicByUser" exact component={searchTopic}/>
                
+                <Route exact path="/conversations" component={Inbox} />
+                <Route path="/conversations/:id" component={Thread} />
+                <Route exact path="/newMessage" component={NewMessage} />
+
                  
             </div>
             </BrowserRouter>

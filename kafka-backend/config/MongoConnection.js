@@ -69,7 +69,22 @@ var ConversationSchema = new Schema({
     Subject: { type: String, trim: true },
     messages: { type: Array, trim: true, default: "" }
 
+    
+
 })
+
+const messageSchema = new mongoose.Schema([{
+  id1: String,
+  id1name: String,
+  id2: String,
+  id2name: String,
+  sub: String,
+  msg: [{
+      from: String,
+      text: String,
+      time: String
+  }]
+}])
 
 
 
@@ -98,6 +113,7 @@ var AnswerModel =  mongoose.model('Answer',AnswerSchema)
 var ConverstionModel = mongoose.model('Converstion',ConversationSchema)
 var TopicsModel = mongoose.model('TopicsSchema',TopicsSchema)
 var ActivityModel = mongoose.model('activity', ActivitySchema)
+var MessageModel = mongoose.model('Messages', messageSchema)
 
 module.exports={
     UserModel,
@@ -105,5 +121,6 @@ module.exports={
     ConverstionModel,
     QuestionsModel,
     TopicsModel,
-    ActivityModel
+    ActivityModel,
+    MessageModel
 }
