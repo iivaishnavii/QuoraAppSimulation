@@ -8,9 +8,7 @@ import News from '../news/News'
 import answer from '../Answers/answers'
 import contentHome from '../Content/contentHome'
 
-
-
-
+import Model from '../Modal/Model'
 //import profile from '../Header/Header';
 //import profile from '../Profile/profile';
 import frame from '../Frame/frame';
@@ -23,7 +21,10 @@ import profileFollowing from '../Profile/ProfileFollowing';
 import profileNav from '../Profile/profileNav';
 import editProfile from '../Profile/editProfile';
 import editCredentials from '../Profile/editCredentials';
-import contentTopic from '../Content/topic';
+import Inbox from '../Inbox/Inbox';
+import NewMessage from '../Inbox/NewMessage';
+import Thread from '../Inbox/Thread';
+
 import searchTopic from '../Profile/UserTopicSearch';
 import notification from '../Notifications/notification';
 
@@ -42,6 +43,7 @@ class Main extends Component {
                 <Route path="/newsfeed" exact component={newsfeed}/>
                 <Route path="/newscards" exact component={News}/>
                 <Route path="/answers" exact component={answer}/>
+                <Route path="/modal" exact component={Model}/>
 
                 <Route path='/' exact component={frame}/>
                 <Route path='/a' exact component={notification}/>
@@ -62,6 +64,10 @@ class Main extends Component {
                 <Route path="/editProfile" exact component={editProfile}/>
                 <Route path="/searchTopicByUser" exact component={searchTopic}/>
                
+                <Route exact path="/conversations" component={Inbox} />
+                <Route path="/conversations/:id" component={Thread} />
+                <Route exact path="/newMessage" component={NewMessage} />
+
                  
             </div>
             </BrowserRouter>

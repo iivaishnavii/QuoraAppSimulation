@@ -5,10 +5,12 @@ import {Link} from 'react-router-dom';
 import '../news/News.css'
 class News extends Component {
     state = {  
-        news : []
+        news : [],
+        showAnswerDialog : false,
+        refreshcomponent : true,
+        upvotedItem: 0
     }
     componentDidMount(){
-        // var url = `http://localhost:4000/viewCourses/`+localStorage.getItem('userid')
         var token = localStorage.getItem("token")
         var url = `http://localhost:4000/getAllQuestions`
          console.log(url)  
@@ -17,17 +19,45 @@ class News extends Component {
                  console.log("in then")
                  console.log(response.data)
                  this.setState({news : this.state.news.concat(response.data)})
-                 console.log("After setting",this.state.news)
+                 console.log("After setting",this.state.news[1])
          })
         
- }
- handleSelection= (item)=> (event) =>{
-     console.log(item)
- }
-    render() { 
-        let displayCards = this.state.news.map((question)=>{
-            if(question.Answers.length>0)
+    }
+
+    
+    handleUpvote=(event,questionid,answerid)=>{
+        if(event.currentTarget.dataset.id==answerid)
+        {
+            console.log("clicked"+questionid)
+             var data = {
+            "answerid":answerid,
+            "questionid":questionid
+            }
+        axios.post('http://localhost:4000/upvoteAnswer',data)
+        .then(res=>
             {
+                console.log("Success"+res)
+                //this.setState({upvotedItem:res})
+                window.location.reload();
+
+            }
+            
+          )
+          .catch(res=>console.log("Fail"))
+        }
+       // console.log("Answer id"+val)
+       
+    }
+
+
+    render() { 
+ 
+        
+        /*Display Answers dynamically*/
+        let displayCards = this.state.news.map((question,i)=>{
+            if(question.Answers.length>0)
+           {
+               //console.log("Question"+JSON.stringify(question))
                 return(
                     <div class="card mt-3"  style={{"width": "50rem"}}>
                     <div class="card-header">
@@ -43,30 +73,48 @@ class News extends Component {
                         </div>
                         <p class="card-text answer">{question.Answers[0].answer}</p>
                         
-                        <button style={{"font-size":"15px"}} class="transButton"><label class="QuoraLabels"><b>Upvote</b></label><i class="fa fa-arrow-circle-up ml-1"></i></button>
-                        <label class="ml-1">10.4k</label>
+                        <button style={{"font-size":"15px"}} class="transButton" onClick={e=>{this.handleUpvote(e,question._id,question.Answers[0]._id)}} data-id={question.Answers[0]._id}><label class="QuoraLabels"><b>Upvote</b></label><i class="fa fa-arrow-circle-up ml-1"></i></button>
+                        <label class="ml-1">{question.Answers[0].upVotes}</label>
+                      
                         <button class="ml-3 transButton" style={{"font-size":"15px"}}><label class="QuoraLabels"><b>Share</b></label><i class="fa fa-share-square ml-1"></i></button>
                         <label class="ml-1">6</label>
                         
                         <button class="ml-3 transButton" style={{"font-size":"15px","float":"right"}}><label class="QuoraLabels"><b>Downvote</b></label> <i class="fa fa-arrow-circle-down"></i></button>
-                        <button class="transButton" style={{"float":"right"}}><i class="fas fa-ellipsis-h ml-3" onClick={this.handleSelection(question.Answers[0]._id)}></i></button>
                     </div>
                     <div class='card-header'>
                         <input type="text" style={{"width":"750px"}} placeholder="Add comment"/>
-
-                    
+ 
                     </div>
                     </div>
                     
                 )
-            }
+           }
+           else
+           {
+               return(
+                <div class="card mt-3"  style={{"width": "50rem"}}>
+                    <div class="card-header">
+                            Questions for you
+                    </div>
+                    <div class="card-body">
+                        <Link  to={{pathname : "/answers",state :{'questionid':question._id}}}> 
+                        <h5 class="card-title question">{question.Question}</h5></Link>
+                    </div>
+                   
+                </div>
+
+               )
+           }
                
             
             
         })
+        
         return ( 
             <div>
                 {displayCards}
+               
+
             </div>
 
 

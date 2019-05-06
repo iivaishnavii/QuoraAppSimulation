@@ -21,7 +21,7 @@ mongoose.connect("mongodb+srv://quora:quora@cluster0-6ddbb.mongodb.net/QuoraApp?
     images: { type: Buffer, trim: true },
     isAnonymous: { type: Boolean, trim: true },
     upVotes: { type: Number, trim: true, default: 0 },
-    downVotes: { type: Number, trim: true, default: "" },
+    downVotes: { type: Number, trim: true, default: 0 },
     comments: { type: Array, trim: true, default: "" },
     date : { type: String, trim: true, default: "" },
     question : { type: String, trim: true, default: "" },
@@ -48,13 +48,13 @@ mongoose.connect("mongodb+srv://quora:quora@cluster0-6ddbb.mongodb.net/QuoraApp?
     Description: { type: String, trim: true, default: "" },
     ProfileCredential: { type: String, trim: true, default: "" },
     Questions: [QuestionsSchema],
-    QuestionsFollowed: { type: Array, trim: true, default: "" },
-    AnswersBookmarked : {type :Array,trim:true,default:""},
+    QuestionsFollowed: { type: Array, trim: true },
+    AnswersBookmarked : {type :Array,trim:true},
     Topics : {type:Array},
     Followers : {type:Array},
     Following : {type:Array},
     ProfileViews : {type:Number},
-    QuestionsAnswered:{type :Array,trim:true,default:""},
+    QuestionsAnswered:[AnswerSchema],
     Email: { type: String, trim: true, default: 0 },
     Password: { type: String, trim: true, default: "" },
     ProfilePicture : {type:Buffer},
@@ -69,7 +69,22 @@ var ConversationSchema = new Schema({
     Subject: { type: String, trim: true },
     messages: { type: Array, trim: true, default: "" }
 
+    
+
 })
+
+const messageSchema = new mongoose.Schema([{
+  id1: String,
+  id1name: String,
+  id2: String,
+  id2name: String,
+  sub: String,
+  msg: [{
+      from: String,
+      text: String,
+      time: String
+  }]
+}])
 
 
 
@@ -98,6 +113,7 @@ var AnswerModel =  mongoose.model('Answer',AnswerSchema)
 var ConverstionModel = mongoose.model('Converstion',ConversationSchema)
 var TopicsModel = mongoose.model('TopicsSchema',TopicsSchema)
 var ActivityModel = mongoose.model('activity', ActivitySchema)
+var MessageModel = mongoose.model('Messages', messageSchema)
 
 module.exports={
     UserModel,
@@ -105,5 +121,6 @@ module.exports={
     ConverstionModel,
     QuestionsModel,
     TopicsModel,
-    ActivityModel
+    ActivityModel,
+    MessageModel
 }

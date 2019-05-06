@@ -27,13 +27,10 @@ router.get('/',function(req,res){
                                 'Content-Type' : 'application/json'
                             })
                             //client.setex(userQuestions, 3600, JSON.stringify(result))
-                            res.end(JSON.stringify(result))
+                            let questions =JSON.stringify(result)
+                            res.end(questions)
                         }
                     })
-                
-
-
-
             })
 
      
