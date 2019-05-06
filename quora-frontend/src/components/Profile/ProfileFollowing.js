@@ -9,7 +9,7 @@ export default class ProfileFollowing extends Component {
     constructor(props){
         super(props);
         this.state = {
-            Email: 'Shivani@gmail.com',
+          Email: this.props.match.params.id,
             //Email : this.props.match.params.email;
             token : localStorage.getItem('token'),
             Name: '',

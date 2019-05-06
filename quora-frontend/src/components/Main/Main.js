@@ -13,12 +13,13 @@ import Model from '../Modal/Model'
 
 import frame from '../Frame/frame';
 import signUp from '../SignUp/signUp';
-import profileAnswers from '../Profile/UserAnswers';
-import profileQuestions from '../Profile/UserQuestions';
+
+
 //import profileFollowers from '../Profile/UserFollowers';
 import profileFollowers from '../Profile/ProfileFollowers';
 import profileFollowing from '../Profile/ProfileFollowing';
-import profileNav from '../Profile/profileQuestions';
+import profileQuestions from '../Profile/profileQuestions';
+import profileAnswers from '../Profile/ProfileAnswers';
 import editProfile from '../Profile/editProfile';
 import editCredentials from '../Profile/editCredentials';
 import Inbox from '../Inbox/Inbox';
@@ -53,13 +54,11 @@ class Main extends Component {
            
            
                 
-
-                
               
-                <Route path="/profile/answers" exact component={profileNav}/>
-                <Route path="/profile/questions" exact component={profileNav}/>
-                <Route path="/profile/Followers" exact component={profileFollowers}/>
-                <Route path="/profile/Following" exact component={profileFollowing}/>
+                <Route path="/profile/answers/:id" exact component={profileAnswers}/>
+                <Route path="/profile/questions/:id" exact component={profileQuestions}/>
+                <Route path="/profile/Followers/:id" exact component={profileFollowers}/>
+                <Route path="/profile/Following/:id" exact component={profileFollowing}/>
                 <Route path="/editCredentials" exact component={editCredentials}/>
                 <Route path="/editProfile" exact component={editProfile}/>
                 <Route path="/searchTopicByUser" exact component={searchTopic}/>

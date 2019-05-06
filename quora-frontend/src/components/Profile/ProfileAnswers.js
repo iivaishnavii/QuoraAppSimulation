@@ -5,14 +5,14 @@ import style from '../Profile/profile.css';
 import { ROOT_URL } from '../../config/URLsettings';
 import axios from 'axios';
 import Header from '../Header/Header';
-import Modal from '../Modal/Modal';
+//import Modal from '../Modal/Modal';
 import UserAnswers  from './UserAnswers';
 
 export default class ProfileNav extends Component {
     constructor(props){
         super(props);
         this.state = {
-            Email: 'akhil.kiran@gmail.com',
+            Email: this.props.match.params.id,
             //Email : localStorage.getItem('email');
             token : localStorage.getItem('token'),
             Name: '',
@@ -34,7 +34,8 @@ export default class ProfileNav extends Component {
             QuestionsAnswered: [],
             profilepic: ''
         };
-        this.addpicture = this.addpicture.bind(this);
+
+    this.addpicture = this.addpicture.bind(this);
     this.savepicture = this.savepicture.bind(this);
     }
 
@@ -81,14 +82,14 @@ export default class ProfileNav extends Component {
       }
   }
 
-  showModal = () => {
+  /*showModal = () => {
 
     this.setState({ show: true });
   };
 
   hideModal = () => {
     this.setState({ show: false });
-  };
+  }; */
 
   componentWillMount()
     {
@@ -304,7 +305,7 @@ export default class ProfileNav extends Component {
        
     }
 
-
+    
 }
 
 

@@ -9,7 +9,7 @@ export default class ProfileNav extends Component {
     constructor(props){
         super(props);
         this.state = {
-            Email: 'Shivani@gmail.com',
+          Email: this.props.match.params.email,
             //Email : this.props.email;
             token : localStorage.getItem('token'),
             Name: '',
