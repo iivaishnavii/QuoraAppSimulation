@@ -39,8 +39,9 @@ class Search extends Component {
     render() { 
         return ( 
             <div>
-                <div className="container" style={{marginTop:"-3%"}}>
-                     <Select autosize={false} style={{marginTop:"0%","width":"12%"}} placeholder="Search Quora" options={this.state.searchResults} onChange={opt=>
+
+                <div className="container" style={{marginTop:"-3%",backgroundColor:"#F8F8F8"}}>
+                     <Select style={{marginTop:"0%"}} options={this.state.searchResults} onChange={opt=>
                         {console.log(opt.label,opt.value)
                          this.setState({questionid:opt.value},function () {
                             console.log("State"+this.state.questionid);
