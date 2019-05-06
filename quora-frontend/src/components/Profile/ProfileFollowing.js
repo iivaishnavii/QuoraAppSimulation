@@ -165,12 +165,7 @@ export default class ProfileFollowing extends Component {
         return <div className="quiztab"  style  = {{width: 180}} key={index}>{topic.topicName}</div>
       })
 
-      /*let followers = [];
-      Object.assign(followers, this.state.Followers);
-      let followerDetails = followers.map((follower,index)=>{
-        return (
-        )
-      }) */
+      
 
       let followers = this.state.Following.map(course => {
         return(

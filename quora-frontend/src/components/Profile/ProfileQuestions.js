@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom'
-import quora from '../../images/QuoraLogo.png';
 import style from '../Profile/profile.css';
 import { ROOT_URL } from '../../config/URLsettings';
 import axios from 'axios';
 import Header from '../Header/Header';
-import Modal from '../Modal/Modal';
-import UserAnswers  from './UserAnswers';
+import UserQuestions  from './UserQuestions';
 
 export default class ProfileNav extends Component {
     constructor(props){
         super(props);
         this.state = {
-            Email: 'akhil.kiran@gmail.com',
-            //Email : localStorage.getItem('email');
+            Email: 'Shivani@gmail.com',
+            //Email : this.props.email;
             token : localStorage.getItem('token'),
             Name: '',
             City: '',
@@ -34,7 +31,7 @@ export default class ProfileNav extends Component {
             QuestionsAnswered: [],
             profilepic: ''
         };
-        this.addpicture = this.addpicture.bind(this);
+    this.addpicture = this.addpicture.bind(this);
     this.savepicture = this.savepicture.bind(this);
     }
 
@@ -64,13 +61,11 @@ export default class ProfileNav extends Component {
              Topics : data.Topics,
              Followers : data.Followers,
              Following : data.Following,
-             //ProfileViews : '',
+             ProfileViews : '',
              QuestionsAnswered: data.QuestionsAnswered,
              show : false
            });
-         });
-         
-         
+         });     
      }
 
      addpicture = (e) => {
@@ -81,14 +76,7 @@ export default class ProfileNav extends Component {
       }
   }
 
-  showModal = () => {
-
-    this.setState({ show: true });
-  };
-
-  hideModal = () => {
-    this.setState({ show: false });
-  };
+  
 
   componentWillMount()
     {
@@ -107,7 +95,7 @@ export default class ProfileNav extends Component {
     }
 
   savepicture = (e) =>
-{
+  {
   
     const desc = this.state.Email;
 
@@ -128,7 +116,6 @@ export default class ProfileNav extends Component {
       this.componentDidMount();
   });
    
-
 }
 
      openQuestions =(e) => {
@@ -138,25 +125,25 @@ export default class ProfileNav extends Component {
       openAnswers =(e) => {
         this.props.history.push('/profile/answers')
       }
+
       openEmpty =(e) => {
-        this.props.history.push('/profile')
+        this.props.history.push('/profile/answers')
       }
+
       openFollowers =(e) => {
         this.props.history.push('/profile/Followers')
       }
+
       openFollowing =(e) => {
         this.props.history.push('/profile/Following')
       }
-      editCrentials =(e) => {
-        console.log("editing");
-        this.props.history.push('/editCredentials')
-      }
 
       editCrentials =(e) => {
         console.log("editing");
         this.props.history.push('/editCredentials')
       }
 
+    
       searchTopics =(e) => {
         console.log("editing");
         this.props.history.push('/searchTopicByUser')
@@ -172,6 +159,13 @@ export default class ProfileNav extends Component {
 
     render() {
 
+      let topics = [];
+      Object.assign(topics, this.state.Topics);
+      let topicDetails = topics.map((topic,index)=>{
+        return <div className="quiztab"  style  = {{width: 180}} key={index}>  <i class="fas fa-lightbulb"></i> &nbsp;  {topic.topicName}</div>
+      })
+      
+
 
         return(
             <div>
@@ -180,7 +174,6 @@ export default class ProfileNav extends Component {
                 <div className = 'col-sm-9' >
                 <div class ="sidebar-profile1">
                 <div className = 'row'>
-               {/* <div className = 'col-sm-8' >  */}
                 <div class = "header" style = {{marginleft : 100,
     width : 744,
     height : 164}} >
@@ -189,7 +182,9 @@ export default class ProfileNav extends Component {
             <div style = {{ width : 200, marginleft : 50}}>
        <img  style = {{ width : 142, height : 142, marginleft : 100}}src={this.state.profilepic}
                      className="image--cover" />
+
                 <form >
+                  {(this.state.Email === localStorage.getItem('email')) ?
                     <div className="form-group" style = {{width : 300}}>
                         <input type="file" className="profile" name="selectedFile" onChange={this.addpicture} style = {{width : 100}}/> &nbsp;
                         <button style = {{width : 50}}
@@ -202,17 +197,18 @@ export default class ProfileNav extends Component {
                        
           
           
-                    </div>
+                    </div> : ''}
                 </form>
                 </div>
                 
                  </div> 
                  <div className = 'col-sm-8' >
-                  <h3 style = {{marginTop : 30}}> <b>{this.state.Name}  </b>  <button onClick = {this.editProfile}> <i class="fas fa-pen"></i>  </button>    </h3> 
+                  <h3 style = {{marginTop : 30}}> <b>{this.state.Name}  </b> {(this.state.Email === localStorage.getItem('email')) ? <button onClick = {this.editProfile}> <i class="fas fa-pen"></i>  </button>  : ''}   </h3> 
                   
                    <h4 > {this.state.ProfileCredential}   </h4> 
                    <h5 > <b> <i> {this.state.Description} </i> </b>  </h5> 
                    <button id='all' class="button-content " ><span class ="size-sm" > {this.state.Followers.length} Followers </span></button>
+                   
                  </div> 
                  </div>
              <div>
@@ -245,19 +241,15 @@ export default class ProfileNav extends Component {
                         </br>
                         </div>
                      <div >
-                     <UserAnswers />
+                     <UserQuestions  email={this.state.Email} />
                      </div>
 
-                   
-                 
-                   
-        
                       </div>
                       </div>
                       </div>
                       <div className = 'col-sm-3' >
             <div class="col-md-3 width12" >
-            <p class="heading" style = {{width : 250}}> Credentials & Highlights  &nbsp; <button onClick = {this.editCrentials}> <i class="fas fa-pen"></i>  </button> </p>
+            <p class="heading" style = {{width : 250}}> Credentials & Highlights  &nbsp;{(this.state.Email === localStorage.getItem('email')) ? <button onClick = {this.editCrentials}> <i class="fas fa-pen"></i>  </button> : ''} </p>
                         <hr class ="hr" style = {{width:215}} ></hr>
                       
             <div class="btn-group-vertical1" style = {{height : 200, width : 200}}>
@@ -287,11 +279,11 @@ export default class ProfileNav extends Component {
                         <br>
                         </br>
                         </div>
-
+    
                         <div class="col-md-3 width12" >
-            <p class="heading" style = {{width : 250}} > Knows About &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<button onClick = {this.searchTopics}> <i class="fas fa-pen"></i>  </button>  </p>
+            <p class="heading" style = {{width : 250}} > Knows About &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;{(this.state.Email === localStorage.getItem('email')) ? <button onClick = {this.searchTopics}> <i class="fas fa-pen"></i>  </button> : ''} </p>
                         <hr class ="hr" style = {{width:215}}></hr>
-                      
+                        {topicDetails}
                      
                      
                         </div>

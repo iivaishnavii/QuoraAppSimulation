@@ -18,7 +18,8 @@ router.get('/:topic',function(req,res){
                 res.end('Error in getting questions')
             }
             else{
-                console.log("Results for questions searched are"+result)
+                console.log(result);
+                console.log("Results for questions searched are" + result)
                 res.writeHead(200,{
                     'Content-Type' : 'application/json'
                 })

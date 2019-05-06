@@ -10,7 +10,7 @@ import contentHome from '../Content/contentHome'
 
 import Model from '../Modal/Model'
 //import profile from '../Header/Header';
-//import profile from '../Profile/profile';
+
 import frame from '../Frame/frame';
 import signUp from '../SignUp/signUp';
 import profileAnswers from '../Profile/UserAnswers';
@@ -18,7 +18,7 @@ import profileQuestions from '../Profile/UserQuestions';
 //import profileFollowers from '../Profile/UserFollowers';
 import profileFollowers from '../Profile/ProfileFollowers';
 import profileFollowing from '../Profile/ProfileFollowing';
-import profileNav from '../Profile/profileNav';
+import profileNav from '../Profile/profileQuestions';
 import editProfile from '../Profile/editProfile';
 import editCredentials from '../Profile/editCredentials';
 import Inbox from '../Inbox/Inbox';
@@ -55,7 +55,7 @@ class Main extends Component {
                 
 
                 
-               {/* <Route path="/profile"  component={profileNav}/> */}
+              
                 <Route path="/profile/answers" exact component={profileNav}/>
                 <Route path="/profile/questions" exact component={profileNav}/>
                 <Route path="/profile/Followers" exact component={profileFollowers}/>

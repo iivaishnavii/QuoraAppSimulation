@@ -111,7 +111,7 @@ var QuestionsModel = mongoose.model('Question',QuestionsSchema)
 var UserModel =  mongoose.model('Users',UserSchema)
 var AnswerModel =  mongoose.model('Answer',AnswerSchema)
 var ConverstionModel = mongoose.model('Converstion',ConversationSchema)
-var TopicsModel = mongoose.model('TopicsSchema',TopicsSchema)
+var TopicsModel = mongoose.model('Topics',TopicsSchema)
 var ActivityModel = mongoose.model('activity', ActivitySchema)
 var MessageModel = mongoose.model('Messages', messageSchema)
 

@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { ROOT_URL } from '../../config/URLsettings';
 import {Redirect} from 'react-router-dom';
+import under from 'underscore';
 
 
 import axios from 'axios';
@@ -37,6 +38,8 @@ import axios from 'axios';
         profilepic: '',
         TopicSearchResults : []
     };
+
+    this.handleSearchTerm = this.handleSearchTerm.bind(this);
 
   }
 
@@ -86,11 +89,14 @@ import axios from 'axios';
     });
   }
 
+
+
+  handleSearchTerm = event => {
+    this.setState({searchterm: event.target.value});
+  }
   serachtermHandler = (e) => {
    
-    this.setState({
-        searchterm: e.target.value
-    })
+   
     var data = {
       topicName : this.state.searchterm,
       }
@@ -99,8 +105,11 @@ import axios from 'axios';
       axios.get(`${ROOT_URL}/searchTopic/${this.state.searchterm}`)
       .then(response => {
       
+
         if(response && !(response == null)) {
           
+         
+         
           this.setState({
             TopicSearchResults : response.data
           })
@@ -194,8 +203,10 @@ componentWillMount()
 
 <div class="modal-body">
 <div className="row coursesearch">
-            <input type="text" style = {{width : 500, marginBottom : 30}}name="searchterm" className="searchinput" placeholder= "Search for a topic" value = {this.state.searchterm} onChange={this.serachtermHandler}/>
+            <input type="text" style = {{width : 500, marginBottom : 30}}name="searchterm" className="searchinput" placeholder= "Search for a topic" value = {this.state.searchterm} onChange={this.handleSearchTerm}/>
+           
             <br></br>
+            <button onClick = {this.serachtermHandler}> Search </button>
           <div>{ topicDetails} </div> 
    <div>{topicSearcDetails} </div>
           </div>
