@@ -18,8 +18,8 @@ import signUp from '../SignUp/signUp';
 //import profileFollowers from '../Profile/UserFollowers';
 import profileFollowers from '../Profile/ProfileFollowers';
 import profileFollowing from '../Profile/ProfileFollowing';
-import profileNav from '../Profile/ProfileQuestions';
-import profileQuestions from '../Profile/profileQuestions';
+
+import profileQuestions from '../Profile/ProfileQuestions';
 import profileAnswers from '../Profile/ProfileAnswers';
 import editProfile from '../Profile/editProfile';
 import editCredentials from '../Profile/editCredentials';
