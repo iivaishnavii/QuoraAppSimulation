@@ -26,7 +26,7 @@ import NewMessage from '../Inbox/NewMessage';
 import Thread from '../Inbox/Thread';
 
 import searchTopic from '../Profile/UserTopicSearch';
-// import SimpleDialogDemo from '../sample/sample';
+import notification from '../Notifications/notification';
 
 
 
@@ -46,7 +46,7 @@ class Main extends Component {
                 <Route path="/modal" exact component={Model}/>
 
                 <Route path='/' exact component={frame}/>
-                {/* <Route path='/a' exact component={SimpleDialogDemo}/> */}
+                <Route path='/a' exact component={notification}/>
                 
                 
                 <Route path='/content'  component={contentHome}/> 

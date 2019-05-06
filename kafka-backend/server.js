@@ -1,6 +1,6 @@
 var connection =  new require('./kafka/Connection');
 //topics files
-//var signin = require('./services/signin.js');
+var signin = require('./services/signin.js');
 var login = require('./services/login.js');
 
 var profile = require('./services/profile')
@@ -19,6 +19,7 @@ var userAnswers = require('./services/userAnswers.js')
 var userQuestions = require('./services/userQuestions.js')
 var userBookmarks = require('./services/userBookmarks.js')
 var updateAnswer = require('./services/updateAnswer.js')
+var notifications = require('./services/notifications')
 
 var content = require('./services/content.js')
 var getActivity = require('./services/getActivity')
@@ -43,12 +44,11 @@ function handleTopicRequest(topic_name,fname){
     var producer = connection.getProducer();
     console.log('server is running ');
     consumer.on('message', function (message) {
-       // console.log('message received for ' + topic_name +" ", fname);
+        console.log('message received for ' + topic_name +" ", fname);
         console.log(JSON.stringify(message.value));
         var data = JSON.parse(message.value);
         
         fname.handle_request(data.data, function(err,res){
-
             var payloads = [
                 { topic: data.replyTo,
                     messages:JSON.stringify({
@@ -85,6 +85,7 @@ handleTopicRequest("get-questions",getAllQuestions)
 handleTopicRequest("create-topic", createTopic);
 handleTopicRequest("get-questions",getAllQuestions)
  handleTopicRequest("write-answer",writeAnswer)
+ handleTopicRequest("notifications",notifications)
  handleTopicRequest("follow-question",followQuestion)
  handleTopicRequest("content",content);
 handleTopicRequest('get_activity',getActivity)
@@ -108,7 +109,7 @@ handleTopicRequest("followUser",FollowUser)
 handleTopicRequest("sendMessage",SendMessage)
 handleTopicRequest("getFollowers",GetFollowers)
 handleTopicRequest("getMessage",GetMessage)
-handleTopicRequest("getConversation",GetConversation)
+handleTopicRequest("getConversation",GetConversation)   
 
 
 

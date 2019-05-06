@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
 import quora from '../../images/QuoraLogo.png';
+import Notifications from '../Notifications/notification'
+
 import {Modal,Button} from 'react-bootstrap'
 import Model from '../Modal/Model'
 import axios from 'axios'
@@ -136,9 +138,7 @@ export default class Header extends Component {
                 <li class="nav-item">
                   <a class="nav-link" style={{"fontSize":"small"}} href="#">  <i class="fas fa-users fa-2x"></i> Spaces</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" style={{"fontSize":"small"}} href="#"> <i class="far fa-bell fa-2x"></i> Notifications</a>
-                </li>    
+               <Notifications/>    
                 
                
                 {/* <form class="form-inline"> */}
