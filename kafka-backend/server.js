@@ -1,6 +1,6 @@
 var connection =  new require('./kafka/Connection');
 //topics files
-var signin = require('./services/signin.js');
+
 var login = require('./services/login.js');
 
 var profile = require('./services/profile')
@@ -70,46 +70,46 @@ function handleTopicRequest(topic_name,fname){
 //first argument is topic namex
 //second argument is a function that will handle this topic request
 
-handleTopicRequest("login",login)
-handleTopicRequest("upvoteAnswer",upvoteAnswer)
-handleTopicRequest("update-profile",profile)
-handleTopicRequest("delete-user",deleteUser)
-handleTopicRequest("createConversation",CreateConversation)
-handleTopicRequest("get-profile",getProfile)
-handleTopicRequest("get-answers",getAnswers) 
-handleTopicRequest("create-question",createQuestion) 
- handleTopicRequest("signup",signup)
-handleTopicRequest("get-profile",getProfile)
-handleTopicRequest("update-profile",profile)
-handleTopicRequest("get-questions",getAllQuestions)
-handleTopicRequest("create-topic", createTopic);
-handleTopicRequest("get-questions",getAllQuestions)
- handleTopicRequest("write-answer",writeAnswer)
+ handleTopicRequest("login",login)
+// handleTopicRequest("upvoteAnswer",upvoteAnswer)
+// handleTopicRequest("update-profile",profile)
+// handleTopicRequest("delete-user",deleteUser)
+// handleTopicRequest("createConversation",CreateConversation)
+// handleTopicRequest("get-profile",getProfile)
+// handleTopicRequest("get-answers",getAnswers) 
+// handleTopicRequest("create-question",createQuestion) 
+  handleTopicRequest("signup",signup)
+// handleTopicRequest("get-profile",getProfile)
+// handleTopicRequest("update-profile",profile)
+ handleTopicRequest("get-questions",getAllQuestions)
+// handleTopicRequest("create-topic", createTopic);
+// handleTopicRequest("get-questions",getAllQuestions)
+//  handleTopicRequest("write-answer",writeAnswer)
  handleTopicRequest("notifications",notifications)
- handleTopicRequest("follow-question",followQuestion)
- handleTopicRequest("content",content);
-handleTopicRequest('get_activity',getActivity)
-handleTopicRequest("search-question",searchQuestion)
-handleTopicRequest("search-topic",searchTopic) 
+//  handleTopicRequest("follow-question",followQuestion)
+//  handleTopicRequest("content",content);
+// handleTopicRequest('get_activity',getActivity)
+// handleTopicRequest("search-question",searchQuestion)
+// handleTopicRequest("search-topic",searchTopic) 
 
 
 
 
-handleTopicRequest("get_following",following)
-handleTopicRequest("user_answers",userAnswers);
-handleTopicRequest("user_questions",userQuestions)
-handleTopicRequest("user_bookmarks",userBookmarks)
-handleTopicRequest("update_answer",updateAnswer)
+// handleTopicRequest("get_following",following)
+// handleTopicRequest("user_answers",userAnswers);
+// handleTopicRequest("user_questions",userQuestions)
+// handleTopicRequest("user_bookmarks",userBookmarks)
+// handleTopicRequest("update_answer",updateAnswer)
 
 
 
 
- handleTopicRequest("followTopic",FollowTopic)
-handleTopicRequest("followUser",FollowUser)
-handleTopicRequest("sendMessage",SendMessage)
-handleTopicRequest("getFollowers",GetFollowers)
-handleTopicRequest("getMessage",GetMessage)
-handleTopicRequest("getConversation",GetConversation)   
+//  handleTopicRequest("followTopic",FollowTopic)
+// handleTopicRequest("followUser",FollowUser)
+// handleTopicRequest("sendMessage",SendMessage)
+// handleTopicRequest("getFollowers",GetFollowers)
+// handleTopicRequest("getMessage",GetMessage)
+// handleTopicRequest("getConversation",GetConversation)   
 
 
 
