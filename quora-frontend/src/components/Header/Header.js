@@ -5,9 +5,19 @@ import {Modal,Button} from 'react-bootstrap'
 import Model from '../Modal/Model'
 import axios from 'axios'
 import Search from './Search.js'
+import Select from 'react-select'
 
 //import console = require('console');
+const topics = [
+  { label: "Life", value: 1 },
+  { label: "Machine Learning", value: 2 },
+  { label: "Curry", value: 3 },
+  { label: "Weather", value: 4 },
+  { label: "Science And Tech", value: 5 },
+  { label: "San Jose", value: 6 },
+]
 export default class Header extends Component {
+
     constructor(props){
         super(props);
 
@@ -16,7 +26,10 @@ export default class Header extends Component {
   
       this.state = {
         show: false,
-        question : ""
+        question : "",
+        topics : [],
+        topicSelected:""
+       
       };
     }
 
@@ -30,20 +43,24 @@ export default class Header extends Component {
     }
   
     handleShow() {
-      console.log("AAAA")
+      
       this.setState({ show: true });
     }
     
+    handleTopic=(e)=>{
+      this.setState({topic:e.target.value})
+    }
     addQuestion=()=>
     {
-      //console.log("Question"+this.state.question)
+      console.log("Inside add question with topics"+this.state.topics)
 
       var data=
         {
           "Question" : this.state.question,
           "QuestionOwner" : "asimq@gmail.com",
-          "Topics" : "Random",
-          "PostedTime" : "23rdApril, 10:30pm"
+          "Topics" : this.state.topics,
+          "PostedTime" : "23rdApril, 10:30pm",
+          
         }
         console.log(data)
       
@@ -59,8 +76,44 @@ export default class Header extends Component {
     
 
     }
+    addTopicToQuestion=(e)=>{
+      console.log("Inside add topic to question")
+      
+      // if(this.state.topics.length===0)
+      // {
+      //   console.log("Adding"+this.state.topicSelected)
+      //   this.setState({topics:this.state.topicSelected})
+      // }
+       
+      // else
+      // {
+        this.setState({
+          topics: [
+              ...this.state.topics,
+              this.state.topicSelected
+          ]
+        })
+     // }
+
+    }
   
     render() {
+      let lt = null
+      if(this.state.topics.length>0)
+      {
+        console.log("Printing list"+this.state.topics)
+        //console.log("TYPE"+typeof(this.state.topics))
+        // var t = Array.from(this.state.topics)
+        lt = this.state.topics.map(l=>{
+          return(
+            <div>
+              {l}
+            </div>
+          )
+
+        })
+        
+      }
         return (
 <div>
           
@@ -75,7 +128,7 @@ export default class Header extends Component {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" style={{"fontSize":"small"}} href="#">  <i class="fas fa-home fa-2x"></i> Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" style={{"fontSize":"small"}} href="http://localhost:3000/newsfeed">  <i class="fas fa-home fa-2x"></i> Home <span class="sr-only">(current)</span></a>
                </li>
                 <li class="nav-item">
                  <a class="nav-link" style={{"fontSize":"small"}} href="#">  <i class="fas fa-edit fa-2x"></i> Answer</a>
@@ -119,7 +172,18 @@ export default class Header extends Component {
                   </Modal.Header>
                   <Modal.Body>
                     <input type="text" placeholder="Start your question with What , How , Why" onChange={this.handleQuestion}></input>
+                    
+                  </Modal.Body>
+                  <Modal.Body>
+                      <div class="row">
+                        <div class="col-sm-11"> <Select options={topics} 
+                        onChange={opt=>this.setState({topicSelected:opt.label})}
+                        /></div>
+                        <div classs="col-sm-1 "><button><i class="fa fa-plus" onClick={this.addTopicToQuestion}></i></button></div>
+                      </div>
+                     
 
+                      {lt}
                   </Modal.Body>
                   <Modal.Footer>
                     <Button variant="secondary" onClick={this.handleClose}>
