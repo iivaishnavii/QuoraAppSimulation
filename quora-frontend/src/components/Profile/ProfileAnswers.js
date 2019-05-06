@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom'
+import quora from '../../images/QuoraLogo.png';
 import style from '../Profile/profile.css';
 import { ROOT_URL } from '../../config/URLsettings';
 import axios from 'axios';
 import Header from '../Header/Header';
-import Modal from '../Modal/Model';
-import UserQuestions  from './UserQuestions';
+import Modal from '../Modal/Modal';
+import UserAnswers  from './UserAnswers';
 
 export default class ProfileNav extends Component {
     constructor(props){
         super(props);
         this.state = {
-            Email: 'Shivani@gmail.com',
-            //Email : this.props.match.params.email;
+            Email: 'akhil.kiran@gmail.com',
+            //Email : localStorage.getItem('email');
             token : localStorage.getItem('token'),
             Name: '',
             City: '',
@@ -32,7 +34,7 @@ export default class ProfileNav extends Component {
             QuestionsAnswered: [],
             profilepic: ''
         };
-    this.addpicture = this.addpicture.bind(this);
+        this.addpicture = this.addpicture.bind(this);
     this.savepicture = this.savepicture.bind(this);
     }
 
@@ -62,11 +64,13 @@ export default class ProfileNav extends Component {
              Topics : data.Topics,
              Followers : data.Followers,
              Following : data.Following,
-             ProfileViews : '',
+             //ProfileViews : '',
              QuestionsAnswered: data.QuestionsAnswered,
              show : false
            });
-         });     
+         });
+         
+         
      }
 
      addpicture = (e) => {
@@ -77,7 +81,14 @@ export default class ProfileNav extends Component {
       }
   }
 
-  
+  showModal = () => {
+
+    this.setState({ show: true });
+  };
+
+  hideModal = () => {
+    this.setState({ show: false });
+  };
 
   componentWillMount()
     {
@@ -96,7 +107,7 @@ export default class ProfileNav extends Component {
     }
 
   savepicture = (e) =>
-  {
+{
   
     const desc = this.state.Email;
 
@@ -117,6 +128,7 @@ export default class ProfileNav extends Component {
       this.componentDidMount();
   });
    
+
 }
 
      openQuestions =(e) => {
@@ -127,7 +139,7 @@ export default class ProfileNav extends Component {
         this.props.history.push('/profile/answers')
       }
       openEmpty =(e) => {
-        this.props.history.push('/profile/answers')
+        this.props.history.push('/profile')
       }
       openFollowers =(e) => {
         this.props.history.push('/profile/Followers')
@@ -159,13 +171,6 @@ export default class ProfileNav extends Component {
     
 
     render() {
-
-      let topics = [];
-      Object.assign(topics, this.state.Topics);
-      let topicDetails = topics.map((topic,index)=>{
-        return <div className="quiztab"  style  = {{width: 180}} key={index}>  <i class="fas fa-lightbulb"></i> &nbsp;  {topic.topicName}</div>
-      })
-      
 
 
         return(
@@ -208,7 +213,6 @@ export default class ProfileNav extends Component {
                    <h4 > {this.state.ProfileCredential}   </h4> 
                    <h5 > <b> <i> {this.state.Description} </i> </b>  </h5> 
                    <button id='all' class="button-content " ><span class ="size-sm" > {this.state.Followers.length} Followers </span></button>
-                   
                  </div> 
                  </div>
              <div>
@@ -241,9 +245,13 @@ export default class ProfileNav extends Component {
                         </br>
                         </div>
                      <div >
-                     <UserQuestions />
+                     <UserAnswers email={this.state.Email} />
                      </div>
 
+                   
+                 
+                   
+        
                       </div>
                       </div>
                       </div>
@@ -279,11 +287,11 @@ export default class ProfileNav extends Component {
                         <br>
                         </br>
                         </div>
-    
+
                         <div class="col-md-3 width12" >
             <p class="heading" style = {{width : 250}} > Knows About &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<button onClick = {this.searchTopics}> <i class="fas fa-pen"></i>  </button>  </p>
                         <hr class ="hr" style = {{width:215}}></hr>
-                        {topicDetails}
+                      
                      
                      
                         </div>

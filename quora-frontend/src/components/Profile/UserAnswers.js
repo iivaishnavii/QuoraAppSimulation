@@ -4,9 +4,13 @@ import {Link} from 'react-router-dom';
 
 import '../news/News.css'
 class UserAnswers extends Component {
-    state = {  
-        news : []
+    constructor(props){
+        super(props);
+    this.state = {  
+        news : [],
+        Email : this.props.email
     }
+}
     componentDidMount(){
         
         var token = localStorage.getItem("token")
@@ -14,6 +18,7 @@ class UserAnswers extends Component {
          console.log(url)  
          var data = {
             Email : "Shivani@gmail.com"
+             // Email : this.state.Email
         }
         axios.post(url, data, {headers : {"Authorization": `Bearer ${token}`}}).
          then(response => {
