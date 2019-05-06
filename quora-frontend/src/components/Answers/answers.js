@@ -75,6 +75,9 @@ class answer extends Component {
        // console.log("Answer id"+val)
        
     }
+    uploadImage=(e)=>{
+        console.log("File"+e.target.files[0])
+    }
     componentWillUnmount() {
         document.removeEventListener("mousedown", this.handleClickOutside);
       }
@@ -171,7 +174,8 @@ class answer extends Component {
             displayanswedraft=
             <div>
                 <div>
-                    <button className="mt-2 btn-primary">Add Image</button>
+                    <input type="file" onChange={this.uploadImage}></input>
+                    <button className="mt-2 btn-primary" >Add Image</button>
                 </div>
                 <div class="mt-2">
                     <textarea class="form-control" rows="5" id="comment" onChange={this.setAnswer}></textarea>

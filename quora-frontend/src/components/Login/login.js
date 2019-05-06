@@ -75,22 +75,23 @@ render(){
       <div className="mt-5 col-md-4">
           <form>
           <h5 style={{"margin-left":"48%"}}>Login</h5>
-          <div className="form-group">
-              <div class="row">
-                      <div class="col-4"></div>
-                      <input type="text" class="form-control col-4" id="Password" onChange={this.handlePassword}  placeholder="Enter Password" />
-                      <div class="col-4"></div>
-              </div>
-          </div>
+       
           
           <div className="form-group">
               <div class="row">
                   <div class="col-4"></div>
-                  <input type="text" className="form-control col-4" id="Email" onChange={this.handleEmail} placeholder="Enter your email"/>
+                  <input type="email" className="form-control col-4" id="Email" onChange={this.handleEmail} placeholder="Enter your email"/>
                   <div class="col-4"></div>
               </div>
               
           </div>
+        <div className="form-group">
+            <div class="row">
+                    <div class="col-4"></div>
+                    <input type="text" class="form-control col-4" id="Password" onChange={this.handlePassword}  placeholder="Enter Password" />
+                    <div class="col-4"></div>
+            </div>
+        </div>
           
           
           <div class="row" >

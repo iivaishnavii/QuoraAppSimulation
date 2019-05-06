@@ -27,7 +27,8 @@ export default class Header extends Component {
       this.state = {
         show: false,
         question : "",
-        topic : "",
+        topics : [],
+        topicSelected:""
        
       };
     }
@@ -42,7 +43,7 @@ export default class Header extends Component {
     }
   
     handleShow() {
-      console.log("AAAA")
+      
       this.setState({ show: true });
     }
     
@@ -51,14 +52,15 @@ export default class Header extends Component {
     }
     addQuestion=()=>
     {
-      //console.log("Question"+this.state.question)
+      console.log("Inside add question with topics"+this.state.topics)
 
       var data=
         {
           "Question" : this.state.question,
           "QuestionOwner" : "asimq@gmail.com",
-          "Topics" : this.state.topic,
-          "PostedTime" : "23rdApril, 10:30pm"
+          "Topics" : this.state.topics,
+          "PostedTime" : "23rdApril, 10:30pm",
+          
         }
         console.log(data)
       
@@ -74,8 +76,44 @@ export default class Header extends Component {
     
 
     }
+    addTopicToQuestion=(e)=>{
+      console.log("Inside add topic to question")
+      
+      // if(this.state.topics.length===0)
+      // {
+      //   console.log("Adding"+this.state.topicSelected)
+      //   this.setState({topics:this.state.topicSelected})
+      // }
+       
+      // else
+      // {
+        this.setState({
+          topics: [
+              ...this.state.topics,
+              this.state.topicSelected
+          ]
+        })
+     // }
+
+    }
   
     render() {
+      let lt = null
+      if(this.state.topics.length>0)
+      {
+        console.log("Printing list"+this.state.topics)
+        //console.log("TYPE"+typeof(this.state.topics))
+        // var t = Array.from(this.state.topics)
+        lt = this.state.topics.map(l=>{
+          return(
+            <div>
+              {l}
+            </div>
+          )
+
+        })
+        
+      }
         return (
 <div>
           
@@ -134,11 +172,18 @@ export default class Header extends Component {
                   </Modal.Header>
                   <Modal.Body>
                     <input type="text" placeholder="Start your question with What , How , Why" onChange={this.handleQuestion}></input>
-
+                    
                   </Modal.Body>
                   <Modal.Body>
-                      <Select options={topics} />
+                      <div class="row">
+                        <div class="col-sm-11"> <Select options={topics} 
+                        onChange={opt=>this.setState({topicSelected:opt.label})}
+                        /></div>
+                        <div classs="col-sm-1 "><button><i class="fa fa-plus" onClick={this.addTopicToQuestion}></i></button></div>
+                      </div>
+                     
 
+                      {lt}
                   </Modal.Body>
                   <Modal.Footer>
                     <Button variant="secondary" onClick={this.handleClose}>

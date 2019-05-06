@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { ROOT_URL } from '../../config/URLsettings';
 import {Redirect} from 'react-router-dom';
-
+import states from './state.js'
 
 import axios from 'axios';
 
@@ -69,6 +69,8 @@ import axios from 'axios';
         Following : data.Following,
         //ProfileViews : '',
         QuestionsAnswered: data.QuestionsAnswered,
+        validZipcode : true,
+        invalidState : false
       });
     });
    
@@ -80,6 +82,28 @@ import axios from 'axios';
     this.setState({
       [event.target.id]: event.target.value
     });
+
+    if(event.target.id == 'ZipCode')
+    {
+     // console.log(/^\d{5}$|^\d{5}\d{4}$/.test(event.target.value))
+      this.setState({validZipcode : /^\d{5}$|^\d{5}\d{4}$/.test(event.target.value) })
+    }
+    
+    if(event.target.id == 'State')
+    {
+     
+        var found = states.find(function(element) {
+          return (element.name == event.target.value || element.abbreviation == event.target.value)
+        });
+        if(found === undefined)
+        {
+          this.setState({invalidState : true})
+        }
+        else
+        this.setState({invalidState : false})
+          
+        //console.log("Validity"+JSON.stringify(found))
+    }
   }
 
   updateProfile = event => {
@@ -145,6 +169,21 @@ componentWillMount()
 
 
   render(){
+    let warning =  null
+    if(this.state.validZipcode === false)
+    {
+      console.log("Setting warning"+this.state.validZipcode)
+      warning =<div class="alert alert-danger" role="alert">Invalid zip code</div>
+    }
+    let warning2 = null
+    {
+      if(this.state.invalidState === true)
+      {
+        console.log("Setting warning"+this.state.validZipcode)
+        warning2 =<div class="alert alert-danger" role="alert">Invalid state</div>
+      }
+    }
+    
     var redirectVar = null;
     if(!localStorage.getItem('token')){
       redirectVar = <Redirect to="/" />
@@ -201,6 +240,7 @@ componentWillMount()
               onChange={this.handleChange}
               type="text"
             />
+            {warning2}
           </Form.Group>
           <Form.Group controlId="ZipCode" >
             <Form.Label>ZipCode</Form.Label>
@@ -209,11 +249,12 @@ componentWillMount()
               onChange={this.handleChange}
               type="text"
             />
+            {warning}
           </Form.Group>
           
         </form>
   
- 
+        
  
 </div>
  
@@ -221,7 +262,7 @@ componentWillMount()
 
     <div class="modal-footer">
   <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick = {this.cancelAction}>Cancel</button>
-  <button type="button" class="btn btn-primary" onClick = {this.updateProfile}>Save Changes</button>
+  <button type="button" disabled={!this.state.validZipcode|this.state.invalidState} class="btn btn-primary" onClick = {this.updateProfile}>Save Changes</button>
 </div>
     
 </div>
