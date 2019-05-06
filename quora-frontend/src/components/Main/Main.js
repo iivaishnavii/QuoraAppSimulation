@@ -18,12 +18,13 @@ import profileQuestions from '../Profile/UserQuestions';
 //import profileFollowers from '../Profile/UserFollowers';
 import profileFollowers from '../Profile/ProfileFollowers';
 import profileFollowing from '../Profile/ProfileFollowing';
-import profileNav from '../Profile/profileQuestions';
+import profileNav from '../Profile/ProfileQuestions';
 import editProfile from '../Profile/editProfile';
 import editCredentials from '../Profile/editCredentials';
 import Inbox from '../Inbox/Inbox';
 import NewMessage from '../Inbox/NewMessage';
 import Thread from '../Inbox/Thread';
+import topic from '../Topics/topic'
 
 import searchTopic from '../Profile/UserTopicSearch';
 import notification from '../Notifications/notification';
@@ -67,6 +68,7 @@ class Main extends Component {
                 <Route exact path="/conversations" component={Inbox} />
                 <Route path="/conversations/:id" component={Thread} />
                 <Route exact path="/newMessage" component={NewMessage} />
+                <Route path="/newsfeed/topic" component={topic} />
 
                  
             </div>
