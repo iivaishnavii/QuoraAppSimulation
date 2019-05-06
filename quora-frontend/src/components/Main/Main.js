@@ -25,7 +25,7 @@ import editProfile from '../Profile/editProfile';
 import editCredentials from '../Profile/editCredentials';
 import contentTopic from '../Content/topic';
 import searchTopic from '../Profile/UserTopicSearch';
-import SimpleDialogDemo from '../sample/sample';
+import notification from '../Notifications/notification';
 
 
 
@@ -44,7 +44,7 @@ class Main extends Component {
                 <Route path="/answers" exact component={answer}/>
 
                 <Route path='/' exact component={frame}/>
-                <Route path='/a' exact component={SimpleDialogDemo}/>
+                <Route path='/a' exact component={notification}/>
                 
                 
                 <Route path='/content'  component={contentHome}/> 

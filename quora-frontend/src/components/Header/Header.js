@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
 import quora from '../../images/QuoraLogo.png';
+import Notifications from '../Notifications/notification'
+
 export default class Header extends Component {
     constructor(props){
         super(props);
@@ -30,9 +32,8 @@ export default class Header extends Component {
     <li class="nav-item">
       <a class="nav-link" style={{"fontSize":"small"}} href="#">  <i class="fas fa-users fa-2x"></i> Spaces</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" style={{"fontSize":"small"}} href="#"> <i class="far fa-bell fa-2x"></i> Notifications</a>
-    </li>
+   
+    <Notifications/>
     <form class="form-inline my-2 my-lg-0">
     <input class="form-control mr-sm-2"  style = {{width : 326, height : "80%"}}type="search" placeholder="Search Quora" aria-label="Search"/>
     <button class="btn btn-outline-success my-2 my-sm-0" style={{"fontSize":"small"}} type="submit">Search </button>

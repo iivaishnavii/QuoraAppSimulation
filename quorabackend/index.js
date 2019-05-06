@@ -35,6 +35,7 @@ var userAnswers = require('./routes/userAnswers.js')
 var userQuestions = require('./routes/userQuestions.js')
 var getBookmarks = require('./routes/getBookmarks.js')
 var updateAnswer = require('./routes/updateAnswer.js')
+var notifications = require('./routes/notifications')
 
 const createConversation = require('./routes/createConversation');
 const getConversation = require('./routes/getConversation');
@@ -86,7 +87,7 @@ app.use('/getProfile',getProfile)
 app.use('/getAllQuestions',getAllQuestions)
 
 app.use('/allQuestions' ,redisTest)
-
+app.use('/notifications',notifications)
 app.use('/createQuestion',createQuestion)
 app.use('/getAnswers',getAnswers)
 app.use('/getAllAnswers',getAnswers)
