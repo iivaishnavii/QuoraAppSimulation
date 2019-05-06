@@ -49,6 +49,10 @@ onUpdatePasswrd = (e) => {
 
 }
 
+signup = (e) => {
+  this.props.history.push('/signup')  
+}
+
 //Define component to be rendered
 renderField(field) {
 
@@ -168,16 +172,17 @@ render(){
                   <div class="col-4"></div>
               
           </div>
-          <div class="row" >
-              
-              <div class="col-4"></div>
-              <button type="submit" class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0 col-4" onClick={this.signup}>New User? Sign up!</button>
-              <div class="col-4"></div>
-          
-      </div>
+        
           
 
           </form>
+          <div class="row" >
+              
+              <div class="col-4"></div>
+              <li class="signup"><Link to="/signup">Don't have an account yet? Sign up here</Link></li>
+             
+          
+      </div>
 
         </div>
         <div class="col-md-4"> 

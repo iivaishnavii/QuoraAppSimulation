@@ -9,8 +9,7 @@ export default class ProfileFollowers extends Component {
     constructor(props){
         super(props);
         this.state = {
-            Email: 'Shivani@gmail.com',
-            //Email : this.props.match.params.email;
+          Email: this.props.match.params.id,
             token : localStorage.getItem('token'),
             Name: '',
             City: '',

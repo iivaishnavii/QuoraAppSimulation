@@ -19,8 +19,8 @@ class UserQuestions extends Component {
         var url = `http://localhost:4000/userQuestions`
          console.log(url)  
          var data = {
-           Email : "Shivani@gmail.com"
-           // Email : this.state.Email
+           //Email : "Shivani@gmail.com"
+            Email : this.state.Email
         }
         axios.post(url, data, {headers : {"Authorization": `Bearer ${token}`}}).
          then(response => {
