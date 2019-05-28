@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
 import quora from '../../images/QuoraLogo.png';
+import { Link } from 'react-router-dom';
+import Notifications from '../Notifications/notification';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+
+
+
 import {Modal,Button} from 'react-bootstrap'
 import Model from '../Modal/Model'
 import axios from 'axios'
@@ -23,14 +29,23 @@ export default class Header extends Component {
 
       this.handleShow = this.handleShow.bind(this);
       this.handleClose = this.handleClose.bind(this);
+      this.toggle = this.toggle.bind(this);
   
       this.state = {
         show: false,
         question : "",
         topics : [],
-        topicSelected:""
+        topicSelected:"",
+        dropdownOpen : false
        
       };
+    }
+
+
+    toggle() {
+      this.setState(prevState => ({
+        dropdownOpen: !prevState.dropdownOpen
+      }));
     }
 
     handleQuestion=(e)=>{
@@ -98,6 +113,7 @@ export default class Header extends Component {
     }
   
     render() {
+
       let lt = null
       if(this.state.topics.length>0)
       {
@@ -136,30 +152,44 @@ export default class Header extends Component {
                 <li class="nav-item">
                   <a class="nav-link" style={{"fontSize":"small"}} href="#">  <i class="fas fa-users fa-2x"></i> Spaces</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" style={{"fontSize":"small"}} href="#"> <i class="far fa-bell fa-2x"></i> Notifications</a>
-                </li>    
+               <Notifications/>    
                 
                
                 {/* <form class="form-inline"> */}
                  <Search></Search>
                 {/* </form> */}
-                
-                <li>
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" style={{"fontSize":"small", "height":"2%", marginTop: "1%"}} role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-x"></i> Profile
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Profile</a>
-                    <a class="dropdown-item" href="#">Blogs</a>
-                    <a class="dropdown-item" href="#">Messages</a>
-                    <a class="dropdown-item" href="#">Your Content</a>
-                    <a class="dropdown-item" href="#">Stats</a>
-                    <a class="dropdown-item" href="#">Create Ad</a>
-                    <a class="dropdown-item" href="#">Settings</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
-                </li>
+                <div >
+                <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+        <DropdownToggle caret>
+          Profile
+        </DropdownToggle>
+        <DropdownMenu>
+          {/*<DropdownItem header>Header</DropdownItem> */}
+          <DropdownItem> <Link to={`/profile/answers/${localStorage.getItem('email')}`}>  Profile</Link></DropdownItem>
+          <DropdownItem > <Link to={`/home}`}>  Blogs </Link> </DropdownItem>
+          <DropdownItem > <Link to={`/conversations`}>  Messages </Link></DropdownItem>
+          <DropdownItem><Link to={`/Blogs}`}>  Your Content </Link></DropdownItem>
+          <DropdownItem><Link to={`/Blogs}`}> Stats </Link></DropdownItem>
+          <DropdownItem><Link to={`/Blogs}`}> Create Ad </Link> </DropdownItem>
+          <DropdownItem> <Link to={`/Blogs}`}> Settings </Link> </DropdownItem>
+          <DropdownItem divider />
+          <DropdownItem>Help ·
+About · 
+Logout</DropdownItem>
+          
+        </DropdownMenu>
+      </Dropdown>
+
+      
+      </div>
+
+              
+
+
+
+
+
+               
                 <li class="nav-item">
                   <div className = "col-sm-1" align ="center">   
                     <button type="button" class="btn btn-danger" align = "right" style={{"fontSize":"small", marginTop: 5.5}} onClick={this.handleShow}> Add Question or Link</button>            

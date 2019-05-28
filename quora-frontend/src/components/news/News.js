@@ -48,10 +48,12 @@ class News extends Component {
        // console.log("Answer id"+val)
        
     }
-
+    renderImage=()=>{
+        console.log("Hello")
+    }
 
     render() { 
- 
+        
         
         /*Display Answers dynamically*/
         let displayCards = this.state.news.map((question,i)=>{
@@ -72,6 +74,7 @@ class News extends Component {
                             <p class="ml-2">{question.Answers[0].owner}</p>
                         </div>
                         <p class="card-text answer">{question.Answers[0].answer}</p>
+                        {question.Answers[0].imageId!=0? <div>Hello</div> : null}
                         
                         <button style={{"font-size":"15px"}} class="transButton" onClick={e=>{this.handleUpvote(e,question._id,question.Answers[0]._id)}} data-id={question.Answers[0]._id}><label class="QuoraLabels"><b>Upvote</b></label><i class="fa fa-arrow-circle-up ml-1"></i></button>
                         <label class="ml-1">{question.Answers[0].upVotes}</label>

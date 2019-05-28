@@ -9,8 +9,7 @@ export default class ProfileFollowers extends Component {
     constructor(props){
         super(props);
         this.state = {
-            Email: 'Shivani@gmail.com',
-            //Email : this.props.match.params.email;
+          Email: this.props.match.params.id,
             token : localStorage.getItem('token'),
             Name: '',
             City: '',
@@ -165,12 +164,7 @@ export default class ProfileFollowers extends Component {
         return <div className="quiztab"  style  = {{width: 180}} key={index}>{topic.topicName}</div>
       })
 
-      /*let followers = [];
-      Object.assign(followers, this.state.Followers);
-      let followerDetails = followers.map((follower,index)=>{
-        return (
-        )
-      }) */
+      
 
       let followers = this.state.Followers.map(course => {
         return(

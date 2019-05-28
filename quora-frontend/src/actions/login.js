@@ -18,18 +18,19 @@ export function submitLogin(data) {
             .then(response => {
                 console.log(response);
                 if (response.status === 200) {
-                    localStorage.setItem("token", response.data.updatedList.token);
+                    console.log("inside 200");
+                    localStorage.setItem("token", response.data.Token);
 
                     var resultData = {
-                        email : response.data.updatedList.res[0].email,
-                        user_id : response.data.updatedList.res[0].user_id,
-                        role : response.data.updatedList.res[0].role,
-                        user_name : response.data.updatedList.res[0].user_name,
+                        email : response.data.result.Email,
+                        credential : response.data.result.ProfileCredential,
+                        name : response.data.result.name,
                         isAuthenticated : true
         
                     }
-                    localStorage.setItem('user_id',response.data.updatedList.res[0].user_id );
-                    localStorage.setItem('role',response.data.updatedList.res[0].role );
+                    localStorage.setItem('email',response.data.result.Email);
+                    localStorage.setItem('credential',response.data.result.ProfileCredential);
+                    localStorage.setItem('credential',response.data.result.name);
                     console.log('Result in action: ', resultData)
                     dispatch({
                         type: AUTH_LOGIN,

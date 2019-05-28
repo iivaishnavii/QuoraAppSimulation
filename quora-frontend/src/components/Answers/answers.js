@@ -17,7 +17,11 @@ class answer extends Component {
             open: false,
             answer : "",
             redirectToMyAnswersPage : false,
-            displayOnlyQuestions:false
+            displayOnlyQuestions:false,
+            selectedFile : null,
+            imageId : 0,
+            img: ''
+
         }
         console.log("Props"+JSON.stringify(props.location.state.questionid))
     }
@@ -52,6 +56,23 @@ class answer extends Component {
         document.addEventListener("mousedown", this.handleClickOutside);
 
     }
+    componentDidMount() {
+        fetch('http://localhost:4000/getImageforAnswer')
+        .then((res) => res.json())
+        .then((data) => {
+            // console.log(img)
+            var base64Flag = 'data:image/jpeg;base64,';
+            var imageStr = this.arrayBufferToBase64(data.img.data.data);
+            this.setState({img:base64Flag+imageStr})
+        })
+    }
+    
+    arrayBufferToBase64(buffer) {
+        var binary = '';
+        var bytes = [].slice.call(new Uint8Array(buffer));
+        bytes.forEach((b) => binary += String.fromCharCode(b));
+        return window.btoa(binary);
+    };
     handleUpvote=(event,answerid)=>{
         if(event.currentTarget.dataset.id==answerid)
         {
@@ -75,8 +96,10 @@ class answer extends Component {
        // console.log("Answer id"+val)
        
     }
-    uploadImage=(e)=>{
-        console.log("File"+e.target.files[0])
+    fileSelectedHandler=(e)=>{
+        this.setState({selectedFile :e.target.files[0] })
+
+        
     }
     componentWillUnmount() {
         document.removeEventListener("mousedown", this.handleClickOutside);
@@ -110,11 +133,14 @@ class answer extends Component {
                 "isAnonymous":1,
                 "date":"05-05-2019",
                 "question":this.state.question,
+                "imageId":this.state.imageId
                 
             }
-            axios.post('http://localhost:4000/writeAnswer/',data)
+            
+            axios.post('http://localhost:4000/writeAnswer/8',data)
             .then(response=>{
                 console.log("Wrote an Answer Successfully")
+                console.log(this.state.imageId)
                 this.setState({redirectToMyAnswersPage:true})
             })
             .catch(response=>{
@@ -125,11 +151,11 @@ class answer extends Component {
         {
             var data={
                 "answer" : this.state.answer,
-                "owner" : "Shivani@gmail.com",
+                "owner" : "akak@gmail.com",
                 "isAnonymous":0,
                 "date":"05-05-2019",
                 "question":this.state.question,
-                
+                "imageId":this.state.imageId
             }
             axios.post('http://localhost:4000/writeAnswer/',data)
             .then(response=>{
@@ -147,6 +173,20 @@ class answer extends Component {
 
     handleClose = (e) =>{
         this.setState({showAnswerDialog:false})
+    }
+
+    fileUpload = (e)=>{
+        const data = new FormData() 
+        data.append('selectedFile', this.state.selectedFile)
+        console.log('Selected File'+this.state.selectedFile)
+        var num = Math.floor((Math.random() * 1000) + 1);        
+        axios.post('http://localhost:4000/addpicforanswer/'+num,data)
+        .then(res=>{
+            console.log("Upload successfully")
+            this.setState({imageId:num})
+            console.log("ImageID"+this.state.imageId)
+        })
+
     }
     
     setAnswer = (e)=>{
@@ -174,8 +214,8 @@ class answer extends Component {
             displayanswedraft=
             <div>
                 <div>
-                    <input type="file" onChange={this.uploadImage}></input>
-                    <button className="mt-2 btn-primary" >Add Image</button>
+                    <input type="file" onChange={this.fileSelectedHandler}></input>
+                    <button className="mt-2 btn-primary" onClick={this.fileUpload}>Add Image</button>
                 </div>
                 <div class="mt-2">
                     <textarea class="form-control" rows="5" id="comment" onChange={this.setAnswer}></textarea>
@@ -195,12 +235,14 @@ class answer extends Component {
                             <p class="ml-2">{answer.owner}</p>
                         </div>
                         <p>{answer.answer}</p>
+                        <img
+                        src={this.state.img}
+                        alt='Helpful alt text'/>
                         <button style={{"font-size":"15px"}} class="transButton" onClick={e=>{this.handleUpvote(e,answer._id)}} data-id={answer._id}
 ><label class="QuoraLabels"><b>Upvote</b></label><i class="fa fa-arrow-circle-up ml-1"></i></button>
                         <label class="ml-1">{answer.upVotes}</label>
                         <button class="ml-3 transButton" style={{"font-size":"15px"}}><label class="QuoraLabels"><b>Share</b></label><i class="fa fa-share-square ml-1"></i></button>
-                        <label class="ml-1">6</label>
-                        
+                        <label class="ml-1">6</label>  
                         <button class="ml-3 transButton" style={{"font-size":"15px","float":"right"}}><label class="QuoraLabels"><b>Downvote</b></label> <i class="fa fa-arrow-circle-down"></i></button>
                         <button class="transButton" style={{"float":"right"}}><i class="fas fa-ellipsis-h ml-3" ></i></button>
                         <div class='card-header'>

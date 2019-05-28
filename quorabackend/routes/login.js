@@ -26,11 +26,19 @@ router.post('/',function(req,res){
                 console.log("Sesssion Details"+req.session.user)
                 var token = jwt.sign(result,secret,{
                     expiresIn : 10080
-                })
+               })
                 res.writeHead(200,{
                     'Content-Type' : 'text/plain'
                 })
-                res.end(JSON.stringify(res.data))
+
+                var Result = {
+                     result : result,
+                    Token : token
+                }
+console.log("login sucess")
+                res.end(JSON.stringify(Result));    
+
+              
                 
             }
             else{

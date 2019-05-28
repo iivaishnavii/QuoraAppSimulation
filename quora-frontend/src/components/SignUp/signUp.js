@@ -29,9 +29,10 @@ class SignUp extends Component{
   }
   
   register=(e)=>{
+    e.preventDefault();
     if(this.state.Name===""||this.state.Email===""||this.state.Password==="")
     {
-        e.preventDefault()
+        
         console.log("Cannot be left empty")
         this.setState({emptyValues :true})
     }
@@ -50,7 +51,8 @@ class SignUp extends Component{
       }).then(response=>{
         console.log(response.data)
         if(response.status===200 || response.status===210){
-          this.setState({login:true})
+          console.log("in login status")
+         this.props.history.push('/');
         }
         
       })
@@ -60,6 +62,7 @@ class SignUp extends Component{
   render(){
     let redirectvar = null;
     if(this.state.login === true){
+      console.log("in login true")
       redirectvar = <Redirect to='/' />
     }
     return(
@@ -76,7 +79,7 @@ class SignUp extends Component{
           <div className="form-group">
               <div class="row">
                       <div class="col-4"></div>
-                      <input type="text" class="form-control col-4" id="Name" onChange={this.handleFirstName}  placeholder="Enter FirstName" />
+                      <input type="text" class="form-control col-4" id="Name" onChange={this.handleFirstName}  placeholder="Enter Name" />
                       <div class="col-4"></div>
               </div>
           </div>
@@ -114,7 +117,7 @@ class SignUp extends Component{
        </div>  
         */}
   </div>  
-  
+
       </div>
       
   

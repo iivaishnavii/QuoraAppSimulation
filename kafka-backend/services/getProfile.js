@@ -2,7 +2,7 @@ var Model = require('../config/MongoConnection')
 
 
 function handle_request(message,callback){
-    console.log("Inside Kafka get Profile",message);
+    //console.log("Inside Kafka get Profile",message);
     Model.UserModel.findOne({
         'Email' : message.params.email
     },(err,user)=>{

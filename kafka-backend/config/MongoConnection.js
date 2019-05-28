@@ -14,11 +14,17 @@ mongoose.connect("mongodb+srv://quora:quora@cluster0-6ddbb.mongodb.net/QuoraApp?
     console.error('Database connection error')
   })
 
+  var ImgSchema = new Schema({
+    img: { data: Buffer, contentType: String}
+  }, {
+    timestamps: true
+  });
   
   var AnswerSchema = new Schema({
     answer: { type: String, trim: true},
     owner: { type: String, trim: true },
-    images: { type: Buffer, trim: true },
+    images: [ImgSchema],
+    imageId : {type:Number,default: 0},
     isAnonymous: { type: Boolean, trim: true },
     upVotes: { type: Number, trim: true, default: 0 },
     downVotes: { type: Number, trim: true, default: 0 },
@@ -69,7 +75,23 @@ var ConversationSchema = new Schema({
     Subject: { type: String, trim: true },
     messages: { type: Array, trim: true, default: "" }
 
+    
+
 })
+
+const messageSchema = new mongoose.Schema([{
+  id1: String,
+  id1name: String,
+  id2: String,
+  id2name: String,
+  sub: String,
+  msg: [{
+      from: String,
+      text: String,
+      time: String
+  }]
+}])
+
 
 
 
@@ -80,6 +102,14 @@ var TopicsSchema = new Schema({
     questions : {type : String}
 })
 
+
+
+
+// var ImagesSchema = new Schema({
+//   answer: 
+//   images : [ImgSchema]
+// })
+
 var ActivitySchema = new Schema({
   action : {type: String,trim : true},
   owner_email : {type : String},
@@ -88,16 +118,18 @@ var ActivitySchema = new Schema({
 },
   {timestamps: true})
 
-
-
+ 
 
 
 var QuestionsModel = mongoose.model('Question',QuestionsSchema)
 var UserModel =  mongoose.model('Users',UserSchema)
 var AnswerModel =  mongoose.model('Answer',AnswerSchema)
 var ConverstionModel = mongoose.model('Converstion',ConversationSchema)
-var TopicsModel = mongoose.model('TopicsSchema',TopicsSchema)
+var TopicsModel = mongoose.model('Topics',TopicsSchema)
 var ActivityModel = mongoose.model('activity', ActivitySchema)
+var MessageModel = mongoose.model('Messages', messageSchema)
+var Img = mongoose.model('Img',ImgSchema)
+
 
 module.exports={
     UserModel,
@@ -105,5 +137,8 @@ module.exports={
     ConverstionModel,
     QuestionsModel,
     TopicsModel,
-    ActivityModel
+    ActivityModel,
+    MessageModel,
+    Img
+    //ImagesSchema
 }
